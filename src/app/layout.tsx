@@ -8,6 +8,9 @@ import { PrismicPreview } from '@prismicio/next'
 import { ThemeProvider } from 'next-themes'
 import Script from 'next/script'
 import { Graph, NonprofitType, Organization, PostalAddress } from 'schema-dts'
+import PrivacyToast from '@/components/PrivacyToast'
+import { Toaster } from '@/components/ui/sonner'
+import Analytics from '@/components/Analytics'
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient()
@@ -31,6 +34,12 @@ export default async function RootLayout({
   const client = createClient()
   const settings = await client.getSingle('settings')
   const url = settings.data.domain || 'example.com'
+
+  const gaId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID
+  const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID
+  const fbId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID
+  const isProd = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
+
   const status = settings.data.nonprofit_status as NonprofitType
 
   const organizationSchema: Organization = {
@@ -119,8 +128,11 @@ export default async function RootLayout({
           <Header />
           <main id="main-content">{children}</main>
           <Footer />
+          <PrivacyToast message={settings.data.privacy_toast_message} />
+          <Toaster richColors closeButton />
+          <PrismicPreview repositoryName={repositoryName} />
         </ThemeProvider>
-        <PrismicPreview repositoryName={repositoryName} />
+        {isProd && <Analytics gaId={gaId} clarityId={clarityId} fbId={fbId} />}
       </body>
     </html>
   )

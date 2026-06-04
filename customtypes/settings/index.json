@@ -34,6 +34,13 @@
           "constraint": {},
           "thumbnails": []
         }
+      },
+      "privacy_toast_message": {
+        "type": "Text",
+        "config": {
+          "label": "Privacy Toast Message",
+          "placeholder": "What does the privacy message say?"
+        }
       }
     },
     "Schema": {

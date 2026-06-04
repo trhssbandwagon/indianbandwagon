@@ -1,0 +1,227 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Default Hero Slice",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "In as few words as possible, tell your customer what you do, who it is for, and how it will improve their life.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"button_link": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"key": "2b97b289-5abe-414c-bf4f-89a5618276bb",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "http://twitter.com",
+							"text": "First Button",
+							"variant": "secondary"
+						}
+					},
+					{
+						"key": "51e9be08-8685-4348-a138-62a6b10ece30",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "https://www.google.com",
+							"text": "Second Button",
+							"variant": "outline"
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "withImage",
+		"primary": {
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "In as few words as possible, tell your customer what you do, who it is for, and how it will improve their life.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"button_link": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"key": "437e7537-788e-4271-bbed-cd4030739157",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "http://google.com",
+							"text": "First Button",
+							"variant": "default"
+						}
+					},
+					{
+						"key": "7db27b11-bed2-483a-a507-81bd69c59429",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "https://google.com",
+							"variant": "secondary",
+							"text": "Second Button"
+						}
+					}
+				]
+			},
+			"image": {
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/photo-1638752096399-4b6a40939e21?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHxtYXJjaGluZyUyMGJhbmR8ZW58MHx8fHwxNzc5MjA3OTg2fDA&ixlib=rb-4.1.0&q=85",
+				"alt": "a group of people in red and white costumes",
+				"origin": {
+					"id": "gjAeGxypVC4",
+					"url": "https://images.unsplash.com/photo-1638752096399-4b6a40939e21?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHxtYXJjaGluZyUyMGJhbmR8ZW58MHx8fHwxNzc5MjA3OTg2fDA&ixlib=rb-4.1.0&q=85",
+					"width": 7079,
+					"height": 4719
+				},
+				"width": 7079,
+				"height": 4719,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Hero With Image Slice",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "contentHeight",
+		"primary": {
+			"image": {
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/photo-1569949236204-2cbfaa21fbd2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxtYXJjaGluZyUyMGJhbmR8ZW58MHx8fHwxNzc5MjA3OTg2fDA&ixlib=rb-4.1.0&q=85",
+				"alt": "man wears white top",
+				"origin": {
+					"id": "4YbssFeFwZk",
+					"url": "https://images.unsplash.com/photo-1569949236204-2cbfaa21fbd2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxtYXJjaGluZyUyMGJhbmR8ZW58MHx8fHwxNzc5MjA3OTg2fDA&ixlib=rb-4.1.0&q=85",
+					"width": 2336,
+					"height": 3504
+				},
+				"width": 2336,
+				"height": 3504,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Content-Height Hero Slice",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "This is a tagline area where you briefly describe the call to action",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"button_link": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"key": "3d0abe43-c4f2-4ef0-b85d-39d98542ac01",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "http://google.com",
+							"text": "Call to Action Button",
+							"variant": "outline"
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]

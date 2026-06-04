@@ -1,0 +1,163 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "heading": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Process Slice Heading",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Give one sentence describing the transformation your service offers form start to finish",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "title": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "The Process"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "icon",
+            {
+              "__TYPE__": "FieldContent",
+              "type": "Select",
+              "value": "message"
+            }
+          ],
+          [
+            "button_label",
+            {
+              "__TYPE__": "FieldContent",
+              "type": "Text",
+              "value": "Optional Call to Action"
+            }
+          ],
+          [
+            "button_link",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "https://google.com",
+                "target": ""
+              }
+            }
+          ],
+          [
+            "description",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Give one sentence describing the transformation your service offers form start to finish",
+                    "spans": []
+                  },
+                  "direction": "ltr"
+                }
+              ]
+            }
+          ],
+          [
+            "step_title",
+            {
+              "__TYPE__": "FieldContent",
+              "type": "Text",
+              "value": "Step 1"
+            }
+          ]
+        ]
+      },
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "icon",
+            {
+              "__TYPE__": "FieldContent",
+              "type": "Select",
+              "value": "call"
+            }
+          ],
+          [
+            "description",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Give one sentence describing the transformation your service offers form start to finish",
+                    "spans": []
+                  },
+                  "direction": "ltr"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "icon",
+            {
+              "__TYPE__": "FieldContent",
+              "type": "Select",
+              "value": "people"
+            }
+          ],
+          [
+            "description",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Give one sentence describing the transformation your service offers form start to finish",
+                    "spans": []
+                  },
+                  "direction": "ltr"
+                }
+              ]
+            }
+          ],
+          [
+            "step_title",
+            {
+              "__TYPE__": "FieldContent",
+              "type": "Text",
+              "value": "Step 3"
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]

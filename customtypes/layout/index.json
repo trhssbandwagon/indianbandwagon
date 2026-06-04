@@ -1,0 +1,139 @@
+{
+  "format": "custom",
+  "id": "layout",
+  "label": "Layout",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Header": {
+      "cta_link": {
+        "type": "Link",
+        "config": {
+          "label": "CTA Link",
+          "placeholder": "Enter a Call to Action",
+          "select": null,
+          "allowText": true,
+          "variants": [
+            "default",
+            "secondary",
+            "outline",
+            "ghost",
+            "destructive",
+            "link"
+          ],
+          "allowTargetBlank": true
+        }
+      },
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "navigation": {
+        "type": "Link",
+        "config": {
+          "label": "Navigation",
+          "placeholder": "Enter navigation links",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true,
+          "variants": [
+            "default",
+            "secondary",
+            "outline",
+            "ghost",
+            "destructive",
+            "link"
+          ]
+        }
+      }
+    },
+    "Footer": {
+      "nonprofit_statement": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Nonprofit Statement",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "hyperlink,strong,em,paragraph"
+        }
+      },
+      "privacy_link": {
+        "type": "Link",
+        "config": {
+          "label": "Privacy Link",
+          "placeholder": "",
+          "select": null,
+          "allowText": true
+        }
+      },
+      "copyright": {
+        "type": "Text",
+        "config": {
+          "label": "Copyright",
+          "placeholder": ""
+        }
+      },
+      "social_media": {
+        "type": "Group",
+        "config": {
+          "label": "Social Media",
+          "repeat": true,
+          "fields": {
+            "platform": {
+              "type": "Select",
+              "config": {
+                "label": "Platform",
+                "placeholder": "",
+                "options": [
+                  "Facebook",
+                  "Instagram",
+                  "LinkedIn",
+                  "TikTok",
+                  "YouTube",
+                  "Google"
+                ]
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "variants": [
+                  "default",
+                  "secondary",
+                  "ghost",
+                  "outline",
+                  "destructive",
+                  "link"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "slices1": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "footer_multi_column": {
+              "type": "SharedSlice"
+            },
+            "footer_heading": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

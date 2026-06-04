@@ -1,0 +1,36 @@
+{
+  "id": "footer_multi_column",
+  "type": "SharedSlice",
+  "name": "FooterMultiColumn",
+  "description": "FooterMultiColumn",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3"
+          }
+        },
+        "layout": {
+          "type": "Link",
+          "config": {
+            "label": "Layout",
+            "select": "document",
+            "customtypes": ["footer_multi_column"]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "quote": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Amet cillum laborum aliquip enim ipsum sunt tempor mollit non. Eiusmod anim do sint excepteur consequat officia consectetur officia. Occaecat labore reprehenderit aute ullamco est quis do deserunt sint amet."
+            }
+          }
+        ]
+      },
+      "name": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Jane Doe",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    "items": []
+  }
+]

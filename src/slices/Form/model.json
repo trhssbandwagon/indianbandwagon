@@ -1,0 +1,116 @@
+{
+  "id": "form",
+  "type": "SharedSlice",
+  "name": "Form",
+  "description": "Form",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Optionally add a title",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "name_label": {
+          "type": "Text",
+          "config": {
+            "label": "Name Label",
+            "placeholder": ""
+          }
+        },
+        "name_placeholder": {
+          "type": "Text",
+          "config": {
+            "label": "Name Placeholder",
+            "placeholder": ""
+          }
+        },
+        "email_label": {
+          "type": "Text",
+          "config": {
+            "label": "Email Label",
+            "placeholder": ""
+          }
+        },
+        "email_placeholder": {
+          "type": "Text",
+          "config": {
+            "label": "Email Placeholder",
+            "placeholder": ""
+          }
+        },
+        "phone_label": {
+          "type": "Text",
+          "config": {
+            "label": "Phone Label",
+            "placeholder": ""
+          }
+        },
+        "phone_placeholder": {
+          "type": "Text",
+          "config": {
+            "label": "Phone Placeholder",
+            "placeholder": ""
+          }
+        },
+        "message_label": {
+          "type": "Text",
+          "config": {
+            "label": "Message Label",
+            "placeholder": ""
+          }
+        },
+        "message_placeholder": {
+          "type": "Text",
+          "config": {
+            "label": "Message Placeholder",
+            "placeholder": ""
+          }
+        },
+        "button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Button Text",
+            "placeholder": ""
+          }
+        },
+        "button_style": {
+          "type": "Select",
+          "config": {
+            "label": "Button Style",
+            "placeholder": "",
+            "options": [
+              "default",
+              "secondary",
+              "outline",
+              "ghost",
+              "destructive",
+              "link"
+            ],
+            "default_value": "default"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

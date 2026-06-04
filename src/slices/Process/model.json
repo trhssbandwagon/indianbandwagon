@@ -1,0 +1,85 @@
+{
+  "id": "process",
+  "type": "SharedSlice",
+  "name": "Process",
+  "description": "Process",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": "Optionally add a section title"
+          }
+        },
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Enter process heading",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "Optionally describe the process",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em"
+          }
+        }
+      },
+      "items": {
+        "icon": {
+          "type": "Select",
+          "config": {
+            "label": "Icon",
+            "placeholder": "Optionally select an icon",
+            "options": ["message", "call", "people"]
+          }
+        },
+        "step_title": {
+          "type": "Text",
+          "config": {
+            "label": "Step Title",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "description",
+            "placeholder": "Describe this step",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em"
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Button Label",
+            "placeholder": "Optionally add a button"
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "placeholder": "Add a link",
+            "allowTargetBlank": false,
+            "select": null
+          }
+        }
+      }
+    }
+  ]
+}

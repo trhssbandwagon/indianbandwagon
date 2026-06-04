@@ -1,0 +1,85 @@
+{
+  "id": "faq",
+  "type": "SharedSlice",
+  "name": "Faq",
+  "description": "Faq",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "type": {
+          "type": "Select",
+          "config": {
+            "label": "Type",
+            "placeholder": "Mutiple allows more than 1 to be open",
+            "options": [
+              "multiple",
+              "single"
+            ],
+            "default_value": "multiple"
+          }
+        },
+        "border": {
+          "type": "Boolean",
+          "config": {
+            "label": "Border",
+            "placeholder_false": "No Border",
+            "placeholder_true": "Border",
+            "default_value": false
+          }
+        },
+        "collapsible": {
+          "type": "Boolean",
+          "config": {
+            "label": "Collapsible",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
+        },
+        "questions": {
+          "type": "Group",
+          "config": {
+            "label": "Questions",
+            "repeat": true,
+            "fields": {
+              "question": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Question",
+                  "placeholder": "Enter the question text",
+                  "allowTargetBlank": true,
+                  "single": "strong,em,hyperlink,paragraph"
+                }
+              },
+              "answer": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Answer",
+                  "placeholder": "Answer the question",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

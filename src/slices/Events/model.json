@@ -1,0 +1,80 @@
+{
+  "id": "events",
+  "type": "SharedSlice",
+  "name": "Events",
+  "description": "Events",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3,heading4"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "days_ahead": {
+          "type": "Number",
+          "config": {
+            "label": "Days Ahead",
+            "placeholder": "How many days ahead to show?"
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "eventsGrid",
+      "name": "Events Grid",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3,heading4"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "days_ahead": {
+          "type": "Number",
+          "config": {
+            "label": "Days Ahead",
+            "placeholder": "How many days ahead to show?"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

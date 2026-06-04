@@ -1,0 +1,42 @@
+{
+  "id": "footer_link_block",
+  "type": "SharedSlice",
+  "name": "FooterLinkBlock",
+  "description": "FooterLinkBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "block_title": {
+          "type": "Text",
+          "config": {
+            "label": "Block Title",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Form Slice - Heading",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Veniam incididunt ipsum consectetur exercitation do cupidatat fugiat do id irure do ea cillum aliquip. Culpa aute pariatur ut Lorem exercitation reprehenderit duis duis."
+            }
+          }
+        ]
+      },
+      "name_label": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Name Label"
+      },
+      "email_label": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Email Label"
+      },
+      "email_placeholder": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Enter Your Email"
+      },
+      "phone_label": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Phone Label"
+      },
+      "phone_placeholder": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Enter your phone number"
+      },
+      "message_label": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Message Label"
+      },
+      "button_text": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Form Button Text"
+      },
+      "button_style": {
+        "__TYPE__": "FieldContent",
+        "type": "Select",
+        "value": "default"
+      },
+      "name_placeholder": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Enter Your Name"
+      },
+      "message_placeholder": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Craft your message here..."
+      }
+    },
+    "items": []
+  }
+]

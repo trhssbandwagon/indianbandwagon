@@ -1,0 +1,99 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "text": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "We've helped over [number] of clients achieve [result]",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Et nulla consectetur sit culpa deserunt enim sit aute est do consequat consequat mollit cupidatat. Elit dolore consectetur irure adipisicing nisi irure est consequat velit ex nostrud aliqua exercitation minim. Non mollit eu minim aliqua tempor dolore consectetur pariatur officia pariatur mollit tempor enim commodo.",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      },
+      "image": {
+        "origin": {
+          "id": "46bom4lObsA",
+          "url": "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxM3x8Y2xpZW50c3xlbnwwfHx8fDE3MTIwNjM2MDl8MA&ixlib=rb-4.0.3&q=85",
+          "width": 8192,
+          "height": 5461
+        },
+        "url": "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxM3x8Y2xpZW50c3xlbnwwfHx8fDE3MTIwNjM2MDl8MA&ixlib=rb-4.0.3&q=85",
+        "width": 8192,
+        "height": 5461,
+        "edit": {
+          "background": "transparent",
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "credits": null,
+        "alt": "two women sitting at a table looking at a computer screen",
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      }
+    },
+    "items": []
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "rightImage",
+    "primary": {
+      "text": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Eiusmod pariatur magna magna qui cupidatat amet culpa cillum adipisicing ipsum ipsum dolor Lorem. Commodo excepteur cillum elit fugiat pariatur irure incididunt ipsum ex laboris anim esse irure. Est voluptate ad laborum velit est."
+            }
+          }
+        ]
+      },
+      "image": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1589321599763-d66926c29613",
+          "width": 3168,
+          "height": 4752
+        },
+        "url": "https://images.unsplash.com/photo-1589321599763-d66926c29613",
+        "width": 3168,
+        "height": 4752,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "credits": null,
+        "alt": null,
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

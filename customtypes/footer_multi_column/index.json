@@ -1,0 +1,54 @@
+{
+  "format": "custom",
+  "id": "footer_multi_column",
+  "label": "Footer Multi Column",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Column 1": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "footer_link_block": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "Column 2": {
+      "slices1": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "footer_link_block": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "Column 3": {
+      "slices2": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "footer_link_block": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

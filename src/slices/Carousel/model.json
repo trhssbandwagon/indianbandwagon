@@ -2,15 +2,14 @@
   "id": "carousel",
   "type": "SharedSlice",
   "name": "Carousel",
-  "description": "Carousel",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/carousel/default/99a76306264e3f8d55328e809c0f31c48a67c4bc.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "title": {
           "type": "Text",
@@ -34,18 +33,18 @@
     {
       "id": "withDetails",
       "name": "With Details",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "heading": {
           "type": "StructuredText",
           "config": {
             "label": "Heading",
             "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "heading2,heading3"
+            "single": "heading2,heading3",
+            "allowTargetBlank": true
           }
         },
         "items": {
@@ -92,8 +91,8 @@
                 "config": {
                   "label": "Description",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "paragraph,strong,em,hyperlink,image,list-item,o-list-item"
+                  "multi": "paragraph,strong,em,hyperlink,image,list-item,o-list-item",
+                  "allowTargetBlank": true
                 }
               }
             }
@@ -102,5 +101,6 @@
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "Carousel"
 }

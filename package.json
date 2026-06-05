@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"bun:next:dev\" \"bun:slicemachine\" --names \"next,slicemachine\" --prefix-colors gray,magenta",
+    "dev": "concurrently \"bun:next:dev\" \"bun:typebuilder\" --names \"next,typebuilder\" --prefix-colors gray,magenta",
     "next:dev": "next",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "slicemachine": "start-slicemachine",
-    "format": "bunx prettier --write ."
+    "format": "bunx prettier --write .",
+    "typebuilder": "bunx --bun prismic@latest sync --watch"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

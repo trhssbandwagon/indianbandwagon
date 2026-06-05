@@ -1,9 +1,7 @@
 {
   "id": "settings",
   "label": "Settings",
-  "format": "custom",
   "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "domain": {
@@ -39,7 +37,7 @@
         "type": "Text",
         "config": {
           "label": "Privacy Toast Message",
-          "placeholder": "What does the privacy message say?"
+          "placeholder": ""
         }
       }
     },
@@ -130,5 +128,7 @@
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }

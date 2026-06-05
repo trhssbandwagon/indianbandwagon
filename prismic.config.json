@@ -1,0 +1,20 @@
+{
+  "repositoryName": "indianbandwagon",
+  "libraries": [
+    "./src/slices"
+  ],
+  "routes": [
+    {
+      "type": "homepage",
+      "path": "/"
+    },
+    {
+      "type": "page",
+      "path": "/:uid"
+    },
+    {
+      "type": "post",
+      "path": "/post/:uid"
+    }
+  ]
+}

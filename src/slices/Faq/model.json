@@ -2,23 +2,22 @@
   "id": "faq",
   "type": "SharedSlice",
   "name": "Faq",
-  "description": "Faq",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/faq/default/da8bf04ffc65b0abe234500fcbd55032e66406f9.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "heading": {
           "type": "StructuredText",
           "config": {
             "label": "Heading",
             "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "heading2"
+            "single": "heading2",
+            "allowTargetBlank": true
           }
         },
         "type": {
@@ -26,29 +25,29 @@
           "config": {
             "label": "Type",
             "placeholder": "Mutiple allows more than 1 to be open",
+            "default_value": "multiple",
             "options": [
               "multiple",
               "single"
-            ],
-            "default_value": "multiple"
+            ]
           }
         },
         "border": {
           "type": "Boolean",
           "config": {
             "label": "Border",
-            "placeholder_false": "No Border",
+            "default_value": false,
             "placeholder_true": "Border",
-            "default_value": false
+            "placeholder_false": "No Border"
           }
         },
         "collapsible": {
           "type": "Boolean",
           "config": {
             "label": "Collapsible",
-            "placeholder_false": "false",
+            "default_value": true,
             "placeholder_true": "true",
-            "default_value": true
+            "placeholder_false": "false"
           }
         },
         "questions": {
@@ -62,8 +61,8 @@
                 "config": {
                   "label": "Question",
                   "placeholder": "Enter the question text",
-                  "allowTargetBlank": true,
-                  "single": "strong,em,hyperlink,paragraph"
+                  "single": "strong,em,hyperlink,paragraph",
+                  "allowTargetBlank": true
                 }
               },
               "answer": {
@@ -71,8 +70,8 @@
                 "config": {
                   "label": "Answer",
                   "placeholder": "Answer the question",
-                  "allowTargetBlank": true,
-                  "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item"
+                  "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item",
+                  "allowTargetBlank": true
                 }
               }
             }
@@ -81,5 +80,6 @@
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "Faq"
 }

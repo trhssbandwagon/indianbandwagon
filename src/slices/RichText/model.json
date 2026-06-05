@@ -2,23 +2,22 @@
   "id": "rich_text",
   "type": "SharedSlice",
   "name": "RichText",
-  "description": "RichText",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/rich_text/default/5e9e444839fd44445cb09713636a49cb789cd7d7.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "rich_text": {
           "type": "StructuredText",
           "config": {
             "label": "Rich Text",
             "placeholder": "Rich Text Content",
-            "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+            "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "allowTargetBlank": true
           }
         }
       },
@@ -27,22 +26,23 @@
     {
       "id": "secondary",
       "name": "Secondary",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/rich_text/secondary/d157f85242bee2c7557efca88a1f45a2f1bd07a2.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "rich_text": {
           "type": "StructuredText",
           "config": {
             "label": "Rich Text",
             "placeholder": "Rich Text Content",
-            "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+            "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "allowTargetBlank": true
           }
         }
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "RichText"
 }

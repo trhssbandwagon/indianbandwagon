@@ -1,24 +1,22 @@
 {
   "id": "page",
   "label": "Page",
-  "format": "page",
   "repeatable": true,
-  "status": true,
   "json": {
     "Main": {
       "uid": {
+        "type": "UID",
         "config": {
           "label": "UID"
-        },
-        "type": "UID"
+        }
       },
       "title": {
         "type": "StructuredText",
         "config": {
           "label": "TItle",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "single": "heading1"
+          "single": "heading1",
+          "allowTargetBlank": true
         }
       },
       "slices": {
@@ -58,6 +56,9 @@
             },
             "hero": {
               "type": "SharedSlice"
+            },
+            "opt_out": {
+              "type": "SharedSlice"
             }
           }
         }
@@ -65,30 +66,32 @@
     },
     "SEO & Metadata": {
       "meta_description": {
+        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": "A brief summary of the page"
-        },
-        "type": "Text"
+        }
       },
       "meta_image": {
+        "type": "Image",
         "config": {
-          "constraint": {
-            "height": 1260,
-            "width": 2400
-          },
           "label": "Meta Image",
+          "constraint": {
+            "width": 2400,
+            "height": 1260
+          },
           "thumbnails": []
-        },
-        "type": "Image"
+        }
       },
       "meta_title": {
+        "type": "Text",
         "config": {
           "label": "Meta Title",
           "placeholder": "A title of the page used for social media and search engines"
-        },
-        "type": "Text"
+        }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "page"
 }

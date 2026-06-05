@@ -2,23 +2,22 @@
   "id": "form",
   "type": "SharedSlice",
   "name": "Form",
-  "description": "Form",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/form/default/ec3f8427c3b982a06fee5258eb51aae3970925da.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "title": {
           "type": "StructuredText",
           "config": {
             "label": "Title",
             "placeholder": "Optionally add a title",
-            "allowTargetBlank": true,
-            "single": "heading2"
+            "single": "heading2",
+            "allowTargetBlank": true
           }
         },
         "description": {
@@ -26,8 +25,8 @@
           "config": {
             "label": "Description",
             "placeholder": "",
-            "allowTargetBlank": true,
-            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
+            "allowTargetBlank": true
           }
         },
         "name_label": {
@@ -98,6 +97,7 @@
           "config": {
             "label": "Button Style",
             "placeholder": "",
+            "default_value": "default",
             "options": [
               "default",
               "secondary",
@@ -105,12 +105,12 @@
               "ghost",
               "destructive",
               "link"
-            ],
-            "default_value": "default"
+            ]
           }
         }
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "Form"
 }

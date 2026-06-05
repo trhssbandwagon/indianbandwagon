@@ -2,23 +2,25 @@
   "id": "content_index",
   "type": "SharedSlice",
   "name": "ContentIndex",
-  "description": "ContentIndex",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/content_index/default/1bba15baeee2921e96272fa46cc553a5ddf16cf8.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "content_type": {
           "type": "Select",
           "config": {
             "label": "Content Type",
             "placeholder": "Select the content type to display",
-            "options": ["post", "service"],
-            "default_value": "post"
+            "default_value": "post",
+            "options": [
+              "post",
+              "service"
+            ]
           }
         },
         "fallback_item_image": {
@@ -46,5 +48,6 @@
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "ContentIndex"
 }

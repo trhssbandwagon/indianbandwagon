@@ -2,23 +2,22 @@
   "id": "features",
   "type": "SharedSlice",
   "name": "Features",
-  "description": "Features",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/features/default/ba3a4383c28c444e860dd11a564c60a8c79af7b5.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "heading": {
           "type": "StructuredText",
           "config": {
             "label": "Heading",
             "placeholder": "Enter section heading",
-            "allowTargetBlank": true,
-            "single": "heading2"
+            "single": "heading2",
+            "allowTargetBlank": true
           }
         },
         "description": {
@@ -26,8 +25,8 @@
           "config": {
             "label": "Description",
             "placeholder": "Enter short section description",
-            "allowTargetBlank": true,
-            "single": "paragraph,strong,em"
+            "single": "paragraph,strong,em",
+            "allowTargetBlank": true
           }
         },
         "features": {
@@ -41,8 +40,8 @@
                 "config": {
                   "label": "Feature Heading",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "single": "heading3,strong,em,hyperlink"
+                  "single": "heading3,strong,em,hyperlink",
+                  "allowTargetBlank": true
                 }
               },
               "feature_description": {
@@ -50,8 +49,8 @@
                 "config": {
                   "label": "Feature Description",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "paragraph,preformatted,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl,heading3,heading4"
+                  "multi": "paragraph,preformatted,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl,heading3,heading4",
+                  "allowTargetBlank": true
                 }
               },
               "button_link": {
@@ -81,18 +80,18 @@
     {
       "id": "secondary",
       "name": "Secondary",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/features/secondary/85b12c71b0a72728454a067b0fa222d2541be4f3.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "heading": {
           "type": "StructuredText",
           "config": {
             "label": "Heading",
             "placeholder": "Enter section heading",
-            "allowTargetBlank": true,
-            "single": "heading2"
+            "single": "heading2",
+            "allowTargetBlank": true
           }
         },
         "description": {
@@ -100,8 +99,8 @@
           "config": {
             "label": "Description",
             "placeholder": "Enter short section description",
-            "allowTargetBlank": true,
-            "single": "paragraph,strong,em"
+            "single": "paragraph,strong,em",
+            "allowTargetBlank": true
           }
         },
         "features": {
@@ -115,8 +114,8 @@
                 "config": {
                   "label": "Feature Heading",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "single": "heading3,strong,em,hyperlink"
+                  "single": "heading3,strong,em,hyperlink",
+                  "allowTargetBlank": true
                 }
               },
               "feature_description": {
@@ -124,8 +123,8 @@
                 "config": {
                   "label": "Feature Description",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "paragraph,preformatted,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                  "multi": "paragraph,preformatted,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                  "allowTargetBlank": true
                 }
               },
               "button_link": {
@@ -155,18 +154,18 @@
     {
       "id": "primary",
       "name": "Primary",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/features/primary/e5a39f57483e38e707f6a183a00ba3cf8a913ad2.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "heading": {
           "type": "StructuredText",
           "config": {
             "label": "Heading",
             "placeholder": "Enter section heading",
-            "allowTargetBlank": true,
-            "single": "heading2"
+            "single": "heading2",
+            "allowTargetBlank": true
           }
         },
         "description": {
@@ -174,8 +173,8 @@
           "config": {
             "label": "Description",
             "placeholder": "Enter short section description",
-            "allowTargetBlank": true,
-            "single": "paragraph,strong,em"
+            "single": "paragraph,strong,em",
+            "allowTargetBlank": true
           }
         },
         "features": {
@@ -189,8 +188,8 @@
                 "config": {
                   "label": "Feature Heading",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "single": "heading3,strong,em,hyperlink"
+                  "single": "heading3,strong,em,hyperlink",
+                  "allowTargetBlank": true
                 }
               },
               "feature_description": {
@@ -198,8 +197,8 @@
                 "config": {
                   "label": "Feature Description",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "paragraph,preformatted,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                  "multi": "paragraph,preformatted,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                  "allowTargetBlank": true
                 }
               },
               "button_link": {
@@ -226,5 +225,6 @@
         }
       }
     }
-  ]
+  ],
+  "description": "Features"
 }

@@ -1,9 +1,7 @@
 {
   "id": "homepage",
   "label": "Homepage",
-  "format": "page",
   "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "title": {
@@ -11,8 +9,8 @@
         "config": {
           "label": "Title",
           "placeholder": "Homepage Title",
-          "allowTargetBlank": true,
-          "single": "heading1"
+          "single": "heading1",
+          "allowTargetBlank": true
         }
       },
       "slices": {
@@ -53,30 +51,32 @@
     },
     "SEO & Metadata": {
       "meta_description": {
+        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": "A brief summary of the page"
-        },
-        "type": "Text"
+        }
       },
       "meta_image": {
+        "type": "Image",
         "config": {
-          "constraint": {
-            "height": 1260,
-            "width": 2400
-          },
           "label": "Meta Image",
+          "constraint": {
+            "width": 2400,
+            "height": 1260
+          },
           "thumbnails": []
-        },
-        "type": "Image"
+        }
       },
       "meta_title": {
+        "type": "Text",
         "config": {
           "label": "Meta Title",
           "placeholder": "A title of the page used for social media and search engines"
-        },
-        "type": "Text"
+        }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "page"
 }

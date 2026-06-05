@@ -2,15 +2,14 @@
   "id": "footer_link_block",
   "type": "SharedSlice",
   "name": "FooterLinkBlock",
-  "description": "FooterLinkBlock",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/footer_link_block/default/6ac53b55e13cf426684ad4c727af9c2951e52e1a.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "block_title": {
           "type": "Text",
@@ -38,5 +37,6 @@
         }
       }
     }
-  ]
+  ],
+  "description": "FooterLinkBlock"
 }

@@ -1,9 +1,7 @@
 {
-  "format": "custom",
   "id": "layout",
   "label": "Layout",
   "repeatable": false,
-  "status": true,
   "json": {
     "Header": {
       "cta_link": {
@@ -12,6 +10,7 @@
           "label": "CTA Link",
           "placeholder": "Enter a Call to Action",
           "select": null,
+          "allowTargetBlank": true,
           "allowText": true,
           "variants": [
             "default",
@@ -20,8 +19,7 @@
             "ghost",
             "destructive",
             "link"
-          ],
-          "allowTargetBlank": true
+          ]
         }
       },
       "logo": {
@@ -58,8 +56,8 @@
         "config": {
           "label": "Nonprofit Statement",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "single": "hyperlink,strong,em,paragraph"
+          "single": "hyperlink,strong,em,paragraph",
+          "allowTargetBlank": true
         }
       },
       "privacy_link": {
@@ -135,5 +133,7 @@
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }

@@ -1,9 +1,7 @@
 {
   "id": "settings",
   "label": "Settings",
-  "format": "custom",
   "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "domain": {
@@ -33,13 +31,6 @@
           "label": "Site Meta Image",
           "constraint": {},
           "thumbnails": []
-        }
-      },
-      "privacy_toast_message": {
-        "type": "Text",
-        "config": {
-          "label": "Privacy Toast Message",
-          "placeholder": "What does the privacy message say?"
         }
       }
     },
@@ -130,5 +121,7 @@
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }

@@ -1,0 +1,16 @@
+{
+  "id": "opt_out",
+  "type": "SharedSlice",
+  "name": "OptOut",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "...",
+      "version": "initial"
+    }
+  ],
+  "description": "OptOut"
+}

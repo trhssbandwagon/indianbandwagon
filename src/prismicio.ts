@@ -4,12 +4,11 @@ import {
   type Route,
 } from '@prismicio/client'
 import { enableAutoPreviews } from '@prismicio/next'
-import config from '../slicemachine.config.json'
-
+import config from '../prismic.config.json'
+export const repositoryName = config.repositoryName
 /**
  * The project's Prismic repository name.
  */
-export const repositoryName = config.repositoryName
 
 /**
  * A list of Route Resolver objects that define how a document's `url` field is resolved.

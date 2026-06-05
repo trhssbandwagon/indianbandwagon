@@ -2,27 +2,27 @@
   "id": "footer_heading",
   "type": "SharedSlice",
   "name": "FooterHeading",
-  "description": "FooterHeading",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/footer_heading/default/676ef9f526025441c3fb9754c3b777ccd5f9ba7d.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "heading": {
           "type": "StructuredText",
           "config": {
             "label": "Heading",
             "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "heading2,heading3"
+            "single": "heading2,heading3",
+            "allowTargetBlank": true
           }
         }
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "FooterHeading"
 }

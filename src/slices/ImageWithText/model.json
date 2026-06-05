@@ -2,23 +2,22 @@
   "id": "image_with_text",
   "type": "SharedSlice",
   "name": "ImageWithText",
-  "description": "ImageWithText",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/image_with_text/default/7c72223312dd7a0cadedb8010bdc10356a8bd82a.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "text": {
           "type": "StructuredText",
           "config": {
             "label": "Text",
             "placeholder": "Enter your text here",
-            "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading2,heading3,strong,em,hyperlink,list-item,o-list-item,rtl"
+            "multi": "paragraph,preformatted,heading2,heading3,strong,em,hyperlink,list-item,o-list-item,rtl",
+            "allowTargetBlank": true
           }
         },
         "image": {
@@ -35,18 +34,18 @@
     {
       "id": "rightImage",
       "name": "Right Image",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/image_with_text/rightImage/6653bbd7dabeda6282da6405c926c878fb0768b1.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "text": {
           "type": "StructuredText",
           "config": {
             "label": "Text",
             "placeholder": "Enter your text here",
-            "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading2,heading3,strong,em,hyperlink,list-item,o-list-item,rtl"
+            "multi": "paragraph,preformatted,heading2,heading3,strong,em,hyperlink,list-item,o-list-item,rtl",
+            "allowTargetBlank": true
           }
         },
         "image": {
@@ -60,5 +59,6 @@
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "ImageWithText"
 }

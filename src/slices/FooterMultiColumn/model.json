@@ -2,23 +2,22 @@
   "id": "footer_multi_column",
   "type": "SharedSlice",
   "name": "FooterMultiColumn",
-  "description": "FooterMultiColumn",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/footer_multi_column/default/4a95eb792e672dcfd8332ff17d9b3bccd74db48b.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "heading": {
           "type": "StructuredText",
           "config": {
             "label": "Heading",
             "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "heading2,heading3"
+            "single": "heading2,heading3",
+            "allowTargetBlank": true
           }
         },
         "layout": {
@@ -26,11 +25,14 @@
           "config": {
             "label": "Layout",
             "select": "document",
-            "customtypes": ["footer_multi_column"]
+            "customtypes": [
+              "footer_multi_column"
+            ]
           }
         }
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "FooterMultiColumn"
 }

@@ -507,7 +507,18 @@ interface SettingsDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
-	site_meta_image: prismic.ImageField<never>;/**
+	site_meta_image: prismic.ImageField<never>;
+	
+	/**
+	 * Privacy Toast Message field in *Settings*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.privacy_toast_message
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	privacy_toast_message: prismic.KeyTextField;/**
 	 * Country field in *Settings*
 	 *
 	 * - **Field Type**: Text

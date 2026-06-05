@@ -32,6 +32,13 @@
           "constraint": {},
           "thumbnails": []
         }
+      },
+      "privacy_toast_message": {
+        "type": "Text",
+        "config": {
+          "label": "Privacy Toast Message",
+          "placeholder": ""
+        }
       }
     },
     "Schema": {

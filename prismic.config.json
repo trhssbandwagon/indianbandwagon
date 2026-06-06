@@ -1,8 +1,6 @@
 {
   "repositoryName": "indianbandwagon",
-  "libraries": [
-    "./src/slices"
-  ],
+  "libraries": ["./src/slices"],
   "routes": [
     {
       "type": "homepage",
@@ -10,7 +8,10 @@
     },
     {
       "type": "page",
-      "path": "/:uid"
+      "path": "/:parent?/:uid",
+      "resolvers": {
+        "parent": "parent"
+      }
     },
     {
       "type": "post",

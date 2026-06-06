@@ -4,11 +4,13 @@ import { SliceZone } from '@prismicio/react'
 
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
-import { asText } from '@prismicio/client'
+import { asText, isFilled } from '@prismicio/client'
 import Heading from '@/components/typography/Heading'
 import { Graph } from 'schema-dts'
+import { Breadcrumbs } from './Breadcrumbs'
+import Section from '@/components/layout/Section'
 
-type Params = { uid: string }
+type Params = { path: string[] }
 type SearchParams = {
   [key: string]: string | string[] | undefined
 }
@@ -19,10 +21,14 @@ export default async function Page(props: {
 }) {
   const searchParams = await props.searchParams
   const params = await props.params
+  const { path } = params
+  // 1. Reconstruct the UID from the path array (the last item is the current page)
+  // If no path exists, we are on the homepage
+  const uid = path[path.length - 1]
   const client = createClient()
   const page = await client
-    .getByUID('page', params.uid, {
-      fetchLinks: ['gallery_item.image'],
+    .getByUID('page', uid, {
+      fetchLinks: ['page.title'],
     })
     .catch(() => notFound())
   const settings = await client.getSingle('settings')
@@ -66,6 +72,9 @@ export default async function Page(props: {
       >
         {asText(page.data.title)}
       </Heading>
+      <Section width="md">
+        <Breadcrumbs currentPage={page} path={path} />
+      </Section>
       <SliceZone
         slices={page.data.slices}
         components={components}
@@ -79,8 +88,17 @@ export async function generateMetadata(props: {
   params: Promise<Params>
 }): Promise<Metadata> {
   const params = await props.params
+  const { path } = params
+  // 1. Reconstruct the UID from the path array (the last item is the current page)
+  // If no path exists, we are on the homepage
+  const uid = path && path.length > 0 ? path[path.length - 1] : 'home'
+  const isHome = uid === 'home'
   const client = createClient()
-  const page = await client.getByUID('page', params.uid).catch(() => notFound())
+  const page = await client
+    .getByUID(isHome ? 'homepage' : 'page', uid, {
+      fetchLinks: ['page.title', 'page.parent'],
+    })
+    .catch(() => notFound())
   const settings = await client.getSingle('settings')
 
   return {
@@ -101,12 +119,16 @@ export async function generateMetadata(props: {
     },
   }
 }
-
 export async function generateStaticParams() {
   const client = createClient()
   const pages = await client.getAllByType('page')
 
   return pages.map(page => {
-    return { uid: page.uid }
+    // page.url will now natively output perfectly nested paths like ['privacy-policy', 'events']
+    const segments = page.url?.split('/').filter(Boolean) || []
+
+    return {
+      path: segments,
+    }
   })
 }

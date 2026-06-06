@@ -315,6 +315,17 @@ interface PageDocumentData {
 	title: prismic.RichTextField;
 	
 	/**
+	 * Parent field in *Page*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: page.parent
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	parent: ContentRelationshipFieldWithData<[{"id":"page","fields":["title",{"id":"parent","customtypes":[{"id":"page","fields":["title","parent"]}]}]}]>;
+	
+	/**
 	 * Slice Zone field in *Page*
 	 *
 	 * - **Field Type**: Slice Zone

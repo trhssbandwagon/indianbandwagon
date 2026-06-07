@@ -50,15 +50,17 @@ const MobileMenu = ({
             </div>
           </SheetHeader>
           <ul className="grid gap-y-4">
-            <li>
-              <SheetClose className="flex justify-center" asChild>
-                <Button asChild>
-                  <PrismicNextLink field={cta_link}>
-                    {cta_link.text}
-                  </PrismicNextLink>
-                </Button>
-              </SheetClose>
-            </li>
+            {isFilled.link(cta_link) && (
+              <li>
+                <SheetClose className="flex justify-center" asChild>
+                  <Button asChild>
+                    <PrismicNextLink field={cta_link}>
+                      {cta_link.text}
+                    </PrismicNextLink>
+                  </Button>
+                </SheetClose>
+              </li>
+            )}
             {navigation.map((item, i) => {
               return (
                 <li key={item.text ? item.text + i : i}>

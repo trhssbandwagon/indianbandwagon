@@ -7,7 +7,7 @@ import { components } from '@/slices'
 import { asText, isFilled } from '@prismicio/client'
 import Heading from '@/components/typography/Heading'
 import { Graph } from 'schema-dts'
-import { Breadcrumbs } from './Breadcrumbs'
+import { Breadcrumbs } from '../../components/layout/Breadcrumbs'
 import Section from '@/components/layout/Section'
 
 type Params = { path: string[] }
@@ -65,13 +65,15 @@ export default async function Page(props: {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Heading
-        as="h1"
-        size="6xl"
-        className="mx-auto my-8 max-w-(--breakpoint-lg) scroll-mt-12 px-2 md:px-6 lg:my-12 lg:text-center"
-      >
-        {asText(page.data.title)}
-      </Heading>
+      {page.data.slices[0]?.slice_type !== 'hero' && (
+        <Heading
+          as="h1"
+          size="6xl"
+          className="mx-auto my-8 max-w-(--breakpoint-lg) scroll-mt-12 px-2 md:px-6 lg:my-12 lg:text-center"
+        >
+          {asText(page.data.title)}
+        </Heading>
+      )}
       <Section width="md">
         <Breadcrumbs currentPage={page} path={path} />
       </Section>

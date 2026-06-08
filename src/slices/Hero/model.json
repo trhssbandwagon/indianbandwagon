@@ -137,7 +137,7 @@
           "config": {
             "label": "Description",
             "placeholder": "Short: What, Who, How",
-            "single": "paragraph,strong,em",
+            "multi": "paragraph,strong,em",
             "allowTargetBlank": true
           }
         },

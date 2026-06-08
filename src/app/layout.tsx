@@ -130,8 +130,8 @@ export default async function RootLayout({
           <Footer />
           <PrivacyToast message={settings.data.privacy_toast_message} />
           <Toaster richColors closeButton />
-          <PrismicPreview repositoryName={repositoryName} />
         </ThemeProvider>
+        <PrismicPreview repositoryName={repositoryName} />
         {isProd && <Analytics gaId={gaId} clarityId={clarityId} fbId={fbId} />}
       </body>
     </html>

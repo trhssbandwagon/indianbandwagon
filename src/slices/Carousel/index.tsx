@@ -115,7 +115,7 @@ const Carousel = ({ slice }: CarouselProps): React.JSX.Element => {
                     return (
                       <CarouselItem
                         key={slice.id + index}
-                        className="p-2 md:basis-1/3 lg:basis-1/4"
+                        className="md:basis-1/3 lg:basis-1/4"
                       >
                         <div className="">
                           <Card className="p-0">
@@ -136,8 +136,8 @@ const Carousel = ({ slice }: CarouselProps): React.JSX.Element => {
                 </>
               )}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="hidden lg:flex" />
+            <CarouselNext className="hidden lg:flex" />
           </UiCarousel>
         </div>
       </Section>

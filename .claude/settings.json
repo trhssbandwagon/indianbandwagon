@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "prismic": {
+      "type": "url",
+      "url": "https://mcp.prismic.io/mcp"
+    }
+  }
+}

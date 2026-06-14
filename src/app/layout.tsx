@@ -108,7 +108,7 @@ export default async function RootLayout({
       </head>
       <body
         className={cn(
-          'flex min-h-screen flex-col justify-between bg-background font-sans antialiased',
+          'flex min-h-screen flex-col bg-background font-sans antialiased',
         )}
       >
         <Script
@@ -126,7 +126,7 @@ export default async function RootLayout({
             Skip to content
           </a>
           <Header />
-          <main id="main-content">{children}</main>
+          <main id="main-content" className="flex-1">{children}</main>
           <Footer />
           <PrivacyToast message={settings.data.privacy_toast_message} />
           <Toaster richColors closeButton />

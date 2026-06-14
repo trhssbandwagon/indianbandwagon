@@ -1,4 +1,5 @@
 import ContentList from '@/components/layout/ContentList'
+import FundraiserList from '@/components/layout/FundraiserList'
 import Section from '@/components/layout/Section'
 import { Content, isFilled } from '@prismicio/client'
 import { SliceComponentProps } from '@prismicio/react'
@@ -21,6 +22,11 @@ const ContentIndex = ({
   context,
 }: ContentIndexProps): React.JSX.Element => {
   const { page } = context as contextProps
+  const isFundraiser = slice.primary.content_type === 'fundraiser'
+  const ctaText = isFilled.keyText(slice.primary.content_cta_text)
+    ? slice.primary.content_cta_text
+    : undefined
+
   return (
     <Section
       data-slice-type={slice.slice_type}
@@ -38,17 +44,22 @@ const ContentIndex = ({
           </div>
         }
       >
-        <ContentList
-          contentType={slice.primary.content_type}
-          display={slice.primary.number_to_display || undefined}
-          page={page || undefined}
-          ctaText={
-            isFilled.keyText(slice.primary.content_cta_text)
-              ? slice.primary.content_cta_text
-              : 'Read More'
-          }
-          fallbackItemImage={slice.primary.fallback_item_image}
-        />
+        {isFundraiser ? (
+          <FundraiserList
+            display={slice.primary.number_to_display || undefined}
+            page={page || undefined}
+            ctaText={ctaText}
+            fallbackItemImage={slice.primary.fallback_item_image}
+          />
+        ) : (
+          <ContentList
+            contentType={slice.primary.content_type}
+            display={slice.primary.number_to_display || undefined}
+            page={page || undefined}
+            ctaText={ctaText}
+            fallbackItemImage={slice.primary.fallback_item_image}
+          />
+        )}
       </Suspense>
     </Section>
   )

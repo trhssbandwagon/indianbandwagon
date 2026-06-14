@@ -74,10 +74,7 @@ const Carousel = ({ slice }: CarouselProps): React.JSX.Element => {
         >
           <CarouselContent>
             {items.map((item, index) => (
-              <CarouselItem
-                key={index}
-                className="basis-1/2 md:basis-1/3 lg:basis-1/4"
-              >
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
                 <MarqueeCard item={item} />
               </CarouselItem>
             ))}

@@ -22,7 +22,7 @@ type MarqueeCardProps = {
 const MarqueeCard = ({ item }: MarqueeCardProps) => {
   return (
     <div className="p-1">
-      <Card className="relative h-full">
+      <Card className="relative aspect-square h-full">
         <CardContent className="flex h-full flex-col items-center justify-between gap-4 p-6">
           {/* Haze Effect */}
           <div
@@ -35,7 +35,7 @@ const MarqueeCard = ({ item }: MarqueeCardProps) => {
             <Dialog>
               <DialogTrigger asChild>
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="icon"
                   className="absolute top-3 right-3 z-20 h-11 w-11 cursor-pointer"
                   aria-label={`More information about ${item.name}`}
@@ -59,7 +59,7 @@ const MarqueeCard = ({ item }: MarqueeCardProps) => {
                           <PrismicNextLink
                             field={item.link}
                             aria-label={`Learn More about ${item.name}`}
-                            className="dark:text-sidebar-primary"
+                            className="dark:text-destructive"
                           >
                             {item.link.text
                               ? item.link.text
@@ -84,17 +84,19 @@ const MarqueeCard = ({ item }: MarqueeCardProps) => {
           )}
 
           {/* Main Card Content */}
-          <div className="relative z-10 flex flex-col items-center gap-4 py-6 text-center">
+          <div className="relative z-10 flex grow flex-col items-center justify-center gap-4 py-6 text-center">
             {isFilled.image(item.logo) ? (
               <PrismicNextImage
                 field={item.logo}
-                className="h-16 w-auto"
+                className="h-28 w-auto lg:h-24"
                 imgixParams={{ ar: '1:1', fit: 'crop' }}
               />
             ) : (
               <div className="h-16 w-auto" />
             )}
-            <span className="text-md font-semibold">{item.name}</span>
+            <span className="text-xl font-semibold lg:text-lg">
+              {item.name}
+            </span>
           </div>
         </CardContent>
       </Card>

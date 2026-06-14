@@ -15,7 +15,11 @@
     },
     {
       "type": "post",
-      "path": "/post/:uid"
+      "path": "/blog/:uid"
+    },
+    {
+      "type": "fundraiser",
+      "path": "/fundraisers/:uid"
     }
   ]
 }

@@ -97,6 +97,121 @@ interface FooterMultiColumnDocumentData {
  */
 export type FooterMultiColumnDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<FooterMultiColumnDocumentData>, "footer_multi_column", Lang>;
 
+type FundraiserDocumentDataSlicesSlice = RichTextSlice | ImageWithTextSlice | HeroSlice | FaqSlice
+
+/**
+ * Content for Fundraiser documents
+ */
+interface FundraiserDocumentData {
+	/**
+	 * Title field in *Fundraiser*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField;
+	
+	/**
+	 * Excerpt field in *Fundraiser*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.excerpt
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	excerpt: prismic.RichTextField;
+	
+	/**
+	 * Featured Image field in *Fundraiser*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.featured_image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	featured_image: prismic.ImageField<never>;
+	
+	/**
+	 * Start Date field in *Fundraiser*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.start_date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/date
+	 */
+	start_date: prismic.DateField;
+	
+	/**
+	 * End Date field in *Fundraiser*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.end_date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/date
+	 */
+	end_date: prismic.DateField;
+	
+	/**
+	 * Slice Zone field in *Fundraiser*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/slices
+	 */
+	slices: prismic.SliceZone<FundraiserDocumentDataSlicesSlice>;/**
+	 * Meta Title field in *Fundraiser*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: fundraiser.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_title: prismic.KeyTextField;
+	
+	/**
+	 * Meta Description field in *Fundraiser*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: fundraiser.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	meta_description: prismic.KeyTextField;
+	
+	/**
+	 * Meta Image field in *Fundraiser*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Fundraiser document from Prismic
+ *
+ * - **API ID**: `fundraiser`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FundraiserDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<FundraiserDocumentData>, "fundraiser", Lang>;
+
 type HomepageDocumentDataSlicesSlice = EventsSlice | CarouselSlice | FaqSlice | ProcessSlice | TestimonialSlice | ImageWithTextSlice | FeaturesSlice | HeroSlice | RichTextSlice
 
 /**
@@ -673,7 +788,7 @@ interface SettingsDocumentData {
  */
 export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<SettingsDocumentData>, "settings", Lang>;
 
-export type AllDocumentTypes = FooterMultiColumnDocument | HomepageDocument | LayoutDocument | PageDocument | PostDocument | SettingsDocument;
+export type AllDocumentTypes = FooterMultiColumnDocument | FundraiserDocument | HomepageDocument | LayoutDocument | PageDocument | PostDocument | SettingsDocument;
 
 /**
  * Item in *Carousel → With Details → Primary → Items*
@@ -830,7 +945,7 @@ export interface ContentIndexSliceDefaultPrimary {
 	 * - **API ID Path**: content_index.default.primary.content_type
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
-	content_type: prismic.SelectField<"post" | "service", "filled">;
+	content_type: prismic.SelectField<"post" | "fundraiser", "filled">;
 	
 	/**
 	 * Fallback Item Image field in *ContentIndex → Default → Primary*
@@ -2157,6 +2272,9 @@ declare module "@prismicio/client" {
 			FooterMultiColumnDocumentDataSlicesSlice,
 			FooterMultiColumnDocumentDataSlices1Slice,
 			FooterMultiColumnDocumentDataSlices2Slice,
+			FundraiserDocument,
+			FundraiserDocumentData,
+			FundraiserDocumentDataSlicesSlice,
 			HomepageDocument,
 			HomepageDocumentData,
 			HomepageDocumentDataSlicesSlice,

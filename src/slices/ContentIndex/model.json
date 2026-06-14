@@ -19,7 +19,7 @@
             "default_value": "post",
             "options": [
               "post",
-              "service"
+              "fundraiser"
             ]
           }
         },

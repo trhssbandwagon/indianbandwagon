@@ -8,6 +8,8 @@ import { asText } from '@prismicio/client'
 import Heading from '@/components/typography/Heading'
 import { Graph } from 'schema-dts'
 
+export const revalidate = 3600
+
 type Params = { uid: string }
 type SearchParams = {
   [key: string]: string | string[] | undefined
@@ -21,7 +23,7 @@ export default async function Page(props: {
   const searchParams = await props.searchParams
   const params = await props.params
   const page = await client
-    .getByUID('post', params.uid, {})
+    .getByUID('fundraiser', params.uid, {})
     .catch(() => notFound())
   const settings = await client.getSingle('settings')
   const pageNumber = { page: searchParams.page }
@@ -36,19 +38,13 @@ export default async function Page(props: {
         url: `https://${settings.data.domain || `example.com`}/`,
       },
       {
-        '@type': 'BlogPosting',
-        '@id': `https://${settings.data.domain || `example.com`}${
-          page.url
-        }/#post`,
-        headline: asText(page.data.title),
+        '@type': 'Event',
+        '@id': `https://${settings.data.domain || `example.com`}/fundraisers/${params.uid}/#fundraiser`,
+        name: asText(page.data.title),
         description:
           asText(page.data.excerpt) || page.data.meta_description || undefined,
-        mainEntityOfPage: `https://${settings.data.domain || `example.com`}${
-          page.url
-        }`,
-        datePublished: page.first_publication_date || undefined,
-        dateModified: page.last_publication_date || undefined,
-        author: {
+        url: `https://${settings.data.domain || `example.com`}/fundraisers/${params.uid}`,
+        organizer: {
           '@type': 'Organization',
           name: settings.data.site_title || 'Fill In Site Title in CMS',
         },
@@ -84,7 +80,9 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const client = createClient()
   const params = await props.params
-  const page = await client.getByUID('post', params.uid).catch(() => notFound())
+  const page = await client
+    .getByUID('fundraiser', params.uid)
+    .catch(() => notFound())
   const settings = await client.getSingle('settings')
 
   return {
@@ -93,20 +91,24 @@ export async function generateMetadata(props: {
     }`,
     description:
       page.data.meta_description || settings.data.site_meta_description,
+    robots: {
+      index: false,
+      follow: false,
+    },
     openGraph: {
       images: [
         page.data.meta_image.url || settings.data.site_meta_image.url || '',
       ],
     },
     alternates: {
-      canonical: `https://${settings.data.domain || `example.com`}${page.url}`,
+      canonical: `https://${settings.data.domain || `example.com`}/fundraisers/${params.uid}`,
     },
   }
 }
 
 export async function generateStaticParams() {
   const client = createClient()
-  const pages = await client.getAllByType('post')
+  const pages = await client.getAllByType('fundraiser')
 
   return pages.map(page => {
     return { uid: page.uid }

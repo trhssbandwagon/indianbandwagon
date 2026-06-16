@@ -17,6 +17,8 @@ import {
 } from 'react-square-web-payments-sdk'
 import { processDonation } from '@/app/actions/donate'
 import { toast } from 'sonner'
+import { Spinner } from '@/components/ui/spinner'
+import { Item, ItemContent, ItemMedia, ItemTitle } from '@/components/ui/item'
 
 type PendingDonation = {
   token: string
@@ -35,6 +37,9 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
   const [selectedAmount, setSelectedAmount] = useState('10')
   const [customAmount, setCustomAmount] = useState('')
   const [confirmed, setConfirmed] = useState(false)
+  const [processing, setProcessing] = useState(false)
+  const [donated, setDonated] = useState(false)
+  const [successAmount, setSuccessAmount] = useState('')
   const [showCardForm, setShowCardForm] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -91,6 +96,9 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
     if (open) {
       setCustomAmount('')
       setConfirmed(false)
+      setProcessing(false)
+      setDonated(false)
+      setSuccessAmount('')
       setShowCardForm(false)
       setName('')
       setEmail('')
@@ -109,7 +117,20 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
             <DialogTitle>Make a Donation</DialogTitle>
           </DialogHeader>
 
-          {!confirmed ? (
+          {donated ? (
+            <div className="flex flex-col items-center gap-4 py-4 text-center">
+              <p className="text-5xl">✓</p>
+              <p className="text-2xl font-bold">Thank you for your donation!</p>
+              {successAmount && (
+                <p className="text-muted-foreground">
+                  Your ${successAmount} donation has been received.
+                </p>
+              )}
+              <Button className="w-full" onClick={() => setOpen(false)}>
+                Done
+              </Button>
+            </div>
+          ) : !confirmed ? (
             <>
               <p className="text-center text-4xl font-bold tracking-tight">
                 ${amountDollars}
@@ -156,14 +177,30 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
             <>
               <div className="flex items-center justify-between">
                 <button
-                  className="text-sm text-muted-foreground hover:text-foreground"
+                  className="text-sm text-muted-foreground hover:text-foreground disabled:pointer-events-none disabled:opacity-50"
                   onClick={handleChangeAmount}
+                  disabled={processing}
                 >
                   ← Change amount
                 </button>
                 <p className="text-2xl font-bold">${amountDollars}</p>
               </div>
 
+              {processing ? (
+                <Item variant="muted">
+                  <ItemMedia>
+                    <Spinner />
+                  </ItemMedia>
+                  <ItemContent>
+                    <ItemTitle className="line-clamp-1">Processing payment...</ItemTitle>
+                  </ItemContent>
+                  <ItemContent className="flex-none justify-end">
+                    <span className="text-sm tabular-nums">${amountDollars}</span>
+                  </ItemContent>
+                </Item>
+              ) : null}
+
+              <div className={processing ? 'hidden' : undefined}>
               <PaymentForm
                 applicationId={process.env.NEXT_PUBLIC_SQUARE_APP_ID!}
                 locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID!}
@@ -195,6 +232,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                       'donation_pending',
                       JSON.stringify({ token: token.token, amountCents, amountDollars, name: resolvedName, email: resolvedEmail }),
                     )
+                    setProcessing(true)
 
                     const result = await processDonation(
                       token.token,
@@ -206,12 +244,15 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
 
                     if (result.success) {
                       sessionStorage.setItem('donation_success', amountDollars)
-                      setOpen(false)
+                      setSuccessAmount(amountDollars)
+                      setDonated(true)
                     } else {
+                      setProcessing(false)
                       toast.error(result.error)
                     }
                   } catch {
                     sessionStorage.removeItem('donation_pending')
+                    setProcessing(false)
                     toast.error('Something went wrong. Please try again.')
                   }
                 }}
@@ -271,6 +312,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                   </div>
                 )}
               </PaymentForm>
+              </div>
             </>
           )}
         </DialogContent>

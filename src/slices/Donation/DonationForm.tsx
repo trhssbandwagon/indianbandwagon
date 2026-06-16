@@ -12,6 +12,8 @@ import {
 } from 'react-square-web-payments-sdk'
 import { processDonation } from '@/app/actions/donate'
 import { toast } from 'sonner'
+import { Spinner } from '@/components/ui/spinner'
+import { Item, ItemContent, ItemMedia, ItemTitle } from '@/components/ui/item'
 
 type PendingDonation = {
   token: string
@@ -45,6 +47,7 @@ export default function DonationForm() {
   const [confirmed, setConfirmed] = useState(false)
   const [donated, setDonated] = useState(false)
   const [successAmount, setSuccessAmount] = useState('')
+  const [processing, setProcessing] = useState(false)
   const [showCardForm, setShowCardForm] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -168,14 +171,30 @@ export default function DonationForm() {
           <>
             <div className="flex items-center justify-between">
               <button
-                className="text-sm text-muted-foreground hover:text-foreground"
+                className="text-sm text-muted-foreground hover:text-foreground disabled:pointer-events-none disabled:opacity-50"
                 onClick={handleChangeAmount}
+                disabled={processing}
               >
                 ← Change amount
               </button>
               <p className="text-2xl font-bold">${amountDollars}</p>
             </div>
 
+            {processing ? (
+              <Item variant="muted">
+                <ItemMedia>
+                  <Spinner />
+                </ItemMedia>
+                <ItemContent>
+                  <ItemTitle className="line-clamp-1">Processing payment...</ItemTitle>
+                </ItemContent>
+                <ItemContent className="flex-none justify-end">
+                  <span className="text-sm tabular-nums">${amountDollars}</span>
+                </ItemContent>
+              </Item>
+            ) : null}
+
+            <div className={processing ? 'hidden' : undefined}>
             <PaymentForm
               applicationId={process.env.NEXT_PUBLIC_SQUARE_APP_ID!}
               locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID!}
@@ -207,6 +226,7 @@ export default function DonationForm() {
                     'donation_pending',
                     JSON.stringify({ token: token.token, amountCents, amountDollars, name: resolvedName, email: resolvedEmail }),
                   )
+                  setProcessing(true)
 
                   const result = await processDonation(
                     token.token,
@@ -221,10 +241,12 @@ export default function DonationForm() {
                     setSuccessAmount(amountDollars)
                     setDonated(true)
                   } else {
+                    setProcessing(false)
                     toast.error(result.error)
                   }
                 } catch {
                   sessionStorage.removeItem('donation_pending')
+                  setProcessing(false)
                   toast.error('Something went wrong. Please try again.')
                 }
               }}
@@ -281,6 +303,7 @@ export default function DonationForm() {
                 </div>
               )}
             </PaymentForm>
+            </div>
           </>
         )}
       </CardContent>

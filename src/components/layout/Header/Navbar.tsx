@@ -11,12 +11,7 @@ import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { Button } from '@/components/ui/button'
 import DesktopMenu from './DesktopMenu'
 import MobileMenu from './MobileMenu'
-import dynamic from 'next/dynamic'
-
-const DonateDialog = dynamic(
-  () => import('./DonateDialog').then(m => ({ default: m.DonateDialog })),
-  { ssr: false },
-)
+import { DonateDialog } from './DonateDialog'
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'

@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -17,9 +17,20 @@ export default function DonationForm() {
   const [selectedAmount, setSelectedAmount] = useState('10')
   const [customAmount, setCustomAmount] = useState('')
   const [confirmed, setConfirmed] = useState(false)
+  const [donated, setDonated] = useState(false)
+  const [successAmount, setSuccessAmount] = useState('')
   const [showCardForm, setShowCardForm] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem('donation_success')
+    if (stored) {
+      sessionStorage.removeItem('donation_success')
+      setSuccessAmount(stored)
+      setDonated(true)
+    }
+  }, [])
 
   const amountCents =
     selectedAmount === 'custom'
@@ -38,6 +49,36 @@ export default function DonationForm() {
     setShowCardForm(false)
     setName('')
     setEmail('')
+  }
+
+  const handleDonateAgain = () => {
+    setDonated(false)
+    setSuccessAmount('')
+    setSelectedAmount('10')
+    setCustomAmount('')
+    setConfirmed(false)
+    setShowCardForm(false)
+    setName('')
+    setEmail('')
+  }
+
+  if (donated) {
+    return (
+      <Card className="mx-auto w-full max-w-md">
+        <CardContent className="flex flex-col items-center gap-4 pt-6 text-center">
+          <p className="text-5xl">✓</p>
+          <p className="text-2xl font-bold">Thank you for your donation!</p>
+          {successAmount && (
+            <p className="text-muted-foreground">
+              Your ${successAmount} donation has been received.
+            </p>
+          )}
+          <Button variant="outline" onClick={handleDonateAgain}>
+            Donate again
+          </Button>
+        </CardContent>
+      </Card>
+    )
   }
 
   return (
@@ -131,7 +172,9 @@ export default function DonationForm() {
                   resolvedEmail,
                 )
                 if (result.success) {
-                  toast.success('Thank you for your donation!')
+                  sessionStorage.setItem('donation_success', amountDollars)
+                  setSuccessAmount(amountDollars)
+                  setDonated(true)
                 } else {
                   toast.error(result.error)
                 }

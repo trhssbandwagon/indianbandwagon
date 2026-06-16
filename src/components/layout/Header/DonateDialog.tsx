@@ -51,6 +51,14 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
   }
 
   useEffect(() => {
+    const stored = sessionStorage.getItem('donation_success')
+    if (stored) {
+      sessionStorage.removeItem('donation_success')
+      toast.success(`Thank you! Your $${stored} donation has been received.`)
+    }
+  }, [])
+
+  useEffect(() => {
     if (open) {
       setCustomAmount('')
       setConfirmed(false)
@@ -160,7 +168,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                     resolvedEmail,
                   )
                   if (result.success) {
-                    toast.success('Thank you for your donation!')
+                    sessionStorage.setItem('donation_success', amountDollars)
                     setOpen(false)
                   } else {
                     toast.error(result.error)

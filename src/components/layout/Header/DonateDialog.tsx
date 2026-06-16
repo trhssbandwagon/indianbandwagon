@@ -18,6 +18,14 @@ import {
 import { processDonation } from '@/app/actions/donate'
 import { toast } from 'sonner'
 
+type PendingDonation = {
+  token: string
+  amountCents: number
+  amountDollars: string
+  name: string
+  email: string
+}
+
 type DonateDialogProps = {
   buttonClassName?: string
 }
@@ -51,11 +59,32 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
   }
 
   useEffect(() => {
-    const stored = sessionStorage.getItem('donation_success')
-    if (stored) {
-      sessionStorage.removeItem('donation_success')
-      toast.success(`Thank you! Your $${stored} donation has been received.`)
+    async function recover() {
+      // Layer 2: retry a payment whose token was stored before a tab-kill
+      const raw = sessionStorage.getItem('donation_pending')
+      if (raw) {
+        sessionStorage.removeItem('donation_pending')
+        try {
+          const { token, amountCents: pc, amountDollars: pd, name: pn, email: pe } = JSON.parse(raw) as PendingDonation
+          const result = await processDonation(token, pc, pn, pe)
+          if (result.success || (!result.success && /already|source/i.test(result.error ?? ''))) {
+            toast.success(`Thank you! Your $${pd} donation has been received.`)
+            return
+          }
+          toast.error(result.error ?? 'Payment could not be completed. Please try again.')
+        } catch {
+          toast.error('Something went wrong. Please try again.')
+        }
+        return
+      }
+      // Layer 1: success was written before a navigation
+      const stored = sessionStorage.getItem('donation_success')
+      if (stored) {
+        sessionStorage.removeItem('donation_success')
+        toast.success(`Thank you! Your $${stored} donation has been received.`)
+      }
     }
+    recover()
   }, [])
 
   useEffect(() => {
@@ -148,30 +177,42 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                   requestBillingContact: true,
                 })}
                 cardTokenizeResponseReceived={async token => {
-                  if (amountCents < 100) return toast.error('Minimum donation is $1.00.')
-                  if (token.status !== 'OK') return toast.error('Tokenization failed.')
+                  try {
+                    if (amountCents < 100) return toast.error('Minimum donation is $1.00.')
+                    if (token.status !== 'OK') return toast.error('Tokenization failed.')
 
-                  // Wallet payments supply billing contact — use as fallback for form fields
-                  const billing = token.details?.billing
-                  const resolvedName =
-                    name.trim() ||
-                    [billing?.givenName, billing?.familyName].filter(Boolean).join(' ')
-                  const resolvedEmail = email.trim() || billing?.email || ''
+                    // Wallet payments supply billing contact — use as fallback for form fields
+                    const billing = token.details?.billing
+                    const resolvedName =
+                      name.trim() ||
+                      [billing?.givenName, billing?.familyName].filter(Boolean).join(' ')
+                    const resolvedEmail = email.trim() || billing?.email || ''
 
-                  if (!resolvedName) return toast.error('Please enter your name.')
-                  if (!resolvedEmail.includes('@')) return toast.error('Please enter a valid email.')
+                    if (!resolvedName) return toast.error('Please enter your name.')
+                    if (!resolvedEmail.includes('@')) return toast.error('Please enter a valid email.')
 
-                  const result = await processDonation(
-                    token.token,
-                    amountCents,
-                    resolvedName,
-                    resolvedEmail,
-                  )
-                  if (result.success) {
-                    sessionStorage.setItem('donation_success', amountDollars)
-                    setOpen(false)
-                  } else {
-                    toast.error(result.error)
+                    sessionStorage.setItem(
+                      'donation_pending',
+                      JSON.stringify({ token: token.token, amountCents, amountDollars, name: resolvedName, email: resolvedEmail }),
+                    )
+
+                    const result = await processDonation(
+                      token.token,
+                      amountCents,
+                      resolvedName,
+                      resolvedEmail,
+                    )
+                    sessionStorage.removeItem('donation_pending')
+
+                    if (result.success) {
+                      sessionStorage.setItem('donation_success', amountDollars)
+                      setOpen(false)
+                    } else {
+                      toast.error(result.error)
+                    }
+                  } catch {
+                    sessionStorage.removeItem('donation_pending')
+                    toast.error('Something went wrong. Please try again.')
                   }
                 }}
               >

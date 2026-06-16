@@ -29,6 +29,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
   const [showCardForm, setShowCardForm] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [paymentFormKey, setPaymentFormKey] = useState(1000)
 
   const amountCents =
     selectedAmount === 'custom'
@@ -36,6 +37,18 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
       : parseInt(selectedAmount) * 100
 
   const amountDollars = (amountCents / 100).toFixed(2)
+
+  const handleAmountChange = (v: string) => {
+    if (!v) return
+    setSelectedAmount(v)
+    if (v !== 'custom') {
+      setPaymentFormKey(parseInt(v) * 100)
+    }
+  }
+
+  const handleCustomAmountBlur = () => {
+    setPaymentFormKey(Math.round(parseFloat(customAmount || '0') * 100))
+  }
 
   useEffect(() => {
     if (open) {
@@ -62,7 +75,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
             type="single"
             variant="outline"
             value={selectedAmount}
-            onValueChange={v => v && setSelectedAmount(v)}
+            onValueChange={handleAmountChange}
           >
             <ToggleGroupItem value="5">$5</ToggleGroupItem>
             <ToggleGroupItem value="10">$10</ToggleGroupItem>
@@ -82,6 +95,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                 placeholder="0.00"
                 value={customAmount}
                 onChange={e => setCustomAmount(e.target.value)}
+                onBlur={handleCustomAmountBlur}
                 className="pl-7 md:text-base lg:text-lg dark:text-emerald-300"
               />
             </div>
@@ -89,6 +103,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
 
           {open && (
             <PaymentForm
+              key={paymentFormKey}
               applicationId={process.env.NEXT_PUBLIC_SQUARE_APP_ID!}
               locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID!}
               createPaymentRequest={() => ({

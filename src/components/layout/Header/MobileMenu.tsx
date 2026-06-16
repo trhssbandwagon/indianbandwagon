@@ -12,6 +12,7 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { isFilled, KeyTextField, LinkField } from '@prismicio/client'
 import { PrismicNextLink } from '@prismicio/next'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import Link from 'next/link'
 
 type MobileMenuProps = {
   className?: string
@@ -49,7 +50,14 @@ const MobileMenu = ({
               </div>
             </div>
           </SheetHeader>
-          <ul className="grid gap-y-4">
+          <ul className="grid gap-y-4 px-4">
+            <li>
+              <SheetClose className="flex justify-center" asChild>
+                <Button asChild>
+                  <Link href={'/donate'}>Donate</Link>
+                </Button>
+              </SheetClose>
+            </li>
             {isFilled.link(cta_link) && (
               <li>
                 <SheetClose className="flex justify-center" asChild>

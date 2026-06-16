@@ -28,13 +28,20 @@ async function recoverPendingDonation(): Promise<{ amount: string } | null> {
   if (!raw) return null
   sessionStorage.removeItem('donation_pending')
   try {
-    const { token, amountCents, amountDollars, name, email } = JSON.parse(raw) as PendingDonation
+    const { token, amountCents, amountDollars, name, email } = JSON.parse(
+      raw,
+    ) as PendingDonation
     const result = await processDonation(token, amountCents, name, email)
     // Square rejects a reused nonce with a detail about the source — treat as prior success
-    if (result.success || (!result.success && /already|source/i.test(result.error ?? ''))) {
+    if (
+      result.success ||
+      (!result.success && /already|source/i.test(result.error ?? ''))
+    ) {
       return { amount: amountDollars }
     }
-    toast.error(result.error ?? 'Payment could not be completed. Please try again.')
+    toast.error(
+      result.error ?? 'Payment could not be completed. Please try again.',
+    )
   } catch {
     toast.error('Something went wrong. Please try again.')
   }
@@ -161,7 +168,7 @@ export default function DonationForm() {
             )}
 
             <Button
-              className="w-full"
+              className="w-full cursor-pointer"
               disabled={amountCents < 100}
               onClick={() => setConfirmed(true)}
             >
@@ -187,7 +194,9 @@ export default function DonationForm() {
                   <Spinner />
                 </ItemMedia>
                 <ItemContent>
-                  <ItemTitle className="line-clamp-1">Processing payment...</ItemTitle>
+                  <ItemTitle className="line-clamp-1">
+                    Processing payment...
+                  </ItemTitle>
                 </ItemContent>
                 <ItemContent className="flex-none justify-end">
                   <span className="text-sm tabular-nums">${amountDollars}</span>
@@ -196,114 +205,127 @@ export default function DonationForm() {
             ) : null}
 
             <div className={processing ? 'hidden' : undefined}>
-            <PaymentForm
-              applicationId={process.env.NEXT_PUBLIC_SQUARE_APP_ID!}
-              locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID!}
-              createPaymentRequest={() => ({
-                countryCode: 'US',
-                currencyCode: 'USD',
-                total: {
-                  amount: amountDollars,
-                  label: 'Donation',
-                },
-                requestBillingContact: true,
-              })}
-              cardTokenizeResponseReceived={async token => {
-                try {
-                  if (amountCents < 100) return toast.error('Minimum donation is $1.00.')
-                  if (token.status !== 'OK') return toast.error('Tokenization failed.')
+              <PaymentForm
+                applicationId={process.env.NEXT_PUBLIC_SQUARE_APP_ID!}
+                locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID!}
+                createPaymentRequest={() => ({
+                  countryCode: 'US',
+                  currencyCode: 'USD',
+                  total: {
+                    amount: amountDollars,
+                    label: 'Donation',
+                  },
+                  requestBillingContact: true,
+                })}
+                cardTokenizeResponseReceived={async token => {
+                  try {
+                    if (amountCents < 100)
+                      return toast.error('Minimum donation is $1.00.')
+                    if (token.status !== 'OK')
+                      return toast.error('Tokenization failed.')
 
-                  const billing = token.details?.billing
-                  const resolvedName =
-                    name.trim() ||
-                    [billing?.givenName, billing?.familyName].filter(Boolean).join(' ')
-                  const resolvedEmail = email.trim() || billing?.email || ''
+                    const billing = token.details?.billing
+                    const resolvedName =
+                      name.trim() ||
+                      [billing?.givenName, billing?.familyName]
+                        .filter(Boolean)
+                        .join(' ')
+                    const resolvedEmail = email.trim() || billing?.email || ''
 
-                  if (!resolvedName) return toast.error('Please enter your name.')
-                  if (!resolvedEmail.includes('@'))
-                    return toast.error('Please enter a valid email.')
+                    if (!resolvedName)
+                      return toast.error('Please enter your name.')
+                    if (!resolvedEmail.includes('@'))
+                      return toast.error('Please enter a valid email.')
 
-                  sessionStorage.setItem(
-                    'donation_pending',
-                    JSON.stringify({ token: token.token, amountCents, amountDollars, name: resolvedName, email: resolvedEmail }),
-                  )
-                  setProcessing(true)
+                    sessionStorage.setItem(
+                      'donation_pending',
+                      JSON.stringify({
+                        token: token.token,
+                        amountCents,
+                        amountDollars,
+                        name: resolvedName,
+                        email: resolvedEmail,
+                      }),
+                    )
+                    setProcessing(true)
 
-                  const result = await processDonation(
-                    token.token,
-                    amountCents,
-                    resolvedName,
-                    resolvedEmail,
-                  )
-                  sessionStorage.removeItem('donation_pending')
+                    const result = await processDonation(
+                      token.token,
+                      amountCents,
+                      resolvedName,
+                      resolvedEmail,
+                    )
+                    sessionStorage.removeItem('donation_pending')
 
-                  if (result.success) {
-                    sessionStorage.setItem('donation_success', amountDollars)
-                    setSuccessAmount(amountDollars)
-                    setDonated(true)
-                  } else {
+                    if (result.success) {
+                      sessionStorage.setItem('donation_success', amountDollars)
+                      setSuccessAmount(amountDollars)
+                      setDonated(true)
+                    } else {
+                      setProcessing(false)
+                      toast.error(result.error)
+                    }
+                  } catch {
+                    sessionStorage.removeItem('donation_pending')
                     setProcessing(false)
-                    toast.error(result.error)
+                    toast.error('Something went wrong. Please try again.')
                   }
-                } catch {
-                  sessionStorage.removeItem('donation_pending')
-                  setProcessing(false)
-                  toast.error('Something went wrong. Please try again.')
-                }
-              }}
-            >
-              <div className="flex flex-col gap-2">
-                <ApplePay />
-                <GooglePay />
-              </div>
+                }}
+              >
+                <div className="flex flex-col gap-2">
+                  <ApplePay />
+                  <GooglePay />
+                </div>
 
-              {showCardForm ? (
-                <div className="mt-3 flex flex-col gap-3">
-                  <Input
-                    type="text"
-                    placeholder="Your full name"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    autoComplete="name"
-                    className="md:text-base lg:text-lg dark:text-emerald-300"
-                  />
-                  <Input
-                    type="email"
-                    placeholder="Your email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    autoComplete="email"
-                    className="md:text-base lg:text-lg dark:text-emerald-300"
-                  />
-                  <CreditCard
-                    buttonProps={{
-                      css: {
-                        backgroundColor: 'var(--primary)',
-                        color: 'var(--primary-foreground)',
-                        '&:hover': {
-                          opacity: 0.9,
+                {showCardForm ? (
+                  <div className="mt-3 flex flex-col gap-3">
+                    <Input
+                      type="text"
+                      placeholder="Your full name"
+                      value={name}
+                      onChange={e => setName(e.target.value)}
+                      autoComplete="name"
+                      className="md:text-base lg:text-lg dark:text-emerald-300"
+                    />
+                    <Input
+                      type="email"
+                      placeholder="Your email"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      autoComplete="email"
+                      className="md:text-base lg:text-lg dark:text-emerald-300"
+                    />
+                    <CreditCard
+                      buttonProps={{
+                        css: {
+                          backgroundColor: 'var(--primary)',
+                          color: 'var(--primary-foreground)',
+                          '&:hover': {
+                            opacity: 0.9,
+                          },
                         },
-                      },
-                    }}
-                  />
-                </div>
-              ) : (
-                <div className="mt-3 flex flex-col gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="h-px flex-1 bg-border" />
-                    <span className="text-xs uppercase text-muted-foreground">or</span>
-                    <div className="h-px flex-1 bg-border" />
+                      }}
+                    />
                   </div>
-                  <Button
-                    variant="outline"
-                    className="w-full"
-                    onClick={() => setShowCardForm(true)}
-                  >
-                    Pay with Credit Card
-                  </Button>
-                </div>
-              )}
-            </PaymentForm>
+                ) : (
+                  <div className="mt-3 flex flex-col gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="h-px flex-1 bg-border" />
+                      <span className="text-xs text-muted-foreground uppercase">
+                        or
+                      </span>
+                      <div className="h-px flex-1 bg-border" />
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => setShowCardForm(true)}
+                    >
+                      Pay with Credit Card
+                    </Button>
+                  </div>
+                )}
+              </PaymentForm>
             </div>
           </>
         )}

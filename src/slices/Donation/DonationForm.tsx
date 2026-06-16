@@ -97,6 +97,7 @@ export default function DonationForm() {
     setSelectedAmount('10')
     setCustomAmount('')
     setConfirmed(false)
+    setProcessing(false)
     setShowCardForm(false)
     setName('')
     setEmail('')

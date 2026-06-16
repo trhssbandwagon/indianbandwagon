@@ -30,9 +30,14 @@ export async function processDonation(
       body: JSON.stringify({
         source_id: sourceId,
         idempotency_key: crypto.randomUUID(),
+        reference_id: `DONATION-WEBSITE-${Date.now()}`,
         amount_money: { amount: amountCents, currency: 'USD' },
         note: `Website Donation from ${name} (${email})`,
         buyer_email_address: email,
+        metadata: {
+          type: 'donation',
+          source: 'website',
+        },
       }),
     })
     const data = await res.json()

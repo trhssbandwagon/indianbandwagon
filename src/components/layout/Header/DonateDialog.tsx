@@ -87,25 +87,6 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
             </div>
           )}
 
-          <div className="flex flex-col gap-3">
-            <Input
-              type="text"
-              placeholder="Your full name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              autoComplete="name"
-              className="md:text-base lg:text-lg dark:text-emerald-300"
-            />
-            <Input
-              type="email"
-              placeholder="Your email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              autoComplete="email"
-              className="md:text-base lg:text-lg dark:text-emerald-300"
-            />
-          </div>
-
           {open && (
             <PaymentForm
               applicationId={process.env.NEXT_PUBLIC_SQUARE_APP_ID!}
@@ -154,7 +135,23 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
               </div>
 
               {showCardForm ? (
-                <div className="mt-3">
+                <div className="mt-3 flex flex-col gap-3">
+                  <Input
+                    type="text"
+                    placeholder="Your full name"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    autoComplete="name"
+                    className="md:text-base lg:text-lg dark:text-emerald-300"
+                  />
+                  <Input
+                    type="email"
+                    placeholder="Your email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    autoComplete="email"
+                    className="md:text-base lg:text-lg dark:text-emerald-300"
+                  />
                   <CreditCard
                     buttonProps={{
                       css: {
@@ -167,6 +164,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                     }}
                   />
                 </div>
+
               ) : (
                 <div className="mt-3 flex flex-col gap-3">
                   <div className="flex items-center gap-3">

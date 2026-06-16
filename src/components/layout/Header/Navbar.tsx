@@ -11,6 +11,12 @@ import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { Button } from '@/components/ui/button'
 import DesktopMenu from './DesktopMenu'
 import MobileMenu from './MobileMenu'
+import dynamic from 'next/dynamic'
+
+const DonateDialog = dynamic(
+  () => import('./DonateDialog').then(m => ({ default: m.DonateDialog })),
+  { ssr: false },
+)
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
@@ -68,6 +74,7 @@ const Navbar = ({ logo, navigation, cta_link, site_title }: NavbarProps) => {
             )}
           </Link>
           <div className="flex items-center gap-x-4 lg:gap-x-8">
+            <DonateDialog buttonClassName="hidden cursor-pointer md:inline-flex" />
             {navigation.length > 0 && (
               <>
                 <DesktopMenu navigation={navigation} />

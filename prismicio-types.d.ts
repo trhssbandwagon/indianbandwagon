@@ -212,7 +212,7 @@ interface FundraiserDocumentData {
  */
 export type FundraiserDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<FundraiserDocumentData>, "fundraiser", Lang>;
 
-type HomepageDocumentDataSlicesSlice = EventsSlice | CarouselSlice | FaqSlice | ProcessSlice | TestimonialSlice | ImageWithTextSlice | FeaturesSlice | HeroSlice | RichTextSlice
+type HomepageDocumentDataSlicesSlice = EventsSlice | CarouselSlice | FaqSlice | ProcessSlice | TestimonialSlice | ImageWithTextSlice | FeaturesSlice | HeroSlice | RichTextSlice | DontationSlice
 
 /**
  * Content for Homepage documents
@@ -412,7 +412,7 @@ interface LayoutDocumentData {
  */
 export type LayoutDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<LayoutDocumentData>, "layout", Lang>;
 
-type PageDocumentDataSlicesSlice = EventsSlice | FormSlice | ContentIndexSlice | FeaturesSlice | FaqSlice | CarouselSlice | TestimonialSlice | ProcessSlice | ImageWithTextSlice | RichTextSlice | HeroSlice | OptOutSlice
+type PageDocumentDataSlicesSlice = EventsSlice | FormSlice | ContentIndexSlice | FeaturesSlice | FaqSlice | CarouselSlice | TestimonialSlice | ProcessSlice | ImageWithTextSlice | RichTextSlice | HeroSlice | OptOutSlice | DontationSlice
 
 /**
  * Content for Page documents
@@ -494,7 +494,7 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type PostDocumentDataSlicesSlice = TestimonialSlice | FaqSlice | ProcessSlice | RichTextSlice | ImageWithTextSlice | HeroSlice
+type PostDocumentDataSlicesSlice = TestimonialSlice | FaqSlice | ProcessSlice | RichTextSlice | ImageWithTextSlice | HeroSlice | DontationSlice
 
 /**
  * Content for Post documents
@@ -1000,6 +1000,54 @@ type ContentIndexSliceVariation = ContentIndexSliceDefault
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type ContentIndexSlice = prismic.SharedSlice<"content_index", ContentIndexSliceVariation>;
+
+/**
+ * Primary content in *Donation → Default → Primary*
+ */
+export interface DontationSliceDefaultPrimary {
+	/**
+	 * Heading field in *Donation → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: dontation.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField;
+	
+	/**
+	 * Description field in *Donation → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: dontation.default.primary.description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Donation Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type DontationSliceDefault = prismic.SharedSliceVariation<"default", Simplify<DontationSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *Donation*
+ */
+type DontationSliceVariation = DontationSliceDefault
+
+/**
+ * Donation Shared Slice
+ *
+ * - **API ID**: `dontation`
+ * - **Description**: Dontation
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type DontationSlice = prismic.SharedSlice<"dontation", DontationSliceVariation>;
 
 /**
  * Primary content in *Events → Default → Primary*
@@ -2303,6 +2351,10 @@ declare module "@prismicio/client" {
 			ContentIndexSliceDefaultPrimary,
 			ContentIndexSliceVariation,
 			ContentIndexSliceDefault,
+			DontationSlice,
+			DontationSliceDefaultPrimary,
+			DontationSliceVariation,
+			DontationSliceDefault,
 			EventsSlice,
 			EventsSliceDefaultPrimary,
 			EventsSliceEventsGridPrimary,

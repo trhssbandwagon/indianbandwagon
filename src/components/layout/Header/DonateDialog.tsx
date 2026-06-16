@@ -117,17 +117,27 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                   amount: amountDollars,
                   label: 'Donation',
                 },
+                requestBillingContact: true,
               })}
               cardTokenizeResponseReceived={async token => {
-                if (!name.trim()) return toast.error('Please enter your name.')
-                if (!email.includes('@')) return toast.error('Please enter a valid email.')
                 if (amountCents < 100) return toast.error('Minimum donation is $1.00.')
                 if (token.status !== 'OK') return toast.error('Tokenization failed.')
+
+                // Wallet payments supply billing contact — use as fallback for form fields
+                const billing = token.details?.billing
+                const resolvedName =
+                  name.trim() ||
+                  [billing?.givenName, billing?.familyName].filter(Boolean).join(' ')
+                const resolvedEmail = email.trim() || billing?.email || ''
+
+                if (!resolvedName) return toast.error('Please enter your name.')
+                if (!resolvedEmail.includes('@')) return toast.error('Please enter a valid email.')
+
                 const result = await processDonation(
                   token.token,
                   amountCents,
-                  name,
-                  email,
+                  resolvedName,
+                  resolvedEmail,
                 )
                 if (result.success) {
                   toast.success('Thank you for your donation!')

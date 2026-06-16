@@ -204,6 +204,11 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
               <PaymentForm
                 applicationId={process.env.NEXT_PUBLIC_SQUARE_APP_ID!}
                 locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID!}
+                environment={
+                  process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
+                    ? 'production'
+                    : 'sandbox'
+                }
                 createPaymentRequest={() => ({
                   countryCode: 'US',
                   currencyCode: 'USD',

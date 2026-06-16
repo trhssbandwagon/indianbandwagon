@@ -20,7 +20,11 @@ export async function processDonation(
   }
 
   try {
-    const res = await fetch('https://connect.squareupsandbox.com/v2/payments', {
+    const squareUrl =
+      process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
+        ? 'https://connect.squareup.com/v2/payments'
+        : 'https://connect.squareupsandbox.com/v2/payments'
+    const res = await fetch(squareUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -87,6 +87,9 @@
             },
             "opt_out": {
               "type": "SharedSlice"
+            },
+            "dontation": {
+              "type": "SharedSlice"
             }
           }
         }

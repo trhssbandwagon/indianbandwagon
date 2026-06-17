@@ -1,5 +1,6 @@
 'use server'
 import { z } from 'zod'
+import { Resend } from 'resend'
 
 const donationSchema = z.object({
   sourceId: z.string().min(1),
@@ -59,7 +60,26 @@ export async function processDonation(
     if (!res.ok) {
       return { success: false, error: data.errors?.[0]?.detail ?? 'Payment failed' }
     }
-    return { success: true, paymentId: data.payment.id, receiptUrl: data.payment.receipt_url ?? '' }
+
+    const paymentId: string = data.payment.id
+    const receiptUrl: string = data.payment.receipt_url ?? ''
+    const amountFormatted = (amountCents / 100).toFixed(2)
+
+    try {
+      const resend = new Resend(process.env.RESEND_API_KEY)
+      await resend.emails.send({
+        from: 'Indian Bandwagon <donations@indianbandwagon.org>',
+        to: email,
+        subject: 'Thank you for your donation to Indian Bandwagon!',
+        html: `<p>Dear ${name},</p>
+               <p>Thank you for your generous $${amountFormatted} donation to Indian Bandwagon. We truly appreciate your support!</p>
+               ${receiptUrl ? `<p><a href="${receiptUrl}">View your receipt</a></p>` : ''}`,
+      })
+    } catch {
+      // Email failure does not undo a successful payment
+    }
+
+    return { success: true, paymentId, receiptUrl }
   } catch {
     return { success: false, error: 'An unexpected error occurred.' }
   }

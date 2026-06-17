@@ -16,6 +16,7 @@ import {
   PaymentForm,
 } from 'react-square-web-payments-sdk'
 import { processDonation } from '@/app/actions/donate'
+import { formatPhone } from '@/lib/utils'
 import { toast } from 'sonner'
 import { Spinner } from '@/components/ui/spinner'
 import { Item, ItemContent, ItemMedia, ItemTitle } from '@/components/ui/item'
@@ -26,6 +27,7 @@ type PendingDonation = {
   amountDollars: string
   name: string
   email: string
+  phone: string
 }
 
 type DonateDialogProps = {
@@ -40,9 +42,11 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
   const [processing, setProcessing] = useState(false)
   const [donated, setDonated] = useState(false)
   const [successAmount, setSuccessAmount] = useState('')
+  const [receiptUrl, setReceiptUrl] = useState('')
   const [showCardForm, setShowCardForm] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
 
   const amountCents =
     selectedAmount === 'custom'
@@ -61,6 +65,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
     setShowCardForm(false)
     setName('')
     setEmail('')
+    setPhone('')
   }
 
   useEffect(() => {
@@ -70,13 +75,31 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
       if (raw) {
         sessionStorage.removeItem('donation_pending')
         try {
-          const { token, amountCents: pc, amountDollars: pd, name: pn, email: pe } = JSON.parse(raw) as PendingDonation
-          const result = await processDonation(token, pc, pn, pe)
-          if (result.success || (!result.success && /already|source/i.test(result.error ?? ''))) {
-            toast.success(`Thank you! Your $${pd} donation has been received.`)
+          const {
+            token,
+            amountCents: pc,
+            amountDollars: pd,
+            name: pn,
+            email: pe,
+            phone: pp,
+          } = JSON.parse(raw) as PendingDonation
+          const result = await processDonation(token, pc, pn, pe, pp)
+          if (
+            result.success ||
+            (!result.success && /already|source/i.test(result.error ?? ''))
+          ) {
+            const url = result.success
+              ? result.receiptUrl
+              : (sessionStorage.getItem('donation_receipt_url') ?? '')
+            sessionStorage.removeItem('donation_receipt_url')
+            setSuccessAmount(pd)
+            setReceiptUrl(url)
+            setDonated(true)
             return
           }
-          toast.error(result.error ?? 'Payment could not be completed. Please try again.')
+          toast.error(
+            result.error ?? 'Payment could not be completed. Please try again.',
+          )
         } catch {
           toast.error('Something went wrong. Please try again.')
         }
@@ -86,7 +109,12 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
       const stored = sessionStorage.getItem('donation_success')
       if (stored) {
         sessionStorage.removeItem('donation_success')
-        toast.success(`Thank you! Your $${stored} donation has been received.`)
+        const storedReceipt =
+          sessionStorage.getItem('donation_receipt_url') ?? ''
+        sessionStorage.removeItem('donation_receipt_url')
+        setSuccessAmount(stored)
+        setReceiptUrl(storedReceipt)
+        setDonated(true)
       }
     }
     recover()
@@ -99,9 +127,11 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
       setProcessing(false)
       setDonated(false)
       setSuccessAmount('')
+      setReceiptUrl('')
       setShowCardForm(false)
       setName('')
       setEmail('')
+      setPhone('')
     }
   }, [open])
 
@@ -126,7 +156,22 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                   Your ${successAmount} donation has been received.
                 </p>
               )}
-              <Button className="w-full" onClick={() => setOpen(false)}>
+              {receiptUrl && (
+                <Button asChild variant="link" className="h-auto p-0">
+                  <a
+                    href={receiptUrl}
+                    target="_blank"
+                    className="dark:text-destructive"
+                    rel="noopener noreferrer"
+                  >
+                    View Receipt
+                  </a>
+                </Button>
+              )}
+              <Button
+                className="w-full cursor-pointer"
+                onClick={() => setOpen(false)}
+              >
                 Done
               </Button>
             </div>
@@ -192,126 +237,162 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                     <Spinner />
                   </ItemMedia>
                   <ItemContent>
-                    <ItemTitle className="line-clamp-1">Processing payment...</ItemTitle>
+                    <ItemTitle className="line-clamp-1">
+                      Processing payment...
+                    </ItemTitle>
                   </ItemContent>
                   <ItemContent className="flex-none justify-end">
-                    <span className="text-sm tabular-nums">${amountDollars}</span>
+                    <span className="text-sm tabular-nums">
+                      ${amountDollars}
+                    </span>
                   </ItemContent>
                 </Item>
               ) : null}
 
               <div className={processing ? 'hidden' : undefined}>
-              <PaymentForm
-                applicationId={process.env.NEXT_PUBLIC_SQUARE_APP_ID!}
-                locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID!}
-                createPaymentRequest={() => ({
-                  countryCode: 'US',
-                  currencyCode: 'USD',
-                  total: {
-                    amount: amountDollars,
-                    label: 'Donation',
-                  },
-                  requestBillingContact: true,
-                })}
-                cardTokenizeResponseReceived={async token => {
-                  try {
-                    if (amountCents < 100) return toast.error('Minimum donation is $1.00.')
-                    if (token.status !== 'OK') return toast.error('Tokenization failed.')
+                <PaymentForm
+                  applicationId={process.env.NEXT_PUBLIC_SQUARE_APP_ID!}
+                  locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID!}
+                  createPaymentRequest={() => ({
+                    countryCode: 'US',
+                    currencyCode: 'USD',
+                    total: {
+                      amount: amountDollars,
+                      label: 'Donation',
+                    },
+                    requestBillingContact: true,
+                  })}
+                  cardTokenizeResponseReceived={async token => {
+                    try {
+                      if (amountCents < 100)
+                        return toast.error('Minimum donation is $1.00.')
+                      if (token.status !== 'OK')
+                        return toast.error('Tokenization failed.')
 
-                    // Wallet payments supply billing contact — use as fallback for form fields
-                    const billing = token.details?.billing
-                    const resolvedName =
-                      name.trim() ||
-                      [billing?.givenName, billing?.familyName].filter(Boolean).join(' ')
-                    const resolvedEmail = email.trim() || billing?.email || ''
+                      // Wallet payments supply billing contact — use as fallback for form fields
+                      const billing = token.details?.billing
+                      const resolvedName =
+                        name.trim() ||
+                        [billing?.givenName, billing?.familyName]
+                          .filter(Boolean)
+                          .join(' ')
+                      const resolvedEmail = email.trim() || billing?.email || ''
 
-                    if (!resolvedName) return toast.error('Please enter your name.')
-                    if (!resolvedEmail.includes('@')) return toast.error('Please enter a valid email.')
+                      if (!resolvedName)
+                        return toast.error('Please enter your name.')
+                      if (!resolvedEmail.includes('@'))
+                        return toast.error('Please enter a valid email.')
 
-                    sessionStorage.setItem(
-                      'donation_pending',
-                      JSON.stringify({ token: token.token, amountCents, amountDollars, name: resolvedName, email: resolvedEmail }),
-                    )
-                    setProcessing(true)
+                      const resolvedPhone = phone.trim()
 
-                    const result = await processDonation(
-                      token.token,
-                      amountCents,
-                      resolvedName,
-                      resolvedEmail,
-                    )
-                    sessionStorage.removeItem('donation_pending')
+                      sessionStorage.setItem(
+                        'donation_pending',
+                        JSON.stringify({
+                          token: token.token,
+                          amountCents,
+                          amountDollars,
+                          name: resolvedName,
+                          email: resolvedEmail,
+                          phone: resolvedPhone,
+                        }),
+                      )
+                      setProcessing(true)
 
-                    if (result.success) {
-                      sessionStorage.setItem('donation_success', amountDollars)
-                      setSuccessAmount(amountDollars)
-                      setDonated(true)
-                    } else {
+                      const result = await processDonation(
+                        token.token,
+                        amountCents,
+                        resolvedName,
+                        resolvedEmail,
+                        resolvedPhone,
+                      )
+                      sessionStorage.removeItem('donation_pending')
+
+                      if (result.success) {
+                        sessionStorage.setItem(
+                          'donation_success',
+                          amountDollars,
+                        )
+                        sessionStorage.setItem(
+                          'donation_receipt_url',
+                          result.receiptUrl,
+                        )
+                        setReceiptUrl(result.receiptUrl)
+                        setSuccessAmount(amountDollars)
+                        setDonated(true)
+                      } else {
+                        setProcessing(false)
+                        toast.error(result.error)
+                      }
+                    } catch {
+                      sessionStorage.removeItem('donation_pending')
                       setProcessing(false)
-                      toast.error(result.error)
+                      toast.error('Something went wrong. Please try again.')
                     }
-                  } catch {
-                    sessionStorage.removeItem('donation_pending')
-                    setProcessing(false)
-                    toast.error('Something went wrong. Please try again.')
-                  }
-                }}
-              >
-                {/* Wallet buttons — each auto-hides on unsupported devices */}
-                <div className="flex flex-col gap-2">
-                  <ApplePay />
-                  <GooglePay />
-                </div>
+                  }}
+                >
+                  {/* Wallet buttons — each auto-hides on unsupported devices */}
+                  <div className="flex flex-col gap-2">
+                    <ApplePay />
+                    <GooglePay />
+                  </div>
 
-                {showCardForm ? (
-                  <div className="mt-3 flex flex-col gap-3">
-                    <Input
-                      type="text"
-                      placeholder="Your full name"
-                      value={name}
-                      onChange={e => setName(e.target.value)}
-                      autoComplete="name"
-                      className="md:text-base lg:text-lg dark:text-emerald-300"
-                    />
-                    <Input
-                      type="email"
-                      placeholder="Your email"
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      autoComplete="email"
-                      className="md:text-base lg:text-lg dark:text-emerald-300"
-                    />
-                    <CreditCard
-                      buttonProps={{
-                        css: {
-                          backgroundColor: 'var(--primary)',
-                          color: 'var(--primary-foreground)',
-                          '&:hover': {
-                            opacity: 0.9,
+                  {showCardForm ? (
+                    <div className="mt-3 flex flex-col gap-3">
+                      <Input
+                        type="text"
+                        placeholder="Your full name"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        autoComplete="name"
+                        className="md:text-base lg:text-lg dark:text-emerald-300"
+                      />
+                      <Input
+                        type="email"
+                        placeholder="Your email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        autoComplete="email"
+                        className="md:text-base lg:text-lg dark:text-emerald-300"
+                      />
+                      <Input
+                        type="tel"
+                        placeholder="Phone (optional, for SMS receipt)"
+                        value={phone}
+                        onChange={e => setPhone(formatPhone(e.target.value))}
+                        autoComplete="tel"
+                        className="md:text-base lg:text-lg dark:text-emerald-300"
+                      />
+                      <CreditCard
+                        buttonProps={{
+                          css: {
+                            backgroundColor: 'var(--primary)',
+                            color: 'var(--primary-foreground)',
+                            '&:hover': {
+                              opacity: 0.9,
+                            },
                           },
-                        },
-                      }}
-                    />
-                  </div>
-                ) : (
-                  <div className="mt-3 flex flex-col gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="h-px flex-1 bg-border" />
-                      <span className="text-xs text-muted-foreground uppercase">
-                        or
-                      </span>
-                      <div className="h-px flex-1 bg-border" />
+                        }}
+                      />
                     </div>
-                    <Button
-                      variant="outline"
-                      className="w-full"
-                      onClick={() => setShowCardForm(true)}
-                    >
-                      Pay with Credit Card
-                    </Button>
-                  </div>
-                )}
-              </PaymentForm>
+                  ) : (
+                    <div className="mt-3 flex flex-col gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="h-px flex-1 bg-border" />
+                        <span className="text-xs text-muted-foreground uppercase">
+                          or
+                        </span>
+                        <div className="h-px flex-1 bg-border" />
+                      </div>
+                      <Button
+                        variant="outline"
+                        className="w-full cursor-pointer"
+                        onClick={() => setShowCardForm(true)}
+                      >
+                        Pay with Credit Card
+                      </Button>
+                    </div>
+                  )}
+                </PaymentForm>
               </div>
             </>
           )}

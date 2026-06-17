@@ -11,6 +11,7 @@ import {
   PaymentForm,
 } from 'react-square-web-payments-sdk'
 import { processDonation } from '@/app/actions/donate'
+import { formatPhone } from '@/lib/utils'
 import { toast } from 'sonner'
 import { Spinner } from '@/components/ui/spinner'
 import { Item, ItemContent, ItemMedia, ItemTitle } from '@/components/ui/item'
@@ -21,23 +22,29 @@ type PendingDonation = {
   amountDollars: string
   name: string
   email: string
+  phone: string
 }
 
-async function recoverPendingDonation(): Promise<{ amount: string } | null> {
+async function recoverPendingDonation(): Promise<{
+  amount: string
+  receiptUrl: string
+} | null> {
   const raw = sessionStorage.getItem('donation_pending')
   if (!raw) return null
   sessionStorage.removeItem('donation_pending')
   try {
-    const { token, amountCents, amountDollars, name, email } = JSON.parse(
-      raw,
-    ) as PendingDonation
-    const result = await processDonation(token, amountCents, name, email)
+    const { token, amountCents, amountDollars, name, email, phone } =
+      JSON.parse(raw) as PendingDonation
+    const result = await processDonation(token, amountCents, name, email, phone)
     // Square rejects a reused nonce with a detail about the source — treat as prior success
     if (
       result.success ||
       (!result.success && /already|source/i.test(result.error ?? ''))
     ) {
-      return { amount: amountDollars }
+      return {
+        amount: amountDollars,
+        receiptUrl: result.success ? result.receiptUrl : '',
+      }
     }
     toast.error(
       result.error ?? 'Payment could not be completed. Please try again.',
@@ -54,10 +61,12 @@ export default function DonationForm() {
   const [confirmed, setConfirmed] = useState(false)
   const [donated, setDonated] = useState(false)
   const [successAmount, setSuccessAmount] = useState('')
+  const [receiptUrl, setReceiptUrl] = useState('')
   const [processing, setProcessing] = useState(false)
   const [showCardForm, setShowCardForm] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
 
   useEffect(() => {
     async function recover() {
@@ -65,6 +74,7 @@ export default function DonationForm() {
       const recovered = await recoverPendingDonation()
       if (recovered) {
         setSuccessAmount(recovered.amount)
+        setReceiptUrl(recovered.receiptUrl)
         setDonated(true)
         return
       }
@@ -72,7 +82,11 @@ export default function DonationForm() {
       const stored = sessionStorage.getItem('donation_success')
       if (stored) {
         sessionStorage.removeItem('donation_success')
+        const storedReceipt =
+          sessionStorage.getItem('donation_receipt_url') ?? ''
+        sessionStorage.removeItem('donation_receipt_url')
         setSuccessAmount(stored)
+        setReceiptUrl(storedReceipt)
         setDonated(true)
       }
     }
@@ -96,11 +110,13 @@ export default function DonationForm() {
     setShowCardForm(false)
     setName('')
     setEmail('')
+    setPhone('')
   }
 
   const handleDonateAgain = () => {
     setDonated(false)
     setSuccessAmount('')
+    setReceiptUrl('')
     setSelectedAmount('10')
     setCustomAmount('')
     setConfirmed(false)
@@ -108,6 +124,7 @@ export default function DonationForm() {
     setShowCardForm(false)
     setName('')
     setEmail('')
+    setPhone('')
   }
 
   if (donated) {
@@ -121,7 +138,23 @@ export default function DonationForm() {
               Your ${successAmount} donation has been received.
             </p>
           )}
-          <Button variant="outline" onClick={handleDonateAgain}>
+          {receiptUrl && (
+            <Button asChild variant="link" className="h-auto p-0">
+              <a
+                href={receiptUrl}
+                target="_blank"
+                className="dark:text-destructive"
+                rel="noopener noreferrer"
+              >
+                View Receipt
+              </a>
+            </Button>
+          )}
+          <Button
+            variant="outline"
+            onClick={handleDonateAgain}
+            className="cursor-pointer"
+          >
             Donate again
           </Button>
         </CardContent>
@@ -237,6 +270,8 @@ export default function DonationForm() {
                     if (!resolvedEmail.includes('@'))
                       return toast.error('Please enter a valid email.')
 
+                    const resolvedPhone = phone.trim()
+
                     sessionStorage.setItem(
                       'donation_pending',
                       JSON.stringify({
@@ -245,6 +280,7 @@ export default function DonationForm() {
                         amountDollars,
                         name: resolvedName,
                         email: resolvedEmail,
+                        phone: resolvedPhone,
                       }),
                     )
                     setProcessing(true)
@@ -254,11 +290,17 @@ export default function DonationForm() {
                       amountCents,
                       resolvedName,
                       resolvedEmail,
+                      resolvedPhone,
                     )
                     sessionStorage.removeItem('donation_pending')
 
                     if (result.success) {
                       sessionStorage.setItem('donation_success', amountDollars)
+                      sessionStorage.setItem(
+                        'donation_receipt_url',
+                        result.receiptUrl,
+                      )
+                      setReceiptUrl(result.receiptUrl)
                       setSuccessAmount(amountDollars)
                       setDonated(true)
                     } else {
@@ -295,6 +337,14 @@ export default function DonationForm() {
                       autoComplete="email"
                       className="md:text-base lg:text-lg dark:text-emerald-300"
                     />
+                    <Input
+                      type="tel"
+                      placeholder="Phone (optional, for SMS receipt)"
+                      value={phone}
+                      onChange={e => setPhone(formatPhone(e.target.value))}
+                      autoComplete="tel"
+                      className="md:text-base lg:text-lg dark:text-emerald-300"
+                    />
                     <CreditCard
                       buttonProps={{
                         css: {
@@ -318,7 +368,7 @@ export default function DonationForm() {
                     </div>
                     <Button
                       variant="outline"
-                      className="w-full"
+                      className="w-full cursor-pointer"
                       onClick={() => setShowCardForm(true)}
                     >
                       Pay with Credit Card

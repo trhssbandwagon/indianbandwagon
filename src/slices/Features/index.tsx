@@ -37,7 +37,7 @@ const Features = ({ slice }: FeaturesProps): React.JSX.Element => {
                 <Heading
                   as="h3"
                   size="5xl"
-                  className={cn('dark:text-foreground', {
+                  className={cn('py-6 lg:py-12 dark:text-foreground', {
                     'text-background': slice.variation === 'primary',
                   })}
                 >

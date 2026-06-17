@@ -20,6 +20,7 @@ import { formatPhone } from '@/lib/utils'
 import { toast } from 'sonner'
 import { Spinner } from '@/components/ui/spinner'
 import { Item, ItemContent, ItemMedia, ItemTitle } from '@/components/ui/item'
+import { CheckCircle2 } from 'lucide-react'
 
 type PendingDonation = {
   token: string
@@ -149,7 +150,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
 
           {donated ? (
             <div className="flex flex-col items-center gap-4 py-4 text-center">
-              <p className="text-5xl">✓</p>
+              <CheckCircle2 className="size-12 text-primary" />
               <p className="text-2xl font-bold">Thank you for your donation!</p>
               {successAmount && (
                 <p className="text-muted-foreground">
@@ -205,7 +206,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                     placeholder="0.00"
                     value={customAmount}
                     onChange={e => setCustomAmount(e.target.value)}
-                    className="pl-7 md:text-base lg:text-lg dark:text-emerald-300"
+                    className="pl-7 md:text-base lg:text-lg"
                   />
                 </div>
               )}
@@ -344,7 +345,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                         value={name}
                         onChange={e => setName(e.target.value)}
                         autoComplete="name"
-                        className="md:text-base lg:text-lg dark:text-emerald-300"
+                        className="md:text-base lg:text-lg"
                       />
                       <Input
                         type="email"
@@ -352,7 +353,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         autoComplete="email"
-                        className="md:text-base lg:text-lg dark:text-emerald-300"
+                        className="md:text-base lg:text-lg"
                       />
                       <Input
                         type="tel"
@@ -360,7 +361,7 @@ export function DonateDialog({ buttonClassName }: DonateDialogProps) {
                         value={phone}
                         onChange={e => setPhone(formatPhone(e.target.value))}
                         autoComplete="tel"
-                        className="md:text-base lg:text-lg dark:text-emerald-300"
+                        className="md:text-base lg:text-lg"
                       />
                       <CreditCard
                         buttonProps={{

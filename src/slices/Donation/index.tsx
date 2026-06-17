@@ -9,6 +9,7 @@ const Donation = ({ slice }: SliceComponentProps<Content.DontationSlice>) => (
     data-slice-type={slice.slice_type}
     data-slice-variation={slice.variation}
     width="xl"
+    className="pb-6 lg:pb-12"
   >
     {slice.primary.heading && (
       <div className="mx-auto prose py-6 lg:prose-lg lg:py-12 xl:prose-xl">

@@ -226,7 +226,7 @@
 
   input,
   textarea {
-    @apply form-input border-muted text-primary outline-hidden focus:border-primary focus:ring-primary;
+    @apply form-input border-muted text-primary dark:text-foreground outline-hidden focus:border-primary focus:ring-primary;
   }
 
   .aspect-square {

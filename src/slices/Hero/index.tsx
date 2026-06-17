@@ -26,7 +26,7 @@ const Hero = ({ slice, index }: HeroProps): React.JSX.Element => {
         {
           'bg-primary': slice.variation === 'default',
           'lg:h-[calc(100vh-64px)] lg:min-h-187.5':
-            slice.variation !== 'contentHeight',
+            slice.variation === 'withImage',
         },
       )}
     >

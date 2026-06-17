@@ -16,8 +16,17 @@ export async function processDonation(
   name: string,
   email: string,
   phone?: string,
-): Promise<{ success: true; paymentId: string; receiptUrl: string } | { success: false; error: string }> {
-  const parsed = donationSchema.safeParse({ sourceId, amountCents, name, email, phone })
+): Promise<
+  | { success: true; paymentId: string; receiptUrl: string }
+  | { success: false; error: string }
+> {
+  const parsed = donationSchema.safeParse({
+    sourceId,
+    amountCents,
+    name,
+    email,
+    phone,
+  })
   if (!parsed.success) {
     return { success: false, error: parsed.error.issues[0].message }
   }
@@ -58,7 +67,10 @@ export async function processDonation(
     })
     const data = await res.json()
     if (!res.ok) {
-      return { success: false, error: data.errors?.[0]?.detail ?? 'Payment failed' }
+      return {
+        success: false,
+        error: data.errors?.[0]?.detail ?? 'Payment failed',
+      }
     }
 
     const paymentId: string = data.payment.id
@@ -68,7 +80,7 @@ export async function processDonation(
     try {
       const resend = new Resend(process.env.RESEND_API_KEY)
       await resend.emails.send({
-        from: 'Indian Bandwagon <donations@indianbandwagon.org>',
+        from: 'Indian Bandwagon <fundraising@trhssbandwagon.org>',
         to: email,
         subject: 'Thank you for your donation to Indian Bandwagon!',
         html: `<p>Dear ${name},</p>

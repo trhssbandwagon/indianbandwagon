@@ -35,7 +35,7 @@ const Hero = ({ slice, index }: HeroProps): React.JSX.Element => {
           field={slice.primary.image}
           fallbackAlt=""
           fill
-          sizes="(min-width: 1340px) 100vw, (min-width: 1040px) calc(69.64vw + 401px), (min-width: 460px) 100vw, (min-width: 360px) 505px, calc(-75vw + 832px)"
+          sizes="100vw"
           className="z-[-2] object-cover"
           loading="eager"
           fetchPriority="high"

@@ -171,9 +171,9 @@ const FooterContent = ({
       </div>
       <div className="mx-auto prose prose-sm p-6 text-center text-primary-foreground">
         <p>
-          {`P.O. Box ${settings.legal_po_box} `}
+          {settings.school_street_address}
           <br />
-          {`${settings.locality}, NJ ${settings.legal_postal_code}`}
+          {`${settings.locality}, NJ ${settings.school_postal_code}`}
         </p>
       </div>
     </Section>

@@ -48,7 +48,7 @@ const ImageWithText = ({ slice }: ImageWithTextProps): React.JSX.Element => {
             imgixParams={{
               ar: '4:3',
               fit: 'crop',
-              auto: 'compress,format',
+              auto: ['compress', 'format'],
             }}
           />
         </div>

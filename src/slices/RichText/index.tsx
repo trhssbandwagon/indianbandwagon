@@ -24,7 +24,10 @@ const RichText = ({ slice }: RichTextProps): React.JSX.Element => {
       })}
     >
       <div className="prose lg:prose-lg xl:prose-xl 2xl:prose-2xl dark:prose-invert">
-        <PrismicRichText field={slice.primary.rich_text} />
+        <PrismicRichText
+            field={slice.primary.rich_text}
+            sizes="(min-width: 768px) 768px, 100vw"
+          />
       </div>
     </Section>
   )

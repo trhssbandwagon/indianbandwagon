@@ -10,7 +10,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
-const defaultComponents: JSXMapSerializer = {
+const createDefaultComponents = (sizes?: string): JSXMapSerializer => ({
   heading1: ({ children }: { children: ReactNode }) => {
     return (
       <Heading as="h1" size="6xl">
@@ -78,6 +78,7 @@ const defaultComponents: JSXMapSerializer = {
               alt={node.alt || ''}
               width={node.dimensions.width}
               height={node.dimensions.height}
+              sizes={sizes}
               className="y-6 my-4 rounded-lg shadow-sm lg:my-8 xl:my-10"
               title={node.alt || ''}
             />
@@ -93,6 +94,7 @@ const defaultComponents: JSXMapSerializer = {
               alt={node.alt || ''}
               width={node.dimensions.width}
               height={node.dimensions.height}
+              sizes={sizes}
               className="my-4 rounded-lg shadow-sm md:my-6 lg:my-8 xl:my-10"
               title={node.alt || ''}
             />
@@ -107,24 +109,23 @@ const defaultComponents: JSXMapSerializer = {
   listItem: ({ children }: { children: ReactNode }) => {
     return <li className="ml-4 md:ml-6 lg:ml-8 xl:ml-10">{children}</li>
   },
-}
+})
 
-// Define PrismicRichTextProps as a generic type
 interface PrismicRichTextProps<
   LinkResolverFunction extends prismic.LinkResolverFunction =
     prismic.LinkResolverFunction,
 > extends BasePrismicRichTextProps {
   components?: Record<string, React.ComponentType<any>>
-  // Add other props as needed
+  sizes?: string
 }
 
 export const PrismicRichText = function PrismicRichText<
   LinkResolverFunction extends prismic.LinkResolverFunction<any> =
     prismic.LinkResolverFunction,
->({ components, ...props }: PrismicRichTextProps<LinkResolverFunction>) {
+>({ components, sizes, ...props }: PrismicRichTextProps<LinkResolverFunction>) {
   return (
     <BasePrismicRichText
-      components={{ ...defaultComponents, ...components }}
+      components={{ ...createDefaultComponents(sizes), ...components }}
       {...props}
     />
   )

@@ -13,6 +13,7 @@ import { sendMessage } from '@/app/actions'
 import { FormSlice } from '../../../prismicio-types'
 import { KeyTextField } from '@prismicio/client'
 import { cn } from '@/lib/utils'
+import { CheckCircle2 } from 'lucide-react'
 
 type FormValues = {
   email: string
@@ -109,6 +110,7 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
         type="submit"
         aria-disabled={isSubmitting}
         variant={variant}
+        className="cursor-pointer"
       >
         {text}
       </Button>
@@ -118,14 +120,20 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
   return (
     <>
       {success === true && (
-        <p className="text-xl font-medium text-primary">
-          Thank you for getting in touch. We will contact you soon!
-        </p>
+        <div className="mx-auto my-12 flex max-w-screen-sm flex-col items-center gap-4 text-center">
+          <CheckCircle2 className="h-16 w-16 text-emerald-600 dark:text-emerald-400" />
+          <p className="text-2xl font-semibold text-foreground">
+            Message Sent!
+          </p>
+          <p className="text-muted-foreground">
+            Thank you for getting in touch. We will contact you soon!
+          </p>
+        </div>
       )}
       {success !== true && (
         <form
           className="mx-auto my-12 flex max-w-screen-sm flex-col gap-y-6"
-          onSubmit={handleSubmit(async (values) => {
+          onSubmit={handleSubmit(async values => {
             setSubmitError(null)
             if (!window.grecaptcha?.enterprise) {
               setSubmitError(

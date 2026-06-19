@@ -5,14 +5,14 @@ declare global {
   }
 }
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { sendMessage } from '@/app/actions'
 import { FormSlice } from '../../../prismicio-types'
 import { KeyTextField } from '@prismicio/client'
-import { cn } from '@/lib/utils'
+import { cn, formatPhone } from '@/lib/utils'
 import { CheckCircle2 } from 'lucide-react'
 
 type FormValues = {
@@ -51,6 +51,7 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>()
 
@@ -252,15 +253,30 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
             >
               {phone_label || 'Phone Number'}
             </Label>
-            <Input
-              id="phone"
-              {...register('phone')}
-              type="tel"
-              placeholder={phone_placeholder || 'Enter your phone number here'}
-              aria-invalid={errors.phone ? true : undefined}
-              aria-describedby={errors.phone ? 'phone-error' : '#contact-phone'}
-              onFocus={handleFocus}
-              className="lg:text-lg xl:text-xl"
+            <Controller
+              name="phone"
+              control={control}
+              rules={{
+                validate: v =>
+                  !v ||
+                  v.replace(/\D/g, '').length === 10 ||
+                  'Please enter a valid 10-digit US phone number.',
+              }}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  id="phone"
+                  type="tel"
+                  placeholder={phone_placeholder || '(555) 555-5555'}
+                  aria-invalid={errors.phone ? true : undefined}
+                  aria-describedby={
+                    errors.phone ? 'phone-error' : '#contact-phone'
+                  }
+                  onFocus={handleFocus}
+                  onChange={e => field.onChange(formatPhone(e.target.value))}
+                  className="lg:text-lg xl:text-xl"
+                />
+              )}
             />
             {errors.phone && (
               <p
@@ -324,9 +340,9 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
             </p>
           )}
 
-          <div className="flex flex-col items-center lg:items-start">
+          <div className="prose flex flex-col items-center lg:items-start dark:prose-invert">
             <SubmitButton text={button_text} variant={button_style} />
-            <p className="mt-3 text-sm text-muted-foreground [&_a]:text-primary [&_a]:underline-offset-4 hover:[&_a]:underline">
+            <p className="mt-3 text-xs">
               This site is protected by reCAPTCHA and the{' '}
               <a
                 href="https://policies.google.com/privacy"

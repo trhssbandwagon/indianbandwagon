@@ -54,7 +54,13 @@ export async function sendMessage(formData: FormData) {
   const recaptchaResult = await recaptchaValidation(token)
   const captchaScore = Number(recaptchaResult.message)
 
+  console.log('[sendMessage] reCAPTCHA result:', {
+    successful: recaptchaResult.successful,
+    score: captchaScore,
+  })
+
   if (!recaptchaResult.successful || captchaScore < 0.5) {
+    console.error('[sendMessage] reCAPTCHA blocked:', recaptchaResult.message)
     return { statusCode: 400, message: recaptchaResult.message }
   }
 
@@ -69,6 +75,7 @@ export async function sendMessage(formData: FormData) {
     .filter(Boolean)
 
   if (recipients.length === 0) {
+    console.error('[sendMessage] No recipients configured.')
     return { statusCode: 500, message: 'No recipients configured.' }
   }
 
@@ -88,8 +95,10 @@ export async function sendMessage(formData: FormData) {
         <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
       `,
     })
+    console.log('[sendMessage] Email sent successfully to:', recipients)
     return { message: 200 }
-  } catch {
+  } catch (err) {
+    console.error('[sendMessage] Resend failed:', err)
     return { statusCode: 500, message: 'Email delivery failed.' }
   }
 }

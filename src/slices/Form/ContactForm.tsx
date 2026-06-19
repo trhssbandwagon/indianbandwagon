@@ -127,25 +127,32 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
           className="mx-auto my-12 flex max-w-screen-sm flex-col gap-y-6"
           onSubmit={handleSubmit(async (values) => {
             setSubmitError(null)
-            try {
-              if (!window.grecaptcha?.enterprise) {
-                setSubmitError(
-                  'Verification failed to load. Please refresh the page and try again.',
-                )
-                return
-              }
-              const recaptchaToken = await new Promise<string>(
-                (resolve, reject) => {
-                  window.grecaptcha.enterprise.ready(() => {
-                    window.grecaptcha.enterprise
-                      .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
-                        action: 'submit',
-                      })
-                      .then(resolve)
-                      .catch(reject)
-                  })
-                },
+            if (!window.grecaptcha?.enterprise) {
+              setSubmitError(
+                'Verification failed to load. Please refresh the page and try again.',
               )
+              return
+            }
+            let recaptchaToken: string
+            try {
+              recaptchaToken = await new Promise<string>((resolve, reject) => {
+                window.grecaptcha.enterprise.ready(() => {
+                  window.grecaptcha.enterprise
+                    .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
+                      action: 'submit',
+                    })
+                    .then(resolve)
+                    .catch(reject)
+                })
+              })
+            } catch (err) {
+              console.error('reCAPTCHA execute failed:', err)
+              setSubmitError(
+                'Verification failed. Please refresh the page and try again.',
+              )
+              return
+            }
+            try {
               const formData = new FormData()
               formData.set('name', values.name)
               formData.set('email', values.email)
@@ -161,7 +168,8 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
                   'Something went wrong sending your message. Please try again or contact us directly.',
                 )
               }
-            } catch {
+            } catch (err) {
+              console.error('sendMessage failed:', err)
               setSubmitError(
                 'Something went wrong sending your message. Please try again or contact us directly.',
               )

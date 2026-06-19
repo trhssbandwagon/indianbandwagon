@@ -19,9 +19,13 @@ const Form = ({ slice }: FormProps): React.JSX.Element => {
     <Section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      width="xl"
+      width="md"
     >
-      <div className={cn('mx-auto prose lg:prose-lg xl:prose-xl')}>
+      <div
+        className={cn(
+          'mx-auto prose lg:prose-lg xl:prose-xl 2xl:prose-2xl dark:prose-invert',
+        )}
+      >
         <PrismicRichText field={slice.primary.title} />
         <PrismicRichText field={slice.primary.description} />
       </div>

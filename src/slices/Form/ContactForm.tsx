@@ -54,6 +54,7 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
   } = useForm<FormValues>()
 
   const [success, setSuccess] = React.useState<boolean | null>(null)
+  const [submitError, setSubmitError] = React.useState<string | null>(null)
   const [formInteraction, setFormInteraction] = React.useState(false)
   const handleFocus = () => {
     !formInteraction && setFormInteraction(true)
@@ -124,26 +125,47 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
       {success !== true && (
         <form
           className="mx-auto my-12 flex max-w-screen-sm flex-col gap-y-6"
-          onSubmit={handleSubmit((values) => {
-            window.grecaptcha.enterprise.ready(() => {
-              window.grecaptcha.enterprise
-                .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
-                  action: 'submit',
-                })
-                .then(async (recaptchaToken: string) => {
-                  const formData = new FormData()
-                  formData.set('name', values.name)
-                  formData.set('email', values.email)
-                  formData.set('phone', values.phone ?? '')
-                  formData.set('message', values.message)
-                  formData.set('token', recaptchaToken)
-                  const { message } = await sendMessage(formData)
-                  if (message === 200) {
-                    reset()
-                    setSuccess(true)
-                  }
-                })
-            })
+          onSubmit={handleSubmit(async (values) => {
+            setSubmitError(null)
+            try {
+              if (!window.grecaptcha?.enterprise) {
+                setSubmitError(
+                  'Verification failed to load. Please refresh the page and try again.',
+                )
+                return
+              }
+              const recaptchaToken = await new Promise<string>(
+                (resolve, reject) => {
+                  window.grecaptcha.enterprise.ready(() => {
+                    window.grecaptcha.enterprise
+                      .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
+                        action: 'submit',
+                      })
+                      .then(resolve)
+                      .catch(reject)
+                  })
+                },
+              )
+              const formData = new FormData()
+              formData.set('name', values.name)
+              formData.set('email', values.email)
+              formData.set('phone', values.phone ?? '')
+              formData.set('message', values.message)
+              formData.set('token', recaptchaToken)
+              const result = await sendMessage(formData)
+              if (result.message === 200) {
+                reset()
+                setSuccess(true)
+              } else {
+                setSubmitError(
+                  'Something went wrong sending your message. Please try again or contact us directly.',
+                )
+              }
+            } catch {
+              setSubmitError(
+                'Something went wrong sending your message. Please try again or contact us directly.',
+              )
+            }
           })}
         >
           <div className="flex flex-col gap-1.5">
@@ -279,6 +301,12 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
             autoComplete="off"
             className="absolute top-0 -left-2499.75 h-0 w-0 overflow-hidden opacity-0"
           />
+
+          {submitError && (
+            <p role="alert" className="text-sm text-destructive">
+              {submitError}
+            </p>
+          )}
 
           <div className="flex flex-col items-center lg:items-start">
             <SubmitButton text={button_text} variant={button_style} />

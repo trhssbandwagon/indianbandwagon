@@ -54,7 +54,7 @@ export async function sendMessage(formData: FormData) {
   const recaptchaResult = await recaptchaValidation(token)
   const captchaScore = Number(recaptchaResult.message)
 
-  if (!recaptchaResult.successful || captchaScore <= 0.8) {
+  if (!recaptchaResult.successful || captchaScore < 0.5) {
     return { statusCode: 400, message: recaptchaResult.message }
   }
 

@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Indian Bandwagon
 
-## Getting Started
+Website for the Indian Bandwagon — the student band program at TRHS. Built with Next.js, Prismic CMS, Square payments, and Resend email.
 
-First, run the development server:
+## Tech Stack
+
+- **Framework**: Next.js 16 / React 19
+- **CMS**: [Prismic](https://prismic.io)
+- **Styling**: Tailwind CSS v4 + shadcn/ui (Radix UI)
+- **Payments**: Square Web Payments SDK
+- **Email**: Resend
+- **Bot protection**: reCAPTCHA Enterprise
+- **Events**: Google Calendar v3 API
+- **Analytics**: GA4, Microsoft Clarity, Facebook Pixel
+- **Runtime**: Bun
+
+## Prerequisites
+
+- [Bun](https://bun.sh) installed
+- Access to the Prismic repository
+- Accounts / credentials for: Square, Resend, Google Cloud (reCAPTCHA Enterprise + Calendar API)
+
+## Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun install
+cp .env.local.example .env.local   # then fill in values (see below)
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`bun dev` runs Next.js and the Prismic type builder concurrently. The type builder keeps `src/prismicio-types.d.ts` in sync with your Prismic schema while you develop.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_GA4_MEASUREMENT_ID` | Google Analytics 4 measurement ID |
+| `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity project ID |
+| `NEXT_PUBLIC_FACEBOOK_PIXEL_ID` | Facebook Pixel ID |
+| `NEXT_PUBLIC_VERCEL_ENV` | Set to `production` to activate analytics and Square live payments |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | reCAPTCHA Enterprise site key |
+| `RECAPTCHA_PROJECT_ID` | Google Cloud project ID for reCAPTCHA Enterprise |
+| `RECAPTCHA_API_KEY` | Google Cloud API key for reCAPTCHA Enterprise REST API |
+| `RESEND_API_KEY` | Resend API key |
+| `CONTACT_EMAIL_TO` | Comma-separated recipient addresses for contact form submissions |
+| `NEXT_PUBLIC_SQUARE_APP_ID` | Square application ID |
+| `NEXT_PUBLIC_SQUARE_LOCATION_ID` | Square location ID |
+| `SQUARE_ACCESS_TOKEN` | Square server-side access token |
+| `GOOGLE_CALENDAR_ID` | Google Calendar ID for the Events section |
+| `GOOGLE_CALENDAR_API_KEY` | Google Cloud API key for Calendar v3 API |
 
-## Learn More
+Square automatically uses the sandbox API when `NEXT_PUBLIC_VERCEL_ENV` is not `production`.
 
-To learn more about Next.js, take a look at the following resources:
+## Commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+bun dev       # Start dev server + Prismic type builder
+bun build     # Production build
+bun lint      # ESLint
+bun format    # Prettier (writes in place)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Content Management
 
-## Deploy on Vercel
+All content is managed in [Prismic](https://prismic.io). The Slice Machine UI runs alongside `bun dev` — use it to create and modify content slices. After changing a slice model, Prismic regenerates the TypeScript types automatically.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Prismic webhooks trigger ISR via the `/api/revalidate` endpoint, so published content updates propagate to the live site without a redeploy.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Deployment
+
+Deploy to [Vercel](https://vercel.com). Set all environment variables above in the Vercel project settings. Set `NEXT_PUBLIC_VERCEL_ENV=production` on the production environment only — this gates live Square payments and analytics.
+
+Configure a Prismic webhook pointing to `https://<your-domain>/api/revalidate` (POST) to enable on-demand revalidation when content is published.

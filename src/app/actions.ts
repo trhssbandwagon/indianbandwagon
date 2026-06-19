@@ -32,7 +32,7 @@ const recaptchaValidation = async (token: string) => {
       const error = err as AxiosError
       let message
       if (error.response) {
-        message = `reCAPTCHA server responded with non 2xx code: ${error.response.data}`
+        message = `reCAPTCHA server responded with non 2xx code: ${JSON.stringify(error.response.data)}`
       } else if (error.request) {
         message = `No reCAPTCHA response received: ${error.request}`
       } else {

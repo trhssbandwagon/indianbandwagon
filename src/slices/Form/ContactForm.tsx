@@ -48,9 +48,9 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
 
   const {
     register,
-    trigger,
+    handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>()
 
   const [success, setSuccess] = React.useState<boolean | null>(null)
@@ -124,15 +124,18 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
       {success !== true && (
         <form
           className="mx-auto my-12 flex max-w-screen-sm flex-col gap-y-6"
-          action={async (formData: FormData) => {
-            trigger()
-            if (!isValid) return
+          onSubmit={handleSubmit((values) => {
             window.grecaptcha.enterprise.ready(() => {
               window.grecaptcha.enterprise
                 .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
                   action: 'submit',
                 })
                 .then(async (recaptchaToken: string) => {
+                  const formData = new FormData()
+                  formData.set('name', values.name)
+                  formData.set('email', values.email)
+                  formData.set('phone', values.phone ?? '')
+                  formData.set('message', values.message)
                   formData.set('token', recaptchaToken)
                   const { message } = await sendMessage(formData)
                   if (message === 200) {
@@ -141,7 +144,7 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
                   }
                 })
             })
-          }}
+          })}
         >
           <div className="flex flex-col gap-1.5">
             <Label
@@ -213,9 +216,7 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
             </Label>
             <Input
               id="phone"
-              {...register('phone', {
-                required: 'Your phone number is required.',
-              })}
+              {...register('phone')}
               type="tel"
               placeholder={phone_placeholder || 'Enter your phone number here'}
               aria-invalid={errors.phone ? true : undefined}

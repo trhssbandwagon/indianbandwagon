@@ -52,7 +52,7 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
   React.useEffect(() => {
     if (formInteraction) {
       const recaptchaScript = document.createElement('script')
-      recaptchaScript.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`
+      recaptchaScript.src = `https://www.google.com/recaptcha/enterprise.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`
       recaptchaScript.async = true
       recaptchaScript.defer = true
       document.head.appendChild(recaptchaScript)
@@ -124,8 +124,8 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
             trigger()
             if (!isValid) return
             // calling server action passed into the client component here (if the form is valid)
-            window.grecaptcha.ready(() => {
-              window.grecaptcha
+            window.grecaptcha.enterprise.ready(() => {
+              window.grecaptcha.enterprise
                 .execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
                   action: 'submit',
                 })
@@ -245,6 +245,14 @@ const ContactForm = (data: FormSlice): React.JSX.Element => {
             </div>
           </div>
 
+          <input
+            type="text"
+            name="hp_field"
+            aria-hidden="true"
+            tabIndex={-1}
+            autoComplete="off"
+            className="absolute top-0 -left-2499.75 h-0 w-0 overflow-hidden opacity-0"
+          />
           <div className="flex flex-col items-center lg:items-start">
             <SubmitButton text={button_text} variant={button_style} />
             <p className="prose-a:text-primary-content prose prose-sm mt-3 prose-a:no-underline hover:prose-a:underline">

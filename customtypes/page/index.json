@@ -90,6 +90,9 @@
             },
             "dontation": {
               "type": "SharedSlice"
+            },
+            "board_index": {
+              "type": "SharedSlice"
             }
           }
         }

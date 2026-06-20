@@ -1,0 +1,43 @@
+{
+  "id": "board_member",
+  "label": "Board Member",
+  "repeatable": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "Name",
+          "placeholder": "Board member's name"
+        }
+      },
+      "portrait": {
+        "type": "Image",
+        "config": {
+          "label": "Portrait",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "link": {
+        "type": "Link",
+        "config": {
+          "label": "Link",
+          "placeholder": "Share a link to board member's social media",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

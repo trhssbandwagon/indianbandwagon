@@ -1,0 +1,94 @@
+{
+  "id": "executive_board",
+  "label": "Executive Board",
+  "repeatable": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Title",
+          "placeholder": "",
+          "single": "heading2,heading3,heading4",
+          "allowTargetBlank": true
+        }
+      },
+      "start": {
+        "type": "Date",
+        "config": {
+          "label": "Start",
+          "placeholder": "Date the exec board starts"
+        }
+      },
+      "end": {
+        "type": "Date",
+        "config": {
+          "label": "End",
+          "placeholder": "Date the exec board ends"
+        }
+      },
+      "members": {
+        "type": "Group",
+        "config": {
+          "label": "Members",
+          "repeat": true,
+          "fields": {
+            "member": {
+              "type": "Link",
+              "config": {
+                "label": "Member",
+                "select": "document",
+                "customtypes": [
+                  {
+                    "id": "board_member",
+                    "fields": [
+                      "name",
+                      {
+                        "id": "position",
+                        "customtypes": [
+                          {
+                            "id": "board_position",
+                            "fields": [
+                              "title"
+                            ]
+                          }
+                        ]
+                      },
+                      "portrait",
+                      "link"
+                    ]
+                  }
+                ],
+                "repeat": false
+              }
+            },
+            "position": {
+              "type": "Link",
+              "config": {
+                "label": "Position",
+                "select": "document",
+                "customtypes": [
+                  {
+                    "id": "board_position",
+                    "fields": [
+                      "title"
+                    ]
+                  }
+                ],
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "status": true,
+  "format": "custom"
+}

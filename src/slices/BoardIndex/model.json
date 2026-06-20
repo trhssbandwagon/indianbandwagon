@@ -1,0 +1,25 @@
+{
+  "id": "board_index",
+  "type": "SharedSlice",
+  "name": "BoardIndex",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "",
+      "docURL": "...",
+      "version": "initial",
+      "primary": {
+        "number": {
+          "type": "Number",
+          "config": {
+            "label": "Number",
+            "placeholder": "How many boards to display per page"
+          }
+        }
+      }
+    }
+  ],
+  "description": "BoardIndex"
+}

@@ -46,6 +46,167 @@ type ContentRelationshipFieldWithData<
 		>
 }[Exclude<TCustomType[number], string>["id"]];
 
+/**
+ * Content for Board Member documents
+ */
+interface BoardMemberDocumentData {
+	/**
+	 * Name field in *Board Member*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Board member's name
+	 * - **API ID Path**: board_member.name
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	name: prismic.KeyTextField;
+	
+	/**
+	 * Portrait field in *Board Member*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: board_member.portrait
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	portrait: prismic.ImageField<never>;
+	
+	/**
+	 * Link field in *Board Member*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: Share a link to board member's social media
+	 * - **API ID Path**: board_member.link
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Board Member document from Prismic
+ *
+ * - **API ID**: `board_member`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BoardMemberDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<BoardMemberDocumentData>, "board_member", Lang>;
+
+/**
+ * Content for Board Position documents
+ */
+interface BoardPositionDocumentData {
+	/**
+	 * Title field in *Board Position*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: board_position.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+}
+
+/**
+ * Board Position document from Prismic
+ *
+ * - **API ID**: `board_position`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BoardPositionDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<BoardPositionDocumentData>, "board_position", Lang>;
+
+/**
+ * Item in *Executive Board → Members*
+ */
+export interface ExecutiveBoardDocumentDataMembersItem {
+	/**
+	 * Member field in *Executive Board → Members*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: executive_board.members[].member
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	member: ContentRelationshipFieldWithData<[{"id":"board_member","fields":["name",{"id":"position","customtypes":[{"id":"board_position","fields":["title"]}]},"portrait","link"]}]>;
+	
+	/**
+	 * Position field in *Executive Board → Members*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: executive_board.members[].position
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	position: ContentRelationshipFieldWithData<[{"id":"board_position","fields":["title"]}]>;
+}
+
+/**
+ * Content for Executive Board documents
+ */
+interface ExecutiveBoardDocumentData {
+	/**
+	 * Title field in *Executive Board*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: executive_board.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField;
+	
+	/**
+	 * Start field in *Executive Board*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: Date the exec board starts
+	 * - **API ID Path**: executive_board.start
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/date
+	 */
+	start: prismic.DateField;
+	
+	/**
+	 * End field in *Executive Board*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: Date the exec board ends
+	 * - **API ID Path**: executive_board.end
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/date
+	 */
+	end: prismic.DateField;
+	
+	/**
+	 * Members field in *Executive Board*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: executive_board.members[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	members: prismic.GroupField<Simplify<ExecutiveBoardDocumentDataMembersItem>>;
+}
+
+/**
+ * Executive Board document from Prismic
+ *
+ * - **API ID**: `executive_board`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ExecutiveBoardDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<ExecutiveBoardDocumentData>, "executive_board", Lang>;
+
 type FooterMultiColumnDocumentDataSlicesSlice = FooterLinkBlockSlice
 
 type FooterMultiColumnDocumentDataSlices1Slice = FooterLinkBlockSlice
@@ -412,7 +573,7 @@ interface LayoutDocumentData {
  */
 export type LayoutDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<LayoutDocumentData>, "layout", Lang>;
 
-type PageDocumentDataSlicesSlice = EventsSlice | FormSlice | ContentIndexSlice | FeaturesSlice | FaqSlice | CarouselSlice | TestimonialSlice | ProcessSlice | ImageWithTextSlice | RichTextSlice | HeroSlice | OptOutSlice | DontationSlice
+type PageDocumentDataSlicesSlice = EventsSlice | FormSlice | ContentIndexSlice | FeaturesSlice | FaqSlice | CarouselSlice | TestimonialSlice | ProcessSlice | ImageWithTextSlice | RichTextSlice | HeroSlice | OptOutSlice | DontationSlice | BoardIndexSlice
 
 /**
  * Content for Page documents
@@ -788,7 +949,45 @@ interface SettingsDocumentData {
  */
 export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<SettingsDocumentData>, "settings", Lang>;
 
-export type AllDocumentTypes = FooterMultiColumnDocument | FundraiserDocument | HomepageDocument | LayoutDocument | PageDocument | PostDocument | SettingsDocument;
+export type AllDocumentTypes = BoardMemberDocument | BoardPositionDocument | ExecutiveBoardDocument | FooterMultiColumnDocument | FundraiserDocument | HomepageDocument | LayoutDocument | PageDocument | PostDocument | SettingsDocument;
+
+/**
+ * Primary content in *BoardIndex → Default → Primary*
+ */
+export interface BoardIndexSliceDefaultPrimary {
+	/**
+	 * Number field in *BoardIndex → Default → Primary*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: How many boards to display per page
+	 * - **API ID Path**: board_index.default.primary.number
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	number: prismic.NumberField;
+}
+
+/**
+ * Default variation for BoardIndex Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BoardIndexSliceDefault = prismic.SharedSliceVariation<"default", Simplify<BoardIndexSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *BoardIndex*
+ */
+type BoardIndexSliceVariation = BoardIndexSliceDefault
+
+/**
+ * BoardIndex Shared Slice
+ *
+ * - **API ID**: `board_index`
+ * - **Description**: BoardIndex
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BoardIndexSlice = prismic.SharedSlice<"board_index", BoardIndexSliceVariation>;
 
 /**
  * Item in *Carousel → With Details → Primary → Items*
@@ -2315,6 +2514,13 @@ declare module "@prismicio/client" {
 	
 	namespace Content {
 		export type {
+			BoardMemberDocument,
+			BoardMemberDocumentData,
+			BoardPositionDocument,
+			BoardPositionDocumentData,
+			ExecutiveBoardDocument,
+			ExecutiveBoardDocumentData,
+			ExecutiveBoardDocumentDataMembersItem,
 			FooterMultiColumnDocument,
 			FooterMultiColumnDocumentData,
 			FooterMultiColumnDocumentDataSlicesSlice,
@@ -2339,6 +2545,10 @@ declare module "@prismicio/client" {
 			SettingsDocument,
 			SettingsDocumentData,
 			AllDocumentTypes,
+			BoardIndexSlice,
+			BoardIndexSliceDefaultPrimary,
+			BoardIndexSliceVariation,
+			BoardIndexSliceDefault,
 			CarouselSlice,
 			CarouselSliceDefaultPrimary,
 			CarouselSliceDefaultItem,

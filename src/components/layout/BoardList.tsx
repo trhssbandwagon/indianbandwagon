@@ -91,7 +91,7 @@ const BoardList = async ({
                   <CardHeader className="mx-auto prose prose-headings:text-center">
                     <PrismicRichText field={item.data.title} />
                   </CardHeader>
-                  <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+                  <CardContent className="grid gap-4 divide-y md:grid-cols-2 md:divide-y-0 lg:grid-cols-4 lg:gap-8">
                     {item.data.members &&
                       item.data.members.map((groupItem, i) => {
                         const member = groupItem.member as BoardMemberLink
@@ -99,8 +99,8 @@ const BoardList = async ({
                         const position = groupItem.position
                           .data as unknown as BoardPositionDocumentData
                         return (
-                          <div key={i} className="flex">
-                            <div className="flex grow items-center justify-center gap-2 rounded-md border border-muted px-4 py-2 transition-colors duration-300 ease-in-out hover:border-primary">
+                          <div key={i} className="flex pb-4 md:pb-0">
+                            <div className="flex grow items-center justify-center gap-2 rounded-md px-4 py-2 transition-colors duration-300 ease-in-out hover:border-primary">
                               <Avatar size="lg">
                                 <AvatarImage
                                   src={member.data?.portrait?.url || undefined}
@@ -110,7 +110,7 @@ const BoardList = async ({
                                   {member.data.name}
                                 </AvatarFallback>
                               </Avatar>
-                              <div className="flex flex-col lg:grow">
+                              <div className="flex grow flex-col">
                                 {isFilled.link(member.data.link) ? (
                                   <Button
                                     asChild

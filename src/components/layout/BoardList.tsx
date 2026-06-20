@@ -8,7 +8,7 @@ import {
   LinkField,
   RichTextField,
 } from '@prismicio/client'
-import { PrismicNextImage } from '@prismicio/next'
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import Pagination from '@/components/layout/Pagination'
 import { PrismicRichText } from '@/components/typography/PrismicRichText'
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
@@ -98,6 +98,7 @@ const BoardList = async ({
                         if (!member?.data) return null
                         const position = groupItem.position
                           .data as unknown as BoardPositionDocumentData
+                        const link = member.data.link as LinkField
                         return (
                           <div key={i} className="flex pb-4 md:pb-0">
                             <div className="flex grow items-center justify-center gap-2 rounded-md px-4 py-2 transition-colors duration-300 ease-in-out hover:border-primary">
@@ -111,16 +112,13 @@ const BoardList = async ({
                                 </AvatarFallback>
                               </Avatar>
                               <div className="flex grow flex-col">
-                                {isFilled.link(member.data.link) ? (
-                                  <Button
-                                    asChild
-                                    variant="link"
-                                    className="dark:text-destructive"
+                                {link ? (
+                                  <PrismicNextLink
+                                    field={link}
+                                    className="underline underline-offset-4"
                                   >
-                                    <a href={member.data.link.url}>
-                                      {member.data.name}
-                                    </a>
-                                  </Button>
+                                    {member.data.name}
+                                  </PrismicNextLink>
                                 ) : (
                                   <p>{member.data.name}</p>
                                 )}

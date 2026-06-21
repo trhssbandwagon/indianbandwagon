@@ -12,13 +12,14 @@ Website for the Indian Bandwagon — the student band program at TRHS. Built wit
 - **Bot protection**: reCAPTCHA Enterprise
 - **Events**: Google Calendar v3 API
 - **Analytics**: GA4, Microsoft Clarity, Facebook Pixel
+- **Search indexing**: IndexNow
 - **Runtime**: Bun
 
 ## Prerequisites
 
 - [Bun](https://bun.sh) installed
 - Access to the Prismic repository
-- Accounts / credentials for: Square, Resend, Google Cloud (reCAPTCHA Enterprise + Calendar API)
+- Accounts / credentials for: Square, Resend, Google Cloud (reCAPTCHA Enterprise + Calendar API), IndexNow API key
 
 ## Setup
 
@@ -48,6 +49,9 @@ bun dev
 | `SQUARE_ACCESS_TOKEN` | Square server-side access token |
 | `GOOGLE_CALENDAR_ID` | Google Calendar ID for the Events section |
 | `GOOGLE_CALENDAR_API_KEY` | Google Cloud API key for Calendar v3 API |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (e.g. `https://indianbandwagon.com`) — used by IndexNow |
+| `INDEXNOW_API_KEY` | IndexNow API key; must also exist as `public/{key}.txt` |
+| `PRISMIC_WEBHOOK_SECRET` | Optional shared secret to authenticate Prismic webhook calls to `/api/indexnow` |
 
 Square automatically uses the sandbox API when `NEXT_PUBLIC_VERCEL_ENV` is not `production`.
 
@@ -70,4 +74,6 @@ Prismic webhooks trigger ISR via the `/api/revalidate` endpoint, so published co
 
 Deploy to [Vercel](https://vercel.com). Set all environment variables above in the Vercel project settings. Set `NEXT_PUBLIC_VERCEL_ENV=production` on the production environment only — this gates live Square payments and analytics.
 
-Configure a Prismic webhook pointing to `https://<your-domain>/api/revalidate` (POST) to enable on-demand revalidation when content is published.
+Configure two Prismic webhooks (POST) to enable on-demand revalidation and search indexing when content is published:
+- `https://<your-domain>/api/revalidate` — triggers ISR cache invalidation
+- `https://<your-domain>/api/indexnow` — submits updated URLs to IndexNow (set `PRISMIC_WEBHOOK_SECRET` and configure it in the Prismic webhook to authenticate the calls)

@@ -12,7 +12,10 @@ const Donation = ({ slice }: SliceComponentProps<Content.DontationSlice>) => (
     className="pb-6 lg:pb-12"
   >
     {slice.primary.heading && (
-      <div className="mx-auto prose py-6 lg:prose-lg lg:py-12 xl:prose-xl">
+      <div
+        className="mx-auto prose py-6 lg:prose-lg lg:py-12 xl:prose-xl"
+        id="donate"
+      >
         <PrismicRichText field={slice.primary.heading} />
       </div>
     )}

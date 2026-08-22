@@ -1,0 +1,41 @@
+{
+  "description": "CategoryList",
+  "id": "category_list",
+  "name": "CategoryList",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "eyebrow": {
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "categories": {
+          "config": {
+            "fields": {
+              "category": {
+                "config": {
+                  "label": "Category",
+                  "placeholder": ""
+                },
+                "type": "Text"
+              }
+            },
+            "label": "Categories",
+            "repeat": true
+          },
+          "type": "Group"
+        }
+      },
+      "version": "initial"
+    }
+  ]
+}

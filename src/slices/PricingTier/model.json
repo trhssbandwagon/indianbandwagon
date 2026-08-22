@@ -1,0 +1,76 @@
+{
+  "description": "PricingTier",
+  "id": "pricing_tier",
+  "name": "PricingTier",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "tiers": {
+          "config": {
+            "fields": {
+              "price": {
+                "config": {
+                  "label": "Price",
+                  "placeholder": ""
+                },
+                "type": "Number"
+              },
+              "label": {
+                "config": {
+                  "label": "Label",
+                  "placeholder": ""
+                },
+                "type": "Text"
+              },
+              "description": {
+                "config": {
+                  "label": "Description",
+                  "placeholder": ""
+                },
+                "type": "Text"
+              },
+              "icon": {
+                "config": {
+                  "constraint": {},
+                  "label": "Icon",
+                  "thumbnails": []
+                },
+                "type": "Image"
+              },
+              "featured": {
+                "config": {
+                  "default_value": false,
+                  "label": "Featured",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true"
+                },
+                "type": "Boolean"
+              },
+              "link": {
+                "config": {
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "label": "Link",
+                  "placeholder": "",
+                  "repeat": false,
+                  "select": null
+                },
+                "type": "Link"
+              }
+            },
+            "label": "Tiers",
+            "repeat": true
+          },
+          "type": "Group"
+        }
+      },
+      "version": "initial"
+    }
+  ]
+}

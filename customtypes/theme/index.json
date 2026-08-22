@@ -1,0 +1,137 @@
+{
+  "format": "custom",
+  "id": "theme",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "name": {
+        "config": {
+          "label": "Name",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "primary_color": {
+        "config": {
+          "label": "Primary Color",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "primary_color_dark": {
+        "config": {
+          "label": "Primary Dark",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "primary_foreground_color": {
+        "config": {
+          "label": "Primary Foreground Color",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "primary_foreground_color_dark": {
+        "config": {
+          "label": "Primary Foreground Dark",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "secondary_color": {
+        "config": {
+          "label": "Secondary Color",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "secondary_color_dark": {
+        "config": {
+          "label": "Secondary Dark",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "secondary_foreground_color": {
+        "config": {
+          "label": "Secondary Foreground Color",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "secondary_foreground_color_dark": {
+        "config": {
+          "label": "Secondary Foreground Dark",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "accent_color": {
+        "config": {
+          "label": "Accent Color",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "accent_color_dark": {
+        "config": {
+          "label": "Accent Dark",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "accent_foreground_color": {
+        "config": {
+          "label": "Accent Foreground Color",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "accent_foreground_color_dark": {
+        "config": {
+          "label": "Accent Foreground Dark",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "ring_color": {
+        "config": {
+          "label": "Ring Override",
+          "placeholder": ""
+        },
+        "type": "Color"
+      },
+      "background_pattern": {
+        "config": {
+          "constraint": {},
+          "label": "Background Pattern",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "flourish_font": {
+        "config": {
+          "default_value": "playfair",
+          "label": "Flourish Font",
+          "options": [
+            "playfair",
+            "dancing_script",
+            "cormorant",
+            "great_vibes"
+          ],
+          "placeholder": ""
+        },
+        "type": "Select"
+      }
+    }
+  },
+  "label": "Theme",
+  "repeatable": true,
+  "status": true
+}

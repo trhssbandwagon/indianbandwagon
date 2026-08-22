@@ -1,0 +1,34 @@
+{
+  "description": "EventDetails",
+  "id": "event_details",
+  "name": "EventDetails",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "heading": {
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "contact_prompt": {
+          "config": {
+            "allowTargetBlank": true,
+            "label": "Contact Prompt",
+            "multi": "paragraph,hyperlink",
+            "placeholder": ""
+          },
+          "type": "StructuredText"
+        }
+      },
+      "version": "initial"
+    }
+  ]
+}

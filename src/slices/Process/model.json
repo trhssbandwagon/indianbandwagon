@@ -1,89 +1,89 @@
 {
+  "description": "Process",
   "id": "process",
-  "type": "SharedSlice",
   "name": "Process",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/process/default/b3ae65b6ff41c08e2dfb7dd0328f0bbbc15c9529.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
-      "primary": {
-        "title": {
-          "type": "Text",
-          "config": {
-            "label": "Title",
-            "placeholder": "Optionally add a section title"
-          }
-        },
-        "heading": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Heading",
-            "placeholder": "Enter process heading",
-            "single": "heading2,heading3",
-            "allowTargetBlank": true
-          }
-        },
-        "description": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Description",
-            "placeholder": "Optionally describe the process",
-            "single": "paragraph,strong,em",
-            "allowTargetBlank": true
-          }
-        }
-      },
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/process/default/b3ae65b6ff41c08e2dfb7dd0328f0bbbc15c9529.png?auto=compress%2Cformat",
       "items": {
         "icon": {
-          "type": "Select",
           "config": {
             "label": "Icon",
-            "placeholder": "Optionally select an icon",
             "options": [
               "message",
               "call",
               "people"
-            ]
-          }
+            ],
+            "placeholder": "Optionally select an icon"
+          },
+          "type": "Select"
         },
         "step_title": {
-          "type": "Text",
           "config": {
             "label": "Step Title",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "description": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "description",
-            "placeholder": "Describe this step",
             "multi": "paragraph,strong,em",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Describe this step"
+          },
+          "type": "StructuredText"
         },
         "button_label": {
-          "type": "Text",
           "config": {
             "label": "Button Label",
             "placeholder": "Optionally add a button"
-          }
+          },
+          "type": "Text"
         },
         "button_link": {
-          "type": "Link",
           "config": {
+            "allowTargetBlank": false,
             "label": "Button Link",
             "placeholder": "Add a link",
-            "select": null,
-            "allowTargetBlank": false
-          }
+            "select": null
+          },
+          "type": "Link"
         }
-      }
+      },
+      "name": "Default",
+      "primary": {
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": "Optionally add a section title"
+          },
+          "type": "Text"
+        },
+        "heading": {
+          "config": {
+            "allowTargetBlank": true,
+            "label": "Heading",
+            "placeholder": "Enter process heading",
+            "single": "heading2,heading3"
+          },
+          "type": "StructuredText"
+        },
+        "description": {
+          "config": {
+            "allowTargetBlank": true,
+            "label": "Description",
+            "placeholder": "Optionally describe the process",
+            "single": "paragraph,strong,em"
+          },
+          "type": "StructuredText"
+        }
+      },
+      "version": "initial"
     }
-  ],
-  "description": "Process"
+  ]
 }

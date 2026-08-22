@@ -1,52 +1,141 @@
 {
+  "format": "page",
   "id": "fundraiser",
-  "label": "Fundraiser",
-  "repeatable": true,
   "json": {
     "Main": {
       "uid": {
-        "type": "UID",
         "config": {
           "label": "UID"
-        }
+        },
+        "type": "UID"
       },
       "title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Title",
-          "single": "heading1",
-          "allowTargetBlank": true
-        }
+          "single": "heading1"
+        },
+        "type": "StructuredText"
       },
       "excerpt": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Excerpt",
-          "single": "paragraph,strong,em",
-          "allowTargetBlank": true
-        }
+          "single": "paragraph,strong,em"
+        },
+        "type": "StructuredText"
       },
       "featured_image": {
-        "type": "Image",
         "config": {
           "label": "Featured Image"
-        }
+        },
+        "type": "Image"
       },
-      "start_date": {
-        "type": "Date",
+      "custom_theme": {
         "config": {
-          "label": "Start Date"
-        }
+          "customtypes": [
+            {
+              "fields": [
+                "name",
+                "primary_color",
+                "primary_foreground_color",
+                "secondary_color",
+                "secondary_foreground_color",
+                "accent_color",
+                "accent_foreground_color",
+                "ring_color",
+                "background_pattern",
+                "primary_color_dark",
+                "primary_foreground_color_dark",
+                "secondary_color_dark",
+                "secondary_foreground_color_dark",
+                "accent_color_dark",
+                "accent_foreground_color_dark",
+                "flourish_font"
+              ],
+              "id": "theme"
+            }
+          ],
+          "label": "Custom Theme",
+          "repeat": false,
+          "select": "document"
+        },
+        "type": "Link"
       },
-      "end_date": {
-        "type": "Date",
+      "event_format": {
         "config": {
-          "label": "End Date"
-        }
+          "default_value": "in_person",
+          "label": "Event Format",
+          "options": [
+            "in_person",
+            "virtual",
+            "hybrid"
+          ],
+          "placeholder": ""
+        },
+        "type": "Select"
+      },
+      "start": {
+        "config": {
+          "label": "Start",
+          "placeholder": ""
+        },
+        "type": "Timestamp"
+      },
+      "end": {
+        "config": {
+          "label": "End",
+          "placeholder": ""
+        },
+        "type": "Timestamp"
+      },
+      "venue_name": {
+        "config": {
+          "label": "Venue Name",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "street_address": {
+        "config": {
+          "label": "Street Address",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "city": {
+        "config": {
+          "label": "City",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "state": {
+        "config": {
+          "label": "State",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "zip_code": {
+        "config": {
+          "label": "Zip Code",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "virtual_link": {
+        "config": {
+          "allowTargetBlank": true,
+          "allowText": true,
+          "label": "Virtual Link",
+          "placeholder": "",
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "rich_text": {
@@ -60,39 +149,63 @@
             },
             "faq": {
               "type": "SharedSlice"
+            },
+            "process": {
+              "type": "SharedSlice"
+            },
+            "category_list": {
+              "type": "SharedSlice"
+            },
+            "pricing_tier": {
+              "type": "SharedSlice"
+            },
+            "event_details": {
+              "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
       "meta_title": {
-        "type": "Text",
         "config": {
           "label": "Meta Title",
           "placeholder": "A title of the page used for social media and search engines"
-        }
+        },
+        "type": "Text"
       },
       "meta_description": {
-        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": "A brief summary of the page"
-        }
+        },
+        "type": "Text"
       },
       "meta_image": {
-        "type": "Image",
         "config": {
-          "label": "Meta Image",
           "constraint": {
-            "width": 2400,
-            "height": 1260
+            "height": 1260,
+            "width": 2400
           },
+          "label": "Meta Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
+      },
+      "allow_indexing": {
+        "config": {
+          "default_value": false,
+          "label": "Allow Search Indexing",
+          "placeholder_false": "false",
+          "placeholder_true": "true"
+        },
+        "type": "Boolean"
       }
     }
   },
-  "status": true,
-  "format": "page"
+  "label": "Fundraiser",
+  "repeatable": true,
+  "status": true
 }

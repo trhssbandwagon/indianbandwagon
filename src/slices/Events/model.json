@@ -1,80 +1,80 @@
 {
+  "description": "Events",
   "id": "events",
-  "type": "SharedSlice",
   "name": "Events",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/events/default/f70c0c41b976e4b4ce049062fdabca73e0e5814c.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/events/default/f70c0c41b976e4b4ce049062fdabca73e0e5814c.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "heading": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Heading",
             "placeholder": "",
-            "single": "heading2,heading3,heading4",
-            "allowTargetBlank": true
-          }
+            "single": "heading2,heading3,heading4"
+          },
+          "type": "StructuredText"
         },
         "description": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Description",
-            "placeholder": "",
             "multi": "paragraph,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
-            "allowTargetBlank": true
-          }
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "days_ahead": {
-          "type": "Number",
           "config": {
             "label": "Days Ahead",
             "placeholder": "How many days ahead to show?"
-          }
+          },
+          "type": "Number"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
-      "id": "eventsGrid",
-      "name": "Events Grid",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/events/eventsGrid/b5a0188ee9220c79c3144dfbd194e65dd83c0083.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "eventsGrid",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/events/eventsGrid/b5a0188ee9220c79c3144dfbd194e65dd83c0083.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Events Grid",
       "primary": {
         "heading": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Heading",
             "placeholder": "",
-            "single": "heading2,heading3,heading4",
-            "allowTargetBlank": true
-          }
+            "single": "heading2,heading3,heading4"
+          },
+          "type": "StructuredText"
         },
         "description": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Description",
-            "placeholder": "",
             "multi": "paragraph,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
-            "allowTargetBlank": true
-          }
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "days_ahead": {
-          "type": "Number",
           "config": {
             "label": "Days Ahead",
             "placeholder": "How many days ahead to show?"
-          }
+          },
+          "type": "Number"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "Events"
+  ]
 }

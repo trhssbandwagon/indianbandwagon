@@ -1,43 +1,43 @@
 {
+  "format": "custom",
   "id": "board_member",
-  "label": "Board Member",
-  "repeatable": true,
   "json": {
     "Main": {
       "uid": {
-        "type": "UID",
         "config": {
           "label": "UID"
-        }
+        },
+        "type": "UID"
       },
       "name": {
-        "type": "Text",
         "config": {
           "label": "Name",
           "placeholder": "Board member's name"
-        }
+        },
+        "type": "Text"
       },
       "portrait": {
-        "type": "Image",
         "config": {
-          "label": "Portrait",
           "constraint": {},
+          "label": "Portrait",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "link": {
-        "type": "Link",
         "config": {
-          "label": "Link",
-          "placeholder": "Share a link to board member's social media",
-          "select": null,
           "allowTargetBlank": true,
           "allowText": true,
-          "repeat": false
-        }
+          "label": "Link",
+          "placeholder": "Share a link to board member's social media",
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Board Member",
+  "repeatable": true,
+  "status": true
 }

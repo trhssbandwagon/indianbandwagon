@@ -1,16 +1,16 @@
 {
+  "description": "OptOut",
   "id": "opt_out",
-  "type": "SharedSlice",
   "name": "OptOut",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "",
       "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/opt_out/default/1446b8a1cc3728385e1187c1ec0c3fb0e82a589c.png?auto=compress%2Cformat",
+      "name": "Default",
       "version": "initial"
     }
-  ],
-  "description": "OptOut"
+  ]
 }

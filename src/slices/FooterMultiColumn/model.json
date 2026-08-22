@@ -1,38 +1,38 @@
 {
+  "description": "FooterMultiColumn",
   "id": "footer_multi_column",
-  "type": "SharedSlice",
   "name": "FooterMultiColumn",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/footer_multi_column/default/4a95eb792e672dcfd8332ff17d9b3bccd74db48b.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/footer_multi_column/default/4a95eb792e672dcfd8332ff17d9b3bccd74db48b.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "heading": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Heading",
             "placeholder": "",
-            "single": "heading2,heading3",
-            "allowTargetBlank": true
-          }
+            "single": "heading2,heading3"
+          },
+          "type": "StructuredText"
         },
         "layout": {
-          "type": "Link",
           "config": {
-            "label": "Layout",
-            "select": "document",
             "customtypes": [
               "footer_multi_column"
-            ]
-          }
+            ],
+            "label": "Layout",
+            "select": "document"
+          },
+          "type": "Link"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "FooterMultiColumn"
+  ]
 }

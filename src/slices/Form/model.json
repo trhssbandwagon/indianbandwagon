@@ -1,103 +1,102 @@
 {
+  "description": "Form",
   "id": "form",
-  "type": "SharedSlice",
   "name": "Form",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/form/default/ec3f8427c3b982a06fee5258eb51aae3970925da.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/form/default/ec3f8427c3b982a06fee5258eb51aae3970925da.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "title": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Title",
             "placeholder": "Optionally add a title",
-            "single": "heading2",
-            "allowTargetBlank": true
-          }
+            "single": "heading2"
+          },
+          "type": "StructuredText"
         },
         "description": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Description",
-            "placeholder": "",
             "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item",
-            "allowTargetBlank": true
-          }
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "name_label": {
-          "type": "Text",
           "config": {
             "label": "Name Label",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "name_placeholder": {
-          "type": "Text",
           "config": {
             "label": "Name Placeholder",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "email_label": {
-          "type": "Text",
           "config": {
             "label": "Email Label",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "email_placeholder": {
-          "type": "Text",
           "config": {
             "label": "Email Placeholder",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "phone_label": {
-          "type": "Text",
           "config": {
             "label": "Phone Label",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "phone_placeholder": {
-          "type": "Text",
           "config": {
             "label": "Phone Placeholder",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "message_label": {
-          "type": "Text",
           "config": {
             "label": "Message Label",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "message_placeholder": {
-          "type": "Text",
           "config": {
             "label": "Message Placeholder",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "button_text": {
-          "type": "Text",
           "config": {
             "label": "Button Text",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "button_style": {
-          "type": "Select",
           "config": {
-            "label": "Button Style",
-            "placeholder": "",
             "default_value": "default",
+            "label": "Button Style",
             "options": [
               "default",
               "secondary",
@@ -105,12 +104,13 @@
               "ghost",
               "destructive",
               "link"
-            ]
-          }
+            ],
+            "placeholder": ""
+          },
+          "type": "Select"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "Form"
+  ]
 }

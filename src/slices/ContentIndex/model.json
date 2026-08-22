@@ -1,53 +1,53 @@
 {
+  "description": "ContentIndex",
   "id": "content_index",
-  "type": "SharedSlice",
   "name": "ContentIndex",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/content_index/default/1bba15baeee2921e96272fa46cc553a5ddf16cf8.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/content_index/default/1bba15baeee2921e96272fa46cc553a5ddf16cf8.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "content_type": {
-          "type": "Select",
           "config": {
-            "label": "Content Type",
-            "placeholder": "Select the content type to display",
             "default_value": "post",
+            "label": "Content Type",
             "options": [
               "post",
               "fundraiser"
-            ]
-          }
+            ],
+            "placeholder": "Select the content type to display"
+          },
+          "type": "Select"
         },
         "fallback_item_image": {
-          "type": "Image",
           "config": {
-            "label": "Fallback Item Image",
             "constraint": {},
+            "label": "Fallback Item Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         },
         "number_to_display": {
-          "type": "Number",
           "config": {
             "label": "Number To Display",
             "placeholder": ""
-          }
+          },
+          "type": "Number"
         },
         "content_cta_text": {
-          "type": "Text",
           "config": {
             "label": "Content CTA Text",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "ContentIndex"
+  ]
 }

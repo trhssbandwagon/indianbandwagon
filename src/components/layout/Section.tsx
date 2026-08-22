@@ -14,7 +14,7 @@ export default function Section({
   width = 'full',
   className,
   children,
-  padded = true,
+  padded,
   ...restProps
 }: SectionProps) {
   return (
@@ -22,7 +22,7 @@ export default function Section({
       className={cn(
         'flex items-center',
         {
-          'px-4 py-2 md:px-6 md:py-4 lg:py-6': padded,
+          'px-4 py-4 md:px-6 md:py-12 lg:py-16': padded,
         },
         className,
       )}

@@ -1,106 +1,106 @@
 {
+  "description": "Carousel",
   "id": "carousel",
-  "type": "SharedSlice",
   "name": "Carousel",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/carousel/default/99a76306264e3f8d55328e809c0f31c48a67c4bc.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/carousel/default/99a76306264e3f8d55328e809c0f31c48a67c4bc.png?auto=compress%2Cformat",
+      "items": {
+        "image": {
+          "config": {
+            "constraint": {},
+            "label": "Image",
+            "thumbnails": []
+          },
+          "type": "Image"
+        }
+      },
+      "name": "Default",
       "primary": {
         "title": {
-          "type": "Text",
           "config": {
             "label": "Title",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         }
       },
-      "items": {
-        "image": {
-          "type": "Image",
-          "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
-          }
-        }
-      }
+      "version": "initial"
     },
     {
-      "id": "withDetails",
-      "name": "With Details",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
       "docURL": "...",
-      "version": "initial",
+      "id": "withDetails",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "items": {},
+      "name": "With Details",
       "primary": {
         "heading": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Heading",
             "placeholder": "",
-            "single": "heading2,heading3",
-            "allowTargetBlank": true
-          }
+            "single": "heading2,heading3"
+          },
+          "type": "StructuredText"
         },
         "items": {
-          "type": "Group",
           "config": {
-            "label": "Items",
-            "repeat": true,
             "fields": {
               "name": {
-                "type": "Text",
                 "config": {
                   "label": "Name",
                   "placeholder": ""
-                }
+                },
+                "type": "Text"
               },
               "color": {
-                "type": "Color",
                 "config": {
                   "label": "Color",
                   "placeholder": ""
-                }
+                },
+                "type": "Color"
               },
               "logo": {
-                "type": "Image",
                 "config": {
-                  "label": "Logo",
                   "constraint": {},
+                  "label": "Logo",
                   "thumbnails": []
-                }
+                },
+                "type": "Image"
               },
               "link": {
-                "type": "Link",
                 "config": {
-                  "label": "Link",
-                  "placeholder": "",
-                  "select": null,
                   "allowTargetBlank": true,
                   "allowText": true,
-                  "repeat": false
-                }
+                  "label": "Link",
+                  "placeholder": "",
+                  "repeat": false,
+                  "select": null
+                },
+                "type": "Link"
               },
               "description": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Description",
-                  "placeholder": "",
                   "multi": "paragraph,strong,em,hyperlink,image,list-item,o-list-item",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               }
-            }
-          }
+            },
+            "label": "Items",
+            "repeat": true
+          },
+          "type": "Group"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "Carousel"
+  ]
 }

@@ -1,55 +1,52 @@
 {
+  "format": "page",
   "id": "page",
-  "label": "Page",
-  "repeatable": true,
   "json": {
     "Main": {
       "uid": {
-        "type": "UID",
         "config": {
           "label": "UID"
-        }
+        },
+        "type": "UID"
       },
       "title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "TItle",
           "placeholder": "",
-          "single": "heading1",
-          "allowTargetBlank": true
-        }
+          "single": "heading1"
+        },
+        "type": "StructuredText"
       },
       "parent": {
-        "type": "Link",
         "config": {
-          "label": "Parent",
-          "select": "document",
           "customtypes": [
             {
-              "id": "page",
               "fields": [
                 "title",
                 {
-                  "id": "parent",
                   "customtypes": [
                     {
-                      "id": "page",
                       "fields": [
                         "title",
                         "parent"
-                      ]
+                      ],
+                      "id": "page"
                     }
-                  ]
+                  ],
+                  "id": "parent"
                 }
-              ]
+              ],
+              "id": "page"
             }
           ],
-          "repeat": false
-        }
+          "label": "Parent",
+          "repeat": false,
+          "select": "document"
+        },
+        "type": "Link"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "events": {
@@ -95,37 +92,40 @@
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
       "meta_description": {
-        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": "A brief summary of the page"
-        }
+        },
+        "type": "Text"
       },
       "meta_image": {
-        "type": "Image",
         "config": {
-          "label": "Meta Image",
           "constraint": {
-            "width": 2400,
-            "height": 1260
+            "height": 1260,
+            "width": 2400
           },
+          "label": "Meta Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "meta_title": {
-        "type": "Text",
         "config": {
           "label": "Meta Title",
           "placeholder": "A title of the page used for social media and search engines"
-        }
+        },
+        "type": "Text"
       }
     }
   },
-  "status": true,
-  "format": "page"
+  "label": "Page",
+  "repeatable": true,
+  "status": true
 }

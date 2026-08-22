@@ -1,17 +1,15 @@
 {
+  "format": "custom",
   "id": "layout",
-  "label": "Layout",
-  "repeatable": false,
   "json": {
     "Header": {
       "cta_link": {
-        "type": "Link",
         "config": {
+          "allowTargetBlank": true,
+          "allowText": true,
           "label": "CTA Link",
           "placeholder": "Enter a Call to Action",
           "select": null,
-          "allowTargetBlank": true,
-          "allowText": true,
           "variants": [
             "default",
             "secondary",
@@ -20,25 +18,25 @@
             "destructive",
             "link"
           ]
-        }
+        },
+        "type": "Link"
       },
       "logo": {
-        "type": "Image",
         "config": {
-          "label": "Logo",
           "constraint": {},
+          "label": "Logo",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "navigation": {
-        "type": "Link",
         "config": {
-          "label": "Navigation",
-          "placeholder": "Enter navigation links",
-          "select": null,
           "allowTargetBlank": true,
           "allowText": true,
+          "label": "Navigation",
+          "placeholder": "Enter navigation links",
           "repeat": true,
+          "select": null,
           "variants": [
             "default",
             "secondary",
@@ -47,46 +45,42 @@
             "destructive",
             "link"
           ]
-        }
+        },
+        "type": "Link"
       }
     },
     "Footer": {
       "nonprofit_statement": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Nonprofit Statement",
           "placeholder": "",
-          "single": "hyperlink,strong,em,paragraph",
-          "allowTargetBlank": true
-        }
+          "single": "hyperlink,strong,em,paragraph"
+        },
+        "type": "StructuredText"
       },
       "privacy_link": {
-        "type": "Link",
         "config": {
+          "allowText": true,
           "label": "Privacy Link",
           "placeholder": "",
-          "select": null,
-          "allowText": true
-        }
+          "select": null
+        },
+        "type": "Link"
       },
       "copyright": {
-        "type": "Text",
         "config": {
           "label": "Copyright",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "social_media": {
-        "type": "Group",
         "config": {
-          "label": "Social Media",
-          "repeat": true,
           "fields": {
             "platform": {
-              "type": "Select",
               "config": {
                 "label": "Platform",
-                "placeholder": "",
                 "options": [
                   "Facebook",
                   "Instagram",
@@ -94,17 +88,18 @@
                   "TikTok",
                   "YouTube",
                   "Google"
-                ]
-              }
+                ],
+                "placeholder": ""
+              },
+              "type": "Select"
             },
             "link": {
-              "type": "Link",
               "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
                 "label": "Link",
                 "placeholder": "",
                 "select": null,
-                "allowTargetBlank": true,
-                "allowText": true,
                 "variants": [
                   "default",
                   "secondary",
@@ -113,14 +108,16 @@
                   "destructive",
                   "link"
                 ]
-              }
+              },
+              "type": "Link"
             }
-          }
-        }
+          },
+          "label": "Social Media",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "slices1": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "footer_multi_column": {
@@ -130,10 +127,13 @@
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Layout",
+  "repeatable": false,
+  "status": true
 }

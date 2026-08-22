@@ -1,54 +1,54 @@
 {
+  "format": "custom",
   "id": "footer_multi_column",
-  "label": "Footer Multi Column",
-  "repeatable": true,
   "json": {
     "Column 1": {
       "uid": {
-        "type": "UID",
         "config": {
           "label": "UID"
-        }
+        },
+        "type": "UID"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "footer_link_block": {
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "Column 2": {
       "slices1": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "footer_link_block": {
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "Column 3": {
       "slices2": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "footer_link_block": {
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Footer Multi Column",
+  "repeatable": true,
+  "status": true
 }

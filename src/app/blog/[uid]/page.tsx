@@ -7,6 +7,7 @@ import { components } from '@/slices'
 import { asText } from '@prismicio/client'
 import Heading from '@/components/typography/Heading'
 import { Graph } from 'schema-dts'
+import Script from 'next/script'
 
 type Params = { uid: string }
 type SearchParams = {
@@ -59,7 +60,7 @@ export default async function Page(props: {
 
   return (
     <>
-      <script
+      <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />

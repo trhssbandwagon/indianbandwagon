@@ -202,6 +202,13 @@
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-foreground-dark: var(--primary-foreground-dark);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-secondary-foreground-dark: var(--secondary-foreground-dark);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-foreground-dark: var(--accent-foreground-dark);
 }
 
 /* -------------------------------------------------------
@@ -226,7 +233,7 @@
 
   input,
   textarea {
-    @apply form-input border-muted text-primary dark:text-foreground outline-hidden focus:border-primary focus:ring-primary;
+    @apply form-input border-muted text-primary outline-hidden focus:border-primary focus:ring-primary dark:text-foreground;
   }
 
   .aspect-square {

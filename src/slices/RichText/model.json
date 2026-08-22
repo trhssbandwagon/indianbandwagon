@@ -1,48 +1,48 @@
 {
+  "description": "RichText",
   "id": "rich_text",
-  "type": "SharedSlice",
   "name": "RichText",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/rich_text/default/5e9e444839fd44445cb09713636a49cb789cd7d7.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/rich_text/default/5e9e444839fd44445cb09713636a49cb789cd7d7.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "rich_text": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Rich Text",
-            "placeholder": "Rich Text Content",
             "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Rich Text Content"
+          },
+          "type": "StructuredText"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
-      "id": "secondary",
-      "name": "Secondary",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/rich_text/secondary/d157f85242bee2c7557efca88a1f45a2f1bd07a2.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "secondary",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/rich_text/secondary/d157f85242bee2c7557efca88a1f45a2f1bd07a2.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Secondary",
       "primary": {
         "rich_text": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Rich Text",
-            "placeholder": "Rich Text Content",
             "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Rich Text Content"
+          },
+          "type": "StructuredText"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "RichText"
+  ]
 }

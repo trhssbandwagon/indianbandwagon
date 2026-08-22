@@ -1,134 +1,134 @@
 {
+  "format": "custom",
   "id": "settings",
-  "label": "Settings",
-  "repeatable": false,
   "json": {
     "Main": {
       "domain": {
-        "type": "Text",
         "config": {
           "label": "Domain",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "site_title": {
-        "type": "Text",
         "config": {
           "label": "Site Title",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "site_meta_description": {
-        "type": "Text",
         "config": {
           "label": "Site Meta Description",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "site_meta_image": {
-        "type": "Image",
         "config": {
-          "label": "Site Meta Image",
           "constraint": {},
+          "label": "Site Meta Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "privacy_toast_message": {
-        "type": "Text",
         "config": {
           "label": "Privacy Toast Message",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       }
     },
     "Schema": {
       "country": {
-        "type": "Text",
         "config": {
           "label": "Country",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "legal_po_box": {
-        "type": "Text",
         "config": {
           "label": "Legal Address PO Box",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "locality": {
-        "type": "Text",
         "config": {
           "label": "Locality",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "legal_postal_code": {
-        "type": "Text",
         "config": {
           "label": "Legal Postal Code",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "school_street_address": {
-        "type": "Text",
         "config": {
           "label": "School Street Address",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "school_postal_code": {
-        "type": "Text",
         "config": {
           "label": "School Postal Code",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "email": {
-        "type": "Text",
         "config": {
           "label": "Email",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "founding_date": {
-        "type": "Date",
         "config": {
           "label": "Founding Date",
           "placeholder": ""
-        }
+        },
+        "type": "Date"
       },
       "legal_name": {
-        "type": "Text",
         "config": {
           "label": "Legal Name",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "logo": {
-        "type": "Image",
         "config": {
-          "label": "Logo",
           "constraint": {},
+          "label": "Logo",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "nonprofit_status": {
-        "type": "Text",
         "config": {
           "label": "Nonprofit Status",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "tax_id": {
-        "type": "Text",
         "config": {
           "label": "Tax ID",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Settings",
+  "repeatable": false,
+  "status": true
 }

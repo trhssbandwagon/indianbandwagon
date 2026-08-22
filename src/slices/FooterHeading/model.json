@@ -1,28 +1,28 @@
 {
+  "description": "FooterHeading",
   "id": "footer_heading",
-  "type": "SharedSlice",
   "name": "FooterHeading",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/footer_heading/default/676ef9f526025441c3fb9754c3b777ccd5f9ba7d.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/footer_heading/default/676ef9f526025441c3fb9754c3b777ccd5f9ba7d.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "heading": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Heading",
             "placeholder": "",
-            "single": "heading2,heading3",
-            "allowTargetBlank": true
-          }
+            "single": "heading2,heading3"
+          },
+          "type": "StructuredText"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "FooterHeading"
+  ]
 }

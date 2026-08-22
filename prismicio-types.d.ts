@@ -134,7 +134,7 @@ export interface ExecutiveBoardDocumentDataMembersItem {
 	 * - **API ID Path**: executive_board.members[].member
 	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
-	member: ContentRelationshipFieldWithData<[{"id":"board_member","fields":["name",{"id":"position","customtypes":[{"id":"board_position","fields":["title"]}]},"portrait","link"]}]>;
+	member: ContentRelationshipFieldWithData<[{"fields":["name",{"customtypes":[{"fields":["title"],"id":"board_position"}],"id":"position"},"portrait","link"],"id":"board_member"}]>;
 	
 	/**
 	 * Position field in *Executive Board → Members*
@@ -144,7 +144,7 @@ export interface ExecutiveBoardDocumentDataMembersItem {
 	 * - **API ID Path**: executive_board.members[].position
 	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
-	position: ContentRelationshipFieldWithData<[{"id":"board_position","fields":["title"]}]>;
+	position: ContentRelationshipFieldWithData<[{"fields":["title"],"id":"board_position"}]>;
 }
 
 /**
@@ -258,7 +258,7 @@ interface FooterMultiColumnDocumentData {
  */
 export type FooterMultiColumnDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<FooterMultiColumnDocumentData>, "footer_multi_column", Lang>;
 
-type FundraiserDocumentDataSlicesSlice = RichTextSlice | ImageWithTextSlice | HeroSlice | FaqSlice
+type FundraiserDocumentDataSlicesSlice = RichTextSlice | ImageWithTextSlice | HeroSlice | FaqSlice | ProcessSlice | CategoryListSlice | PricingTierSlice | EventDetailsSlice
 
 /**
  * Content for Fundraiser documents
@@ -298,26 +298,115 @@ interface FundraiserDocumentData {
 	featured_image: prismic.ImageField<never>;
 	
 	/**
-	 * Start Date field in *Fundraiser*
+	 * Custom Theme field in *Fundraiser*
 	 *
-	 * - **Field Type**: Date
+	 * - **Field Type**: Content Relationship
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: fundraiser.start_date
+	 * - **API ID Path**: fundraiser.custom_theme
 	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/date
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
-	start_date: prismic.DateField;
+	custom_theme: ContentRelationshipFieldWithData<[{"fields":["name","primary_color","primary_foreground_color","secondary_color","secondary_foreground_color","accent_color","accent_foreground_color","ring_color","background_pattern","primary_color_dark","primary_foreground_color_dark","secondary_color_dark","secondary_foreground_color_dark","accent_color_dark","accent_foreground_color_dark","flourish_font"],"id":"theme"}]>;
 	
 	/**
-	 * End Date field in *Fundraiser*
+	 * Event Format field in *Fundraiser*
 	 *
-	 * - **Field Type**: Date
+	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: fundraiser.end_date
+	 * - **Default Value**: in_person
+	 * - **API ID Path**: fundraiser.event_format
 	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/date
+	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
-	end_date: prismic.DateField;
+	event_format: prismic.SelectField<"in_person" | "virtual" | "hybrid", "filled">;
+	
+	/**
+	 * Start field in *Fundraiser*
+	 *
+	 * - **Field Type**: Timestamp
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.start
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/timestamp
+	 */
+	start: prismic.TimestampField;
+	
+	/**
+	 * End field in *Fundraiser*
+	 *
+	 * - **Field Type**: Timestamp
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.end
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/timestamp
+	 */
+	end: prismic.TimestampField;
+	
+	/**
+	 * Venue Name field in *Fundraiser*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.venue_name
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	venue_name: prismic.KeyTextField;
+	
+	/**
+	 * Street Address field in *Fundraiser*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.street_address
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	street_address: prismic.KeyTextField;
+	
+	/**
+	 * City field in *Fundraiser*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.city
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	city: prismic.KeyTextField;
+	
+	/**
+	 * State field in *Fundraiser*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.state
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	state: prismic.KeyTextField;
+	
+	/**
+	 * Zip Code field in *Fundraiser*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.zip_code
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	zip_code: prismic.KeyTextField;
+	
+	/**
+	 * Virtual Link field in *Fundraiser*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: fundraiser.virtual_link
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	virtual_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 	
 	/**
 	 * Slice Zone field in *Fundraiser*
@@ -360,6 +449,18 @@ interface FundraiserDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	meta_image: prismic.ImageField<never>;
+	
+	/**
+	 * Allow Search Indexing field in *Fundraiser*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: fundraiser.allow_indexing
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	allow_indexing: prismic.BooleanField;
 }
 
 /**
@@ -599,7 +700,7 @@ interface PageDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
-	parent: ContentRelationshipFieldWithData<[{"id":"page","fields":["title",{"id":"parent","customtypes":[{"id":"page","fields":["title","parent"]}]}]}]>;
+	parent: ContentRelationshipFieldWithData<[{"fields":["title",{"customtypes":[{"fields":["title","parent"],"id":"page"}],"id":"parent"}],"id":"page"}]>;
 	
 	/**
 	 * Slice Zone field in *Page*
@@ -949,7 +1050,200 @@ interface SettingsDocumentData {
  */
 export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<SettingsDocumentData>, "settings", Lang>;
 
-export type AllDocumentTypes = BoardMemberDocument | BoardPositionDocument | ExecutiveBoardDocument | FooterMultiColumnDocument | FundraiserDocument | HomepageDocument | LayoutDocument | PageDocument | PostDocument | SettingsDocument;
+/**
+ * Content for Theme documents
+ */
+interface ThemeDocumentData {
+	/**
+	 * Name field in *Theme*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.name
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	name: prismic.KeyTextField;
+	
+	/**
+	 * Primary Color field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.primary_color
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	primary_color: prismic.ColorField;
+	
+	/**
+	 * Primary Dark field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.primary_color_dark
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	primary_color_dark: prismic.ColorField;
+	
+	/**
+	 * Primary Foreground Color field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.primary_foreground_color
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	primary_foreground_color: prismic.ColorField;
+	
+	/**
+	 * Primary Foreground Dark field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.primary_foreground_color_dark
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	primary_foreground_color_dark: prismic.ColorField;
+	
+	/**
+	 * Secondary Color field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.secondary_color
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	secondary_color: prismic.ColorField;
+	
+	/**
+	 * Secondary Dark field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.secondary_color_dark
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	secondary_color_dark: prismic.ColorField;
+	
+	/**
+	 * Secondary Foreground Color field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.secondary_foreground_color
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	secondary_foreground_color: prismic.ColorField;
+	
+	/**
+	 * Secondary Foreground Dark field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.secondary_foreground_color_dark
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	secondary_foreground_color_dark: prismic.ColorField;
+	
+	/**
+	 * Accent Color field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.accent_color
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	accent_color: prismic.ColorField;
+	
+	/**
+	 * Accent Dark field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.accent_color_dark
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	accent_color_dark: prismic.ColorField;
+	
+	/**
+	 * Accent Foreground Color field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.accent_foreground_color
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	accent_foreground_color: prismic.ColorField;
+	
+	/**
+	 * Accent Foreground Dark field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.accent_foreground_color_dark
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	accent_foreground_color_dark: prismic.ColorField;
+	
+	/**
+	 * Ring Override field in *Theme*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.ring_color
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	ring_color: prismic.ColorField;
+	
+	/**
+	 * Background Pattern field in *Theme*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: theme.background_pattern
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	background_pattern: prismic.ImageField<never>;
+	
+	/**
+	 * Flourish Font field in *Theme*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: playfair
+	 * - **API ID Path**: theme.flourish_font
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	flourish_font: prismic.SelectField<"playfair" | "dancing_script" | "cormorant" | "great_vibes", "filled">;
+}
+
+/**
+ * Theme document from Prismic
+ *
+ * - **API ID**: `theme`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ThemeDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<ThemeDocumentData>, "theme", Lang>;
+
+export type AllDocumentTypes = BoardMemberDocument | BoardPositionDocument | ExecutiveBoardDocument | FooterMultiColumnDocument | FundraiserDocument | HomepageDocument | LayoutDocument | PageDocument | PostDocument | SettingsDocument | ThemeDocument;
 
 /**
  * Primary content in *BoardIndex → Default → Primary*
@@ -1132,6 +1426,69 @@ type CarouselSliceVariation = CarouselSliceDefault | CarouselSliceWithDetails
 export type CarouselSlice = prismic.SharedSlice<"carousel", CarouselSliceVariation>;
 
 /**
+ * Item in *CategoryList → Default → Primary → Categories*
+ */
+export interface CategoryListSliceDefaultPrimaryCategoriesItem {
+	/**
+	 * Category field in *CategoryList → Default → Primary → Categories*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: category_list.default.primary.categories[].category
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	category: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *CategoryList → Default → Primary*
+ */
+export interface CategoryListSliceDefaultPrimary {
+	/**
+	 * Eyebrow field in *CategoryList → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: category_list.default.primary.eyebrow
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	eyebrow: prismic.KeyTextField;
+	
+	/**
+	 * Categories field in *CategoryList → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: category_list.default.primary.categories[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	categories: prismic.GroupField<Simplify<CategoryListSliceDefaultPrimaryCategoriesItem>>;
+}
+
+/**
+ * Default variation for CategoryList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CategoryListSliceDefault = prismic.SharedSliceVariation<"default", Simplify<CategoryListSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *CategoryList*
+ */
+type CategoryListSliceVariation = CategoryListSliceDefault
+
+/**
+ * CategoryList Shared Slice
+ *
+ * - **API ID**: `category_list`
+ * - **Description**: CategoryList
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CategoryListSlice = prismic.SharedSlice<"category_list", CategoryListSliceVariation>;
+
+/**
  * Primary content in *ContentIndex → Default → Primary*
  */
 export interface ContentIndexSliceDefaultPrimary {
@@ -1247,6 +1604,54 @@ type DontationSliceVariation = DontationSliceDefault
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type DontationSlice = prismic.SharedSlice<"dontation", DontationSliceVariation>;
+
+/**
+ * Primary content in *EventDetails → Default → Primary*
+ */
+export interface EventDetailsSliceDefaultPrimary {
+	/**
+	 * Heading field in *EventDetails → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: event_details.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+	
+	/**
+	 * Contact Prompt field in *EventDetails → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: event_details.default.primary.contact_prompt
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	contact_prompt: prismic.RichTextField;
+}
+
+/**
+ * Default variation for EventDetails Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type EventDetailsSliceDefault = prismic.SharedSliceVariation<"default", Simplify<EventDetailsSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *EventDetails*
+ */
+type EventDetailsSliceVariation = EventDetailsSliceDefault
+
+/**
+ * EventDetails Shared Slice
+ *
+ * - **API ID**: `event_details`
+ * - **Description**: EventDetails
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type EventDetailsSlice = prismic.SharedSlice<"event_details", EventDetailsSliceVariation>;
 
 /**
  * Primary content in *Events → Default → Primary*
@@ -2158,9 +2563,73 @@ export interface HeroSliceContentHeightPrimary {
 export type HeroSliceContentHeight = prismic.SharedSliceVariation<"contentHeight", Simplify<HeroSliceContentHeightPrimary>, never>;
 
 /**
+ * Primary content in *Hero → EventHero → Primary*
+ */
+export interface HeroSliceEventHeroPrimary {
+	/**
+	 * Image field in *Hero → EventHero → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.eventHero.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+	
+	/**
+	 * Eyebrow field in *Hero → EventHero → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.eventHero.primary.eyebrow
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	eyebrow: prismic.KeyTextField;
+	
+	/**
+	 * Heading field in *Hero → EventHero → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Benefit driven headline
+	 * - **API ID Path**: hero.eventHero.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField;
+	
+	/**
+	 * Button Link field in *Hero → EventHero → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: Enter link
+	 * - **API ID Path**: hero.eventHero.primary.button_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	button_link: prismic.Repeatable<prismic.LinkField<string, string, unknown, prismic.FieldState, "default" | "secondary" | "outline" | "ghost" | "destructive" | "link">>;
+	
+	/**
+	 * Logo Override field in *Hero → EventHero → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.eventHero.primary.logo_override
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	logo_override: prismic.ImageField<never>;
+}
+
+/**
+ * EventHero variation for Hero Slice
+ *
+ * - **API ID**: `eventHero`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroSliceEventHero = prismic.SharedSliceVariation<"eventHero", Simplify<HeroSliceEventHeroPrimary>, never>;
+
+/**
  * Slice variation for *Hero*
  */
-type HeroSliceVariation = HeroSliceDefault | HeroSliceWithImage | HeroSliceContentHeight
+type HeroSliceVariation = HeroSliceDefault | HeroSliceWithImage | HeroSliceContentHeight | HeroSliceEventHero
 
 /**
  * Hero Shared Slice
@@ -2275,6 +2744,110 @@ type OptOutSliceVariation = OptOutSliceDefault
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type OptOutSlice = prismic.SharedSlice<"opt_out", OptOutSliceVariation>;
+
+/**
+ * Item in *PricingTier → Default → Primary → Tiers*
+ */
+export interface PricingTierSliceDefaultPrimaryTiersItem {
+	/**
+	 * Price field in *PricingTier → Default → Primary → Tiers*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing_tier.default.primary.tiers[].price
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	price: prismic.NumberField;
+	
+	/**
+	 * Label field in *PricingTier → Default → Primary → Tiers*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing_tier.default.primary.tiers[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+	
+	/**
+	 * Description field in *PricingTier → Default → Primary → Tiers*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing_tier.default.primary.tiers[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	description: prismic.KeyTextField;
+	
+	/**
+	 * Icon field in *PricingTier → Default → Primary → Tiers*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing_tier.default.primary.tiers[].icon
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	icon: prismic.ImageField<never>;
+	
+	/**
+	 * Featured field in *PricingTier → Default → Primary → Tiers*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: pricing_tier.default.primary.tiers[].featured
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	featured: prismic.BooleanField;
+	
+	/**
+	 * Link field in *PricingTier → Default → Primary → Tiers*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing_tier.default.primary.tiers[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Primary content in *PricingTier → Default → Primary*
+ */
+export interface PricingTierSliceDefaultPrimary {
+	/**
+	 * Tiers field in *PricingTier → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pricing_tier.default.primary.tiers[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	tiers: prismic.GroupField<Simplify<PricingTierSliceDefaultPrimaryTiersItem>>;
+}
+
+/**
+ * Default variation for PricingTier Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PricingTierSliceDefault = prismic.SharedSliceVariation<"default", Simplify<PricingTierSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *PricingTier*
+ */
+type PricingTierSliceVariation = PricingTierSliceDefault
+
+/**
+ * PricingTier Shared Slice
+ *
+ * - **API ID**: `pricing_tier`
+ * - **Description**: PricingTier
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PricingTierSlice = prismic.SharedSlice<"pricing_tier", PricingTierSliceVariation>;
 
 /**
  * Primary content in *Process → Default → Primary*
@@ -2544,6 +3117,8 @@ declare module "@prismicio/client" {
 			PostDocumentDataSlicesSlice,
 			SettingsDocument,
 			SettingsDocumentData,
+			ThemeDocument,
+			ThemeDocumentData,
 			AllDocumentTypes,
 			BoardIndexSlice,
 			BoardIndexSliceDefaultPrimary,
@@ -2557,6 +3132,11 @@ declare module "@prismicio/client" {
 			CarouselSliceVariation,
 			CarouselSliceDefault,
 			CarouselSliceWithDetails,
+			CategoryListSlice,
+			CategoryListSliceDefaultPrimaryCategoriesItem,
+			CategoryListSliceDefaultPrimary,
+			CategoryListSliceVariation,
+			CategoryListSliceDefault,
 			ContentIndexSlice,
 			ContentIndexSliceDefaultPrimary,
 			ContentIndexSliceVariation,
@@ -2565,6 +3145,10 @@ declare module "@prismicio/client" {
 			DontationSliceDefaultPrimary,
 			DontationSliceVariation,
 			DontationSliceDefault,
+			EventDetailsSlice,
+			EventDetailsSliceDefaultPrimary,
+			EventDetailsSliceVariation,
+			EventDetailsSliceDefault,
 			EventsSlice,
 			EventsSliceDefaultPrimary,
 			EventsSliceEventsGridPrimary,
@@ -2608,10 +3192,12 @@ declare module "@prismicio/client" {
 			HeroSliceDefaultPrimary,
 			HeroSliceWithImagePrimary,
 			HeroSliceContentHeightPrimary,
+			HeroSliceEventHeroPrimary,
 			HeroSliceVariation,
 			HeroSliceDefault,
 			HeroSliceWithImage,
 			HeroSliceContentHeight,
+			HeroSliceEventHero,
 			ImageWithTextSlice,
 			ImageWithTextSliceDefaultPrimary,
 			ImageWithTextSliceRightImagePrimary,
@@ -2621,6 +3207,11 @@ declare module "@prismicio/client" {
 			OptOutSlice,
 			OptOutSliceVariation,
 			OptOutSliceDefault,
+			PricingTierSlice,
+			PricingTierSliceDefaultPrimaryTiersItem,
+			PricingTierSliceDefaultPrimary,
+			PricingTierSliceVariation,
+			PricingTierSliceDefault,
 			ProcessSlice,
 			ProcessSliceDefaultPrimary,
 			ProcessSliceDefaultItem,

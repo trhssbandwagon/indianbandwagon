@@ -1,64 +1,64 @@
 {
+  "description": "ImageWithText",
   "id": "image_with_text",
-  "type": "SharedSlice",
   "name": "ImageWithText",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/image_with_text/default/7c72223312dd7a0cadedb8010bdc10356a8bd82a.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/image_with_text/default/7c72223312dd7a0cadedb8010bdc10356a8bd82a.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "text": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Text",
-            "placeholder": "Enter your text here",
             "multi": "paragraph,preformatted,heading2,heading3,strong,em,hyperlink,list-item,o-list-item,rtl",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Enter your text here"
+          },
+          "type": "StructuredText"
         },
         "image": {
-          "type": "Image",
           "config": {
-            "label": "Image",
             "constraint": {},
+            "label": "Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
-      "id": "rightImage",
-      "name": "Right Image",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/image_with_text/rightImage/6653bbd7dabeda6282da6405c926c878fb0768b1.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "rightImage",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/image_with_text/rightImage/6653bbd7dabeda6282da6405c926c878fb0768b1.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Right Image",
       "primary": {
         "text": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Text",
-            "placeholder": "Enter your text here",
             "multi": "paragraph,preformatted,heading2,heading3,strong,em,hyperlink,list-item,o-list-item,rtl",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Enter your text here"
+          },
+          "type": "StructuredText"
         },
         "image": {
-          "type": "Image",
           "config": {
-            "label": "Image",
             "constraint": {},
+            "label": "Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "ImageWithText"
+  ]
 }

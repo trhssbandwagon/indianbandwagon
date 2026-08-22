@@ -1,24 +1,24 @@
 {
+  "format": "custom",
   "id": "board_position",
-  "label": "Board Position",
-  "repeatable": true,
   "json": {
     "Main": {
       "uid": {
-        "type": "UID",
         "config": {
           "label": "UID"
-        }
+        },
+        "type": "UID"
       },
       "title": {
-        "type": "Text",
         "config": {
           "label": "Title",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Board Position",
+  "repeatable": true,
+  "status": true
 }

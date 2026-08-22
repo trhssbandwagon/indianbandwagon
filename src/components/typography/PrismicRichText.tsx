@@ -20,7 +20,7 @@ const createDefaultComponents = (sizes?: string): JSXMapSerializer => ({
   },
   heading2: ({ children }: { children: ReactNode }) => {
     return (
-      <Heading as="h2" size="5xl" className="dark:text-foreground">
+      <Heading as="h2" size="5xl" className="">
         {children}
       </Heading>
     )

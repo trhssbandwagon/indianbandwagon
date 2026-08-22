@@ -1,36 +1,36 @@
 {
+  "description": "Dontation",
   "id": "dontation",
-  "type": "SharedSlice",
   "name": "Donation",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/dontation/default/6ae320805bd0cb2bc438e038817df07ea1f55376.png?auto=compress%2Cformat",
+      "name": "Default",
       "primary": {
         "heading": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": false,
             "label": "Heading",
             "placeholder": "",
-            "single": "heading2,heading3",
-            "allowTargetBlank": false
-          }
+            "single": "heading2,heading3"
+          },
+          "type": "StructuredText"
         },
         "description": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Description",
-            "placeholder": "",
             "multi": "paragraph,preformatted,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
-            "allowTargetBlank": true
-          }
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         }
-      }
+      },
+      "version": "initial"
     }
-  ],
-  "description": "Dontation"
+  ]
 }

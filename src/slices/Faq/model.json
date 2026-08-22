@@ -1,85 +1,85 @@
 {
+  "description": "Faq",
   "id": "faq",
-  "type": "SharedSlice",
   "name": "Faq",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/faq/default/da8bf04ffc65b0abe234500fcbd55032e66406f9.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/faq/default/da8bf04ffc65b0abe234500fcbd55032e66406f9.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "heading": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Heading",
             "placeholder": "",
-            "single": "heading2",
-            "allowTargetBlank": true
-          }
+            "single": "heading2"
+          },
+          "type": "StructuredText"
         },
         "type": {
-          "type": "Select",
           "config": {
-            "label": "Type",
-            "placeholder": "Mutiple allows more than 1 to be open",
             "default_value": "multiple",
+            "label": "Type",
             "options": [
               "multiple",
               "single"
-            ]
-          }
+            ],
+            "placeholder": "Mutiple allows more than 1 to be open"
+          },
+          "type": "Select"
         },
         "border": {
-          "type": "Boolean",
           "config": {
-            "label": "Border",
             "default_value": false,
-            "placeholder_true": "Border",
-            "placeholder_false": "No Border"
-          }
+            "label": "Border",
+            "placeholder_false": "No Border",
+            "placeholder_true": "Border"
+          },
+          "type": "Boolean"
         },
         "collapsible": {
-          "type": "Boolean",
           "config": {
-            "label": "Collapsible",
             "default_value": true,
-            "placeholder_true": "true",
-            "placeholder_false": "false"
-          }
+            "label": "Collapsible",
+            "placeholder_false": "false",
+            "placeholder_true": "true"
+          },
+          "type": "Boolean"
         },
         "questions": {
-          "type": "Group",
           "config": {
-            "label": "Questions",
-            "repeat": true,
             "fields": {
               "question": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Question",
                   "placeholder": "Enter the question text",
-                  "single": "strong,em,hyperlink,paragraph",
-                  "allowTargetBlank": true
-                }
+                  "single": "strong,em,hyperlink,paragraph"
+                },
+                "type": "StructuredText"
               },
               "answer": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Answer",
-                  "placeholder": "Answer the question",
                   "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": "Answer the question"
+                },
+                "type": "StructuredText"
               }
-            }
-          }
+            },
+            "label": "Questions",
+            "repeat": true
+          },
+          "type": "Group"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "Faq"
+  ]
 }

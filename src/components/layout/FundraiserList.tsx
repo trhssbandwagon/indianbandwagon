@@ -3,26 +3,20 @@ import { createClient } from '@/prismicio'
 import { ImageField, RichTextField, asText } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { PrismicRichText } from '@/components/typography/PrismicRichText'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '../ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { CalendarDays } from 'lucide-react'
 import Link from 'next/link'
 import Pagination from '@/components/layout/Pagination'
-import { format, parseISO, isAfter, isBefore } from 'date-fns'
-
-interface FundraiserItem {
-  id: string
-  uid: string
-  url: string | null | undefined
-  data: {
-    featured_image: ImageField
-    title: RichTextField
-    excerpt: RichTextField
-    start_date: string | null
-    end_date: string | null
-  }
-}
+import { parseISO, isAfter, isBefore } from 'date-fns'
+import { formatEventDate } from '@/lib/utils'
 
 type FundraiserListProps = {
   page: number | undefined
@@ -42,9 +36,9 @@ function getStatus(startDate: string | null, endDate: string | null) {
 
 function formatDateRange(startDate: string | null, endDate: string | null) {
   if (!startDate) return null
-  const start = format(parseISO(startDate), 'MMM d, yyyy')
+  const start = formatEventDate(startDate)
   if (!endDate) return start
-  const end = format(parseISO(endDate), 'MMM d, yyyy')
+  const end = formatEventDate(endDate)
   return `${start} – ${end}`
 }
 
@@ -57,14 +51,14 @@ const FundraiserList = async ({
   const client = createClient()
   const prismicData = await client.getByType('fundraiser', {
     orderings: {
-      field: 'my.fundraiser.start_date',
+      field: 'my.fundraiser.start',
       direction: 'asc',
     },
     page,
     pageSize: display,
   })
 
-  const results = prismicData.results as unknown as FundraiserItem[]
+  const results = prismicData.results
 
   return (
     <>
@@ -81,11 +75,8 @@ const FundraiserList = async ({
         {results.length > 0 &&
           results.map(item => {
             const href = item.url || `/fundraisers/${item.uid}`
-            const status = getStatus(item.data.start_date, item.data.end_date)
-            const dateRange = formatDateRange(
-              item.data.start_date,
-              item.data.end_date,
-            )
+            const status = getStatus(item.data.start, item.data.end)
+            const dateRange = formatDateRange(item.data.start, item.data.end)
             const image = item.data.featured_image.url
               ? item.data.featured_image
               : fallbackItemImage

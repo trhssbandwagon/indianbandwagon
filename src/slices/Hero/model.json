@@ -1,43 +1,43 @@
 {
+  "description": "Hero",
   "id": "hero",
-  "type": "SharedSlice",
   "name": "Hero",
+  "type": "SharedSlice",
   "variations": [
     {
+      "description": "Default",
+      "docURL": "...",
       "id": "default",
-      "name": "Default",
-      "description": "Default",
       "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/hero/default/6e7de243c86a3cf370d6c7b42b1c0b475d1dd0ab.png?auto=compress%2Cformat",
-      "docURL": "...",
-      "version": "initial",
+      "items": {},
+      "name": "Default",
       "primary": {
         "heading": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Heading",
             "placeholder": "Benefit driven headline",
-            "single": "heading2",
-            "allowTargetBlank": true
-          }
+            "single": "heading2"
+          },
+          "type": "StructuredText"
         },
         "description": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Description",
             "placeholder": "Short: What, Who, How",
-            "single": "paragraph,strong,em",
-            "allowTargetBlank": true
-          }
+            "single": "paragraph,strong,em"
+          },
+          "type": "StructuredText"
         },
         "button_link": {
-          "type": "Link",
           "config": {
-            "label": "Button Link",
-            "placeholder": "Enter link",
-            "select": null,
             "allowTargetBlank": true,
             "allowText": true,
+            "label": "Button Link",
+            "placeholder": "Enter link",
             "repeat": true,
+            "select": null,
             "variants": [
               "default",
               "secondary",
@@ -46,54 +46,54 @@
               "destructive",
               "link"
             ]
-          }
+          },
+          "type": "Link"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
+      "description": "Default",
+      "docURL": "...",
       "id": "withImage",
-      "name": "With Image",
-      "description": "Default",
       "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/hero/withImage/d86e44bea3856f9715d2f4c76ec50e43abb8430c.png?auto=compress%2Cformat",
-      "docURL": "...",
-      "version": "initial",
+      "items": {},
+      "name": "With Image",
       "primary": {
         "image": {
-          "type": "Image",
           "config": {
-            "label": "Image",
             "constraint": {},
+            "label": "Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         },
         "heading": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Heading",
             "placeholder": "Benefit driven headline",
-            "single": "heading2",
-            "allowTargetBlank": true
-          }
+            "single": "heading2"
+          },
+          "type": "StructuredText"
         },
         "description": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Description",
             "placeholder": "Short: What, Who, How",
-            "single": "paragraph,strong,em",
-            "allowTargetBlank": true
-          }
+            "single": "paragraph,strong,em"
+          },
+          "type": "StructuredText"
         },
         "button_link": {
-          "type": "Link",
           "config": {
-            "label": "Button Link",
-            "placeholder": "Enter link",
-            "select": null,
             "allowTargetBlank": true,
             "allowText": true,
+            "label": "Button Link",
+            "placeholder": "Enter link",
             "repeat": true,
+            "select": null,
             "variants": [
               "default",
               "secondary",
@@ -102,54 +102,54 @@
               "destructive",
               "link"
             ]
-          }
+          },
+          "type": "Link"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
-      "id": "contentHeight",
-      "name": "Content Height",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/hero/contentHeight/089205f090f4530faaa30511c19539f90e3d6a27.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "contentHeight",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/hero/contentHeight/089205f090f4530faaa30511c19539f90e3d6a27.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Content Height",
       "primary": {
         "image": {
-          "type": "Image",
           "config": {
-            "label": "Image",
             "constraint": {},
+            "label": "Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         },
         "heading": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Heading",
             "placeholder": "Benefit driven headline",
-            "single": "heading2",
-            "allowTargetBlank": true
-          }
+            "single": "heading2"
+          },
+          "type": "StructuredText"
         },
         "description": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Description",
-            "placeholder": "Short: What, Who, How",
             "multi": "paragraph,strong,em",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Short: What, Who, How"
+          },
+          "type": "StructuredText"
         },
         "button_link": {
-          "type": "Link",
           "config": {
-            "label": "Button Link",
-            "placeholder": "Enter link",
-            "select": null,
             "allowTargetBlank": true,
             "allowText": true,
+            "label": "Button Link",
+            "placeholder": "Enter link",
             "repeat": true,
+            "select": null,
             "variants": [
               "default",
               "secondary",
@@ -158,11 +158,73 @@
               "destructive",
               "link"
             ]
-          }
+          },
+          "type": "Link"
         }
       },
-      "items": {}
+      "version": "initial"
+    },
+    {
+      "description": "Default",
+      "docURL": "...",
+      "id": "eventHero",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/hero/withImage/d86e44bea3856f9715d2f4c76ec50e43abb8430c.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "EventHero",
+      "primary": {
+        "image": {
+          "config": {
+            "constraint": {},
+            "label": "Image",
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "eyebrow": {
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "heading": {
+          "config": {
+            "allowTargetBlank": true,
+            "label": "Heading",
+            "placeholder": "Benefit driven headline",
+            "single": "heading2"
+          },
+          "type": "StructuredText"
+        },
+        "button_link": {
+          "config": {
+            "allowTargetBlank": true,
+            "allowText": true,
+            "label": "Button Link",
+            "placeholder": "Enter link",
+            "repeat": true,
+            "select": null,
+            "variants": [
+              "default",
+              "secondary",
+              "outline",
+              "ghost",
+              "destructive",
+              "link"
+            ]
+          },
+          "type": "Link"
+        },
+        "logo_override": {
+          "config": {
+            "constraint": {},
+            "label": "Logo Override",
+            "thumbnails": []
+          },
+          "type": "Image"
+        }
+      },
+      "version": "initial"
     }
-  ],
-  "description": "Hero"
+  ]
 }

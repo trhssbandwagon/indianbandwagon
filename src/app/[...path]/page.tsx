@@ -9,6 +9,7 @@ import Heading from '@/components/typography/Heading'
 import { Graph } from 'schema-dts'
 import { Breadcrumbs } from '../../components/layout/Breadcrumbs'
 import Section from '@/components/layout/Section'
+import Script from 'next/script'
 
 type Params = { path: string[] }
 type SearchParams = {
@@ -61,7 +62,7 @@ export default async function Page(props: {
 
   return (
     <>
-      <script
+      <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />

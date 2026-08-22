@@ -11,6 +11,7 @@ import { Graph, NonprofitType, Organization, PostalAddress } from 'schema-dts'
 import PrivacyToast from '@/components/PrivacyToast'
 import { Toaster } from '@/components/ui/sonner'
 import Analytics from '@/components/Analytics'
+import { flourishFontVariables } from '@/lib/fonts'
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient()
@@ -101,7 +102,11 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="en" suppressHydrationWarning className={cn('scroll-smooth')}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn('scroll-smooth', flourishFontVariables)}
+    >
       <head>
         <link rel="preconnect" href="https://images.prismic.io" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -126,7 +131,9 @@ export default async function RootLayout({
             Skip to content
           </a>
           <Header />
-          <main id="main-content" className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
           <Footer />
           <PrivacyToast message={settings.data.privacy_toast_message} />
           <Toaster richColors closeButton />

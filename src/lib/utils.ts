@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import Color from 'colorjs.io'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -62,4 +63,96 @@ export async function getPublicEvents(
     console.error('Error fetching Google Calendar events:', error)
     return []
   }
+}
+
+const MIN_RING_CONTRAST = 3 // WCAG 2.4.11 Focus Appearance (Minimum), Level AA
+const MAX_LIGHTNESS_STEPS = 20
+
+function contrastRatio(colorA: string, colorB: string): number {
+  return new Color(colorA).contrast(new Color(colorB), 'WCAG21')
+}
+
+function computeAccessibleRing(
+  baseColor: string,
+  backgroundColor: string,
+): string {
+  const base = new Color(baseColor)
+  const bg = new Color(backgroundColor)
+
+  if (contrastRatio(baseColor, backgroundColor) >= MIN_RING_CONTRAST) {
+    return base.toString({ format: 'hex' })
+  }
+
+  const startLightness = base.get('oklch.l')
+  const chroma = base.get('oklch.c')
+  const hue = base.get('oklch.h')
+  const bgLightness = bg.get('oklch.l')
+
+  const bgIsLighter = bgLightness > startLightness
+  const step = bgIsLighter ? -0.03 : 0.03
+  let lightness = startLightness
+
+  for (let i = 0; i < MAX_LIGHTNESS_STEPS; i++) {
+    lightness = Math.min(1, Math.max(0, lightness + step))
+    const candidate = new Color('oklch', [lightness, chroma, hue])
+    if (
+      contrastRatio(candidate.toString(), backgroundColor) >= MIN_RING_CONTRAST
+    ) {
+      return candidate.toString({ format: 'hex' })
+    }
+  }
+
+  return contrastRatio('#000000', backgroundColor) >
+    contrastRatio('#ffffff', backgroundColor)
+    ? '#000000'
+    : '#ffffff'
+}
+
+export function resolveRingColor({
+  primaryColor,
+  backgroundColor,
+  ringOverride,
+}: {
+  primaryColor: string
+  backgroundColor: string
+  ringOverride?: string | null
+}): string {
+  if (ringOverride) {
+    const overrideContrast = contrastRatio(ringOverride, backgroundColor)
+    if (overrideContrast >= MIN_RING_CONTRAST) return ringOverride
+    console.warn(
+      `[theme] ring_color override "${ringOverride}" only has ${overrideContrast.toFixed(2)}:1 contrast (needs ${MIN_RING_CONTRAST}:1). Falling back to a computed ring color.`,
+    )
+  }
+  return computeAccessibleRing(primaryColor, backgroundColor)
+}
+
+const EVENT_TIME_ZONE = 'America/New_York'
+
+function formatInEventZone(
+  iso: string,
+  options: Intl.DateTimeFormatOptions,
+): string {
+  return new Intl.DateTimeFormat('en-US', {
+    ...options,
+    timeZone: EVENT_TIME_ZONE,
+  }).format(new Date(iso))
+}
+
+export function formatEventDate(iso: string): string {
+  return formatInEventZone(iso, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
+}
+
+export function formatEventDateTime(iso: string): string {
+  return formatInEventZone(iso, {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+  })
 }

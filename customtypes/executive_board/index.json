@@ -1,94 +1,94 @@
 {
+  "format": "custom",
   "id": "executive_board",
-  "label": "Executive Board",
-  "repeatable": true,
   "json": {
     "Main": {
       "uid": {
-        "type": "UID",
         "config": {
           "label": "UID"
-        }
+        },
+        "type": "UID"
       },
       "title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Title",
           "placeholder": "",
-          "single": "heading2,heading3,heading4",
-          "allowTargetBlank": true
-        }
+          "single": "heading2,heading3,heading4"
+        },
+        "type": "StructuredText"
       },
       "start": {
-        "type": "Date",
         "config": {
           "label": "Start",
           "placeholder": "Date the exec board starts"
-        }
+        },
+        "type": "Date"
       },
       "end": {
-        "type": "Date",
         "config": {
           "label": "End",
           "placeholder": "Date the exec board ends"
-        }
+        },
+        "type": "Date"
       },
       "members": {
-        "type": "Group",
         "config": {
-          "label": "Members",
-          "repeat": true,
           "fields": {
             "member": {
-              "type": "Link",
               "config": {
-                "label": "Member",
-                "select": "document",
                 "customtypes": [
                   {
-                    "id": "board_member",
                     "fields": [
                       "name",
                       {
-                        "id": "position",
                         "customtypes": [
                           {
-                            "id": "board_position",
                             "fields": [
                               "title"
-                            ]
+                            ],
+                            "id": "board_position"
                           }
-                        ]
+                        ],
+                        "id": "position"
                       },
                       "portrait",
                       "link"
-                    ]
+                    ],
+                    "id": "board_member"
                   }
                 ],
-                "repeat": false
-              }
+                "label": "Member",
+                "repeat": false,
+                "select": "document"
+              },
+              "type": "Link"
             },
             "position": {
-              "type": "Link",
               "config": {
-                "label": "Position",
-                "select": "document",
                 "customtypes": [
                   {
-                    "id": "board_position",
                     "fields": [
                       "title"
-                    ]
+                    ],
+                    "id": "board_position"
                   }
                 ],
-                "repeat": false
-              }
+                "label": "Position",
+                "repeat": false,
+                "select": "document"
+              },
+              "type": "Link"
             }
-          }
-        }
+          },
+          "label": "Members",
+          "repeat": true
+        },
+        "type": "Group"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Executive Board",
+  "repeatable": true,
+  "status": true
 }

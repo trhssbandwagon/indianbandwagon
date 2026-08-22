@@ -2,8 +2,10 @@
 
 import BoardIndex from "./BoardIndex";
 import Carousel from "./Carousel";
+import CategoryList from "./CategoryList";
 import ContentIndex from "./ContentIndex";
 import Donation from "./Donation";
+import EventDetails from "./EventDetails";
 import Events from "./Events";
 import Faq from "./Faq";
 import Features from "./Features";
@@ -14,6 +16,7 @@ import Form from "./Form";
 import Hero from "./Hero";
 import ImageWithText from "./ImageWithText";
 import OptOut from "./OptOut";
+import PricingTier from "./PricingTier";
 import Process from "./Process";
 import RichText from "./RichText";
 import Testimonial from "./Testimonial";
@@ -21,8 +24,10 @@ import Testimonial from "./Testimonial";
 export const components = {
 	board_index: BoardIndex,
 	carousel: Carousel,
+	category_list: CategoryList,
 	content_index: ContentIndex,
 	dontation: Donation,
+	event_details: EventDetails,
 	events: Events,
 	faq: Faq,
 	features: Features,
@@ -33,6 +38,7 @@ export const components = {
 	hero: Hero,
 	image_with_text: ImageWithText,
 	opt_out: OptOut,
+	pricing_tier: PricingTier,
 	process: Process,
 	rich_text: RichText,
 	testimonial: Testimonial

@@ -1,37 +1,37 @@
 {
+  "description": "Testimonial",
   "id": "testimonial",
-  "type": "SharedSlice",
   "name": "Testimonial",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/testimonial/default/14ab599aaf681537eff2a4340a877206f536787f.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/testimonial/default/14ab599aaf681537eff2a4340a877206f536787f.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "quote": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Quote",
             "placeholder": "Enter quote here",
-            "single": "paragraph,strong,em,rtl",
-            "allowTargetBlank": true
-          }
+            "single": "paragraph,strong,em,rtl"
+          },
+          "type": "StructuredText"
         },
         "name": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Name",
-            "placeholder": "Enter quote author",
             "multi": "paragraph,strong,em,hyperlink",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Enter quote author"
+          },
+          "type": "StructuredText"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "Testimonial"
+  ]
 }

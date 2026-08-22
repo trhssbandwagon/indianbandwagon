@@ -1,25 +1,25 @@
 {
+  "description": "BoardIndex",
   "id": "board_index",
-  "type": "SharedSlice",
   "name": "BoardIndex",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/indianbandwagon/shared-slices/board_index/default/fc3d9a5bf4676e71a1ab426fcc74cf47f48155ff.png?auto=compress%2Cformat",
+      "name": "Default",
       "primary": {
         "number": {
-          "type": "Number",
           "config": {
             "label": "Number",
             "placeholder": "How many boards to display per page"
-          }
+          },
+          "type": "Number"
         }
-      }
+      },
+      "version": "initial"
     }
-  ],
-  "description": "BoardIndex"
+  ]
 }

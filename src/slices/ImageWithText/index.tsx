@@ -43,7 +43,7 @@ const ImageWithText = ({ slice }: ImageWithTextProps): React.JSX.Element => {
         >
           <PrismicNextImage
             field={slice.primary.image}
-            className="rounded-md shadow"
+            className="shadow lg:rounded-md"
             sizes="(min-width: 1280px) 492px, (min-width: 1024px) 40vw, calc(100vw - 2rem)"
             imgixParams={{
               ar: '4:3',

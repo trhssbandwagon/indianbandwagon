@@ -57,7 +57,9 @@ const ContentList = async ({
         <div className="flex flex-col items-center gap-3 py-16 text-center text-muted-foreground">
           <BookOpen className="h-10 w-10 opacity-40" />
           <p className="text-lg font-medium">No posts yet</p>
-          <p className="text-sm">Check back soon — new content is on the way.</p>
+          <p className="text-sm">
+            Check back soon — new content is on the way.
+          </p>
         </div>
       )}
       <ul>

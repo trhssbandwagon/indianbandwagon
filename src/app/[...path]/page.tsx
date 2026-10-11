@@ -75,7 +75,7 @@ export default async function Page(props: {
           {asText(page.data.title)}
         </Heading>
       )}
-      <Section width="md">
+      <Section width="md" padded>
         <Breadcrumbs currentPage={page} path={path} />
       </Section>
       <SliceZone

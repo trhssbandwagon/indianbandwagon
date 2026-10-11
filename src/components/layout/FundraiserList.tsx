@@ -83,7 +83,7 @@ const FundraiserList = async ({
 
             return (
               <li key={item.id} className="flex">
-                <Card className="flex w-full flex-col overflow-hidden">
+                <Card className="flex w-full flex-col overflow-hidden rounded-none md:rounded-lg">
                   <Link href={href} tabIndex={-1} aria-hidden>
                     <div className="aspect-video w-full overflow-hidden">
                       <PrismicNextImage

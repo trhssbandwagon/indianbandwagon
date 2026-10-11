@@ -19,15 +19,16 @@ const RichText = ({ slice }: RichTextProps): React.JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       width="md"
+      padded
       className={cn('py-6 md:py-8 lg:py-12', {
         'bg-secondary': slice.variation === 'secondary',
       })}
     >
       <div className="prose lg:prose-lg xl:prose-xl 2xl:prose-2xl dark:prose-invert">
         <PrismicRichText
-            field={slice.primary.rich_text}
-            sizes="(min-width: 768px) 768px, 100vw"
-          />
+          field={slice.primary.rich_text}
+          sizes="(min-width: 768px) 768px, 100vw"
+        />
       </div>
     </Section>
   )

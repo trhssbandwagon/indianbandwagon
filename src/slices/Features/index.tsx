@@ -23,6 +23,7 @@ const Features = ({ slice }: FeaturesProps): React.JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       width="xl"
+      padded
       className={cn('py-8 lg:pb-24', {
         'bg-secondary': slice.variation === 'secondary',
         'bg-primary': slice.variation === 'primary',

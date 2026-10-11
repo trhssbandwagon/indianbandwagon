@@ -40,6 +40,7 @@ const Events = async ({ slice }: EventsProps) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       width="xl"
+      padded
     >
       {/* Shared Heading & Description Block */}
       <div className="mb-8 flex flex-col justify-between gap-2 md:flex-row md:items-end">

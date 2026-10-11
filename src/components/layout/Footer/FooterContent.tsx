@@ -33,7 +33,7 @@ const FooterContent = ({
 }: FooterContentProps): React.JSX.Element => {
   const { privacy_link, copyright, social_media } = data
   return (
-    <Section as="footer" className="bg-primary text-primary-foreground">
+    <Section as="footer" className="bg-primary text-primary-foreground" padded>
       <SliceZone components={components} slices={data.slices1} />
       {isFilled.group(social_media) && (
         <div className="flex justify-center gap-4 py-6">

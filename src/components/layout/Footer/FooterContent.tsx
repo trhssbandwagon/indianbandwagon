@@ -157,7 +157,7 @@ const FooterContent = ({
           })}
         </div>
       )}
-      <div className="mx-auto prose prose-sm text-primary-foreground">
+      <div className="mx-auto prose prose-sm text-primary-foreground prose-a:text-background dark:prose-a:text-foreground">
         <PrismicRichText field={data.nonprofit_statement} />
       </div>
       <div className="my-4 text-center lg:my-4">
